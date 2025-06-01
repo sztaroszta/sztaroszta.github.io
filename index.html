@@ -6,7 +6,7 @@
     <title>Vitalii Starosta - Projects Showcase</title>
     <style>
         /* Reset some default browser styles */
-        body, h1, h2, p {
+        body, h1, h2, h3, p { /* Added h3 to reset */
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -33,12 +33,12 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             max-width: 700px;
             width: 100%;
-            margin-bottom: 20px; /* Added margin to separate container from footer */
+            margin-bottom: 20px;
         }
 
         h1 {
             font-size: 2.5em;
-            color: #2c3e50; /* Darker blue-grey */
+            color: #2c3e50;
             margin-bottom: 15px;
         }
 
@@ -49,47 +49,102 @@
             line-height: 1.8;
         }
 
-        h2 {
+        /* Projects Section Heading */
+        .projects h2 {
             font-size: 1.8em;
-            color: #34495e; /* Another shade of blue-grey */
-            margin-bottom: 10px;
+            color: #34495e;
+            margin-bottom: 30px; /* Increased margin for better separation */
             border-bottom: 2px solid #eeeeee;
             padding-bottom: 10px;
+            /* text-align: center; is inherited, which is good */
         }
 
-        .projects p {
+        /* Styles for individual project cards */
+        .project-item {
+            background-color: #ffffff; /* White background for the card */
+            border: 1px solid #e0e0e0;    /* A clear but not too heavy border */
+            border-radius: 8px;        /* Softer corners */
+            padding: 20px 25px;        /* Padding: vertical horizontal */
+            margin-left: auto;         /* Centering the card if it has a max-width smaller than parent */
+            margin-right: auto;        /* Centering the card */
+            margin-bottom: 25px;       /* Space below each project card */
+            text-align: left;          /* Align text to the left within the card */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.07); /* A subtle shadow for depth */
+            max-width: 100%; /* Takes full width of .projects section by default */
+            /* If you want cards to be narrower and centered: max-width: 580px; */
+        }
+
+        .project-item h3 {
+            font-size: 1.45em; /* Project title size */
+            color: #2980b9;   /* A distinct, professional blue */
+            margin-top: 0;
+            margin-bottom: 12px; /* Space after title */
+        }
+
+        .project-item .project-description {
+            font-size: 1em;
+            color: #444; /* Slightly darker for better readability */
+            line-height: 1.65;
+            margin-bottom: 20px; /* Space before the link/button */
+        }
+
+        .project-item .project-link {
+            display: inline-block; /* Allows padding, margin, etc. */
+            background-color: #3498db; /* Button color */
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500; /* Medium font weight */
+            transition: background-color 0.2s ease, transform 0.15s ease;
+        }
+
+        .project-item .project-link:hover,
+        .project-item .project-link:focus { /* Added focus for accessibility */
+            background-color: #277db0; /* Darker blue on hover/focus */
+            text-decoration: none;
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        /* Placeholder text and general GitHub link styling */
+        .projects-placeholder,
+        .general-github-link {
             font-size: 1em;
             color: #666;
-            margin-bottom: 10px; /* Added some margin between project paragraphs */
+            text-align: center; /* Ensure these specific paragraphs are centered */
+            margin-bottom: 10px;
+            line-height: 1.6;
         }
 
-        /* Style for individual project items (if needed in the future) */
-        .project-item p {
-             margin-bottom: 15px; /* More space for project items */
+        .projects-placeholder {
+            font-style: italic;
+            margin-top: 10px; /* Adjusted margin */
+        }
+
+        .general-github-link {
+            margin-top: 15px;
         }
 
 
         footer {
-            /* margin-top: 40px; */ /* Removed fixed margin-top for better flex centering */
             font-size: 0.9em;
             color: #777;
-            padding: 10px 0; /* Added some padding to the footer */
+            padding: 10px 0;
         }
 
         footer a {
             color: #007bff;
             text-decoration: none;
-            margin: 0 8px; /* Add some space between links */
+            margin: 0 8px;
         }
 
         footer a:hover {
             text-decoration: underline;
         }
 
-        /* Style for the copyright text to separate it slightly from links */
         footer .copyright {
-            display: block; /* Make it take its own line */
-            margin-bottom: 10px; /* Space below copyright */
+            display: block;
+            margin-bottom: 10px;
         }
 
     </style>
@@ -105,12 +160,32 @@
         </header>
 
         <section class="projects">
-            <h2>My Projects</h2>
+            <h2>Projects Showcase</h2>
+
             <div class="project-item">
-                <p><strong>BM2Excel:</strong> A Python tool to convert browser bookmarks (HTML files) into structured Excel spreadsheets. You can find it on <a href="https://github.com/sztaroszta/BM2Excel" target="_blank">GitHub</a>.</p>
+                <h3>BM2Excel</h3>
+                <p class="project-description">
+                    A Python tool designed to convert browser bookmarks (HTML files) into well-structured and organized Excel spreadsheets.
+                </p>
+                <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="project-link">View on GitHub</a>
             </div>
-            <p>This section will showcase more of my projects once they are ready. Stay tuned for updates!</p>
-            <p style="margin-top: 20px;">In the meantime, you can find my code on <a href="https://github.com/sztaroszta" target="_blank">GitHub</a>.</p>
+
+            <!-- Example of how to add another project:
+            <div class="project-item">
+                <h3>Another Cool Project</h3>
+                <p class="project-description">
+                    A brief description of what this project does and its main features. Highlighting the tech used can also be good.
+                </p>
+                <a href="#" target="_blank" class="project-link">View Project / Read More</a>
+            </div>
+            -->
+
+            <p class="projects-placeholder">
+                This section will showcase more of my projects once they are ready. Stay tuned for updates!
+            </p>
+            <p class="general-github-link">
+                In the meantime, you can find all my code on <a href="https://github.com/sztaroszta" target="_blank">GitHub</a>.
+            </p>
         </section>
     </div>
 
@@ -119,7 +194,6 @@
             <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank">LinkedIn</a> |
             <a href="https://medium.com/@starosta" target="_blank">Medium</a> |
             <a href="https://github.com/sztaroszta" target="_blank">GitHub</a>
-            <!-- You can remove the GitHub link from here if you prefer it only in the projects section -->
         </div>
         <p class="copyright">© <script>document.write(new Date().getFullYear())</script> Vitalii Starosta.</p>
     </footer>
