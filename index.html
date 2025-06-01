@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitalii Starosta - Projects Showcase</title>
+    <style>
+        /* Reset some default browser styles */
+        body, h1, h2, p {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.7;
+            background-color: #f0f2f5; /* Light grey background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            max-width: 700px;
+            width: 100%;
+            margin-bottom: 20px; /* Added margin to separate container from footer */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #2c3e50; /* Darker blue-grey */
+            margin-bottom: 15px;
+        }
+
+        .bio {
+            font-size: 1.15em;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #34495e; /* Another shade of blue-grey */
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eeeeee;
+            padding-bottom: 10px;
+        }
+
+        .projects p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        footer {
+            /* margin-top: 40px; */ /* Removed fixed margin-top for better flex centering */
+            font-size: 0.9em;
+            color: #777;
+            padding: 10px 0; /* Added some padding to the footer */
+        }
+
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 8px; /* Add some space between links */
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Style for the copyright text to separate it slightly from links */
+        footer .copyright {
+            display: block; /* Make it take its own line */
+            margin-bottom: 10px; /* Space below copyright */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Vitalii Starosta</h1>
+            <p class="bio">
+                Juggling business insights, data deep dives, and project timelines. Off the clock, I'm crafting Python magic for macOS and Google Chrome.
+            </p>
+        </header>
+
+        <section class="projects">
+            <h2>My Projects</h2>
+            <p>This section will showcase my projects once they are ready. Stay tuned for updates!</p>
+            <p style="margin-top: 20px;">In the meantime, you can find my code on <a href="https://github.com/sztaroszta" target="_blank">GitHub</a>.</p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank">LinkedIn</a> |
+            <a href="https://medium.com/@starosta" target="_blank">Medium</a> |
+            <a href="https://github.com/sztaroszta" target="_blank">GitHub</a> 
+            <!-- You can remove the GitHub link from here if you prefer it only in the projects section -->
+        </div>
+        <p class="copyright">© <script>document.write(new Date().getFullYear())</script> Vitalii Starosta.</p>
+    </footer>
+
+</body>
+</html>
