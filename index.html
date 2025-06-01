@@ -60,7 +60,14 @@
         .projects p {
             font-size: 1em;
             color: #666;
+            margin-bottom: 10px; /* Added some margin between project paragraphs */
         }
+
+        /* Style for individual project items (if needed in the future) */
+        .project-item p {
+             margin-bottom: 15px; /* More space for project items */
+        }
+
 
         footer {
             /* margin-top: 40px; */ /* Removed fixed margin-top for better flex centering */
@@ -99,7 +106,10 @@
 
         <section class="projects">
             <h2>My Projects</h2>
-            <p>This section will showcase my projects once they are ready. Stay tuned for updates!</p>
+            <div class="project-item">
+                <p><strong>BM2Excel:</strong> A Python tool to convert browser bookmarks (HTML files) into structured Excel spreadsheets. You can find it on <a href="https://github.com/sztaroszta/BM2Excel" target="_blank">GitHub</a>.</p>
+            </div>
+            <p>This section will showcase more of my projects once they are ready. Stay tuned for updates!</p>
             <p style="margin-top: 20px;">In the meantime, you can find my code on <a href="https://github.com/sztaroszta" target="_blank">GitHub</a>.</p>
         </section>
     </div>
@@ -108,7 +118,7 @@
         <div class="social-links">
             <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank">LinkedIn</a> |
             <a href="https://medium.com/@starosta" target="_blank">Medium</a> |
-            <a href="https://github.com/sztaroszta" target="_blank">GitHub</a> 
+            <a href="https://github.com/sztaroszta" target="_blank">GitHub</a>
             <!-- You can remove the GitHub link from here if you prefer it only in the projects section -->
         </div>
         <p class="copyright">© <script>document.write(new Date().getFullYear())</script> Vitalii Starosta.</p>
