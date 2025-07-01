@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitalii Starosta - Projects Showcase</title>
+    <title>Vitalii Starosta - Project Showcase</title>
     <style>
         /* Reset some default browser styles */
-        body, h1, h2, h3, p { /* Added h3 to reset */
+        body, h1, h2, h3, p {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -15,7 +15,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             line-height: 1.7;
-            background-color: #f0f2f5; /* Light grey background */
+            background-color: #f0f2f5;
             color: #333;
             display: flex;
             flex-direction: column;
@@ -42,89 +42,97 @@
             margin-bottom: 15px;
         }
 
+        /* --- Enhanced Bio Section --- */
         .bio {
             font-size: 1.15em;
-            color: #555;
-            margin-bottom: 40px;
+            color: #4A4A4A; /* Darker grey for better readability */
             line-height: 1.8;
+            margin-top: 25px; /* More space from the title */
+            margin-bottom: 50px; /* More space before the projects heading */
+            padding: 20px 25px;
+            background-color: #f8f9fa; /* Subtle background color */
+            border-left: 4px solid #3498db; /* Accent border using a theme color */
+            border-radius: 0 8px 8px 0; /* Rounded corners on right side */
+            text-align: left; /* Align text left for readability */
+            font-style: italic; /* Classic quote/bio style */
         }
 
-        /* Projects Section Heading */
         .projects h2 {
             font-size: 1.8em;
             color: #34495e;
-            margin-bottom: 30px; /* Increased margin for better separation */
+            margin-bottom: 30px;
             border-bottom: 2px solid #eeeeee;
             padding-bottom: 10px;
-            /* text-align: center; is inherited, which is good */
         }
 
-        /* Styles for individual project cards */
         .project-item {
-            background-color: #ffffff; /* White background for the card */
-            border: 1px solid #e0e0e0;    /* A clear but not too heavy border */
-            border-radius: 8px;        /* Softer corners */
-            padding: 20px 25px;        /* Padding: vertical horizontal */
-            margin-left: auto;         /* Centering the card if it has a max-width smaller than parent */
-            margin-right: auto;        /* Centering the card */
-            margin-bottom: 25px;       /* Space below each project card */
-            text-align: left;          /* Align text to the left within the card */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.07); /* A subtle shadow for depth */
-            max-width: 100%; /* Takes full width of .projects section by default */
-            /* If you want cards to be narrower and centered: max-width: 580px; */
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.07);
         }
 
         .project-item h3 {
-            font-size: 1.45em; /* Project title size */
-            color: #2980b9;   /* A distinct, professional blue */
-            margin-top: 0;
-            margin-bottom: 12px; /* Space after title */
+            font-size: 1.45em;
+            color: #2980b9;
+            margin-bottom: 12px;
         }
 
         .project-item .project-description {
             font-size: 1em;
-            color: #444; /* Slightly darker for better readability */
+            color: #444;
             line-height: 1.65;
-            margin-bottom: 20px; /* Space before the link/button */
+            margin-bottom: 20px;
         }
 
-        .project-item .project-link {
-            display: inline-block; /* Allows padding, margin, etc. */
-            background-color: #3498db; /* Button color */
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-link {
+            display: inline-block;
             color: #ffffff;
             padding: 10px 18px;
             border-radius: 5px;
             text-decoration: none;
-            font-weight: 500; /* Medium font weight */
+            font-weight: 500;
             transition: background-color 0.2s ease, transform 0.15s ease;
         }
 
-        .project-item .project-link:hover,
-        .project-item .project-link:focus { /* Added focus for accessibility */
-            background-color: #277db0; /* Darker blue on hover/focus */
+        .project-link:hover,
+        .project-link:focus {
             text-decoration: none;
-            transform: translateY(-2px); /* Slight lift effect */
+            transform: translateY(-2px);
         }
 
-        /* Placeholder text and general GitHub link styling */
-        .projects-placeholder,
-        .general-github-link {
-            font-size: 1em;
-            color: #666;
-            text-align: center; /* Ensure these specific paragraphs are centered */
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
+        /* --- Button Colors --- */
+        .github { background-color: #333; }
+        .github:hover { background-color: #222; }
+
+        .gitlab { background-color: #fca326; }
+        .gitlab:hover { background-color: #e89422; }
+
+        .bitbucket { background-color: #0052cc; }
+        .bitbucket:hover { background-color: #0041a3; }
+
+        .gitea { background-color: #609926; }
+        .gitea:hover { background-color: #4d7a1e; }
+
 
         .projects-placeholder {
+            font-size: 1em;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
             font-style: italic;
-            margin-top: 10px; /* Adjusted margin */
+            line-height: 1.6;
         }
-
-        .general-github-link {
-            margin-top: 15px;
-        }
-
 
         footer {
             font-size: 0.9em;
@@ -160,31 +168,36 @@
         </header>
 
         <section class="projects">
-            <h2>Projects Showcase</h2>
+            <h2>Project Showcase</h2>
 
             <div class="project-item">
                 <h3>BM2Excel</h3>
                 <p class="project-description">
                     A Python tool designed to convert browser bookmarks (HTML files) into well-structured and organized Excel spreadsheets.
                 </p>
-                <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="project-link">View on GitHub</a>
+                <div class="project-links">
+                    <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="project-link github">View on GitHub</a>
+                    <a href="https://gitlab.com/sztaroszta/BM2Excel" target="_blank" class="project-link gitlab">View on GitLab</a>
+                    <a href="https://bitbucket.org/sztaroszta/bm2excel/src/main/" target="_blank" class="project-link bitbucket">View on Bitbucket</a>
+                    <a href="https://gitea.com/starosta/BM2Excel" target="_blank" class="project-link gitea">View on Gitea</a>
+                </div>
             </div>
 
-            <!-- Example of how to add another project:
             <div class="project-item">
-                <h3>Another Cool Project</h3>
+                <h3>MacDirScope</h3>
                 <p class="project-description">
-                    A brief description of what this project does and its main features. Highlighting the tech used can also be good.
+                    A powerful Python tool for macOS that performs deep scans of any directory to catalog files and folders, extracting extended attributes like Finder tags and exporting the data into a clean, filterable Excel report.
                 </p>
-                <a href="#" target="_blank" class="project-link">View Project / Read More</a>
+                <div class="project-links">
+                    <a href="https://github.com/sztaroszta/MacDirScope" target="_blank" class="project-link github">View on GitHub</a>
+                    <a href="https://gitlab.com/sztaroszta/MacDirScope" target="_blank" class="project-link gitlab">View on GitLab</a>
+                    <a href="https://bitbucket.org/sztaroszta/macdirscope/src/main/" target="_blank" class="project-link bitbucket">View on Bitbucket</a>
+                    <a href="https://gitea.com/starosta/MacDirScope" target="_blank" class="project-link gitea">View on Gitea</a>
+                </div>
             </div>
-            -->
 
             <p class="projects-placeholder">
                 This section will showcase more of my projects once they are ready. Stay tuned for updates!
-            </p>
-            <p class="general-github-link">
-                In the meantime, you can find all my code on <a href="https://github.com/sztaroszta" target="_blank">GitHub</a>.
             </p>
         </section>
     </div>
@@ -193,9 +206,12 @@
         <div class="social-links">
             <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank">LinkedIn</a> |
             <a href="https://medium.com/@starosta" target="_blank">Medium</a> |
-            <a href="https://github.com/sztaroszta" target="_blank">GitHub</a>
+            <a href="https://github.com/sztaroszta" target="_blank">GitHub</a> |
+            <a href="https://gitlab.com/sztaroszta" target="_blank">GitLab</a> |
+            <a href="https://bitbucket.org/sztaroszta/workspace/overview/" target="_blank">Bitbucket</a> |
+            <a href="https://gitea.com/starosta" target="_blank">Gitea</a>
         </div>
-        <p class="copyright">© <script>document.write(new Date().getFullYear())</script> Vitalii Starosta.</p>
+        <p class="copyright">© <script>document.write(new Date().getFullYear())</script> Vitalii Starosta</p>
     </footer>
 
 </body>
