@@ -1,218 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitalii Starosta - Project Showcase</title>
-    <style>
-        /* Reset some default browser styles */
-        body, h1, h2, h3, p {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vitalii Starosta - Project Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            line-height: 1.7;
-            background-color: #f0f2f5;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
+    html, body {
+      background: #2b5876 linear-gradient(to right top, #2b5876, #4e4376) fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+      min-height: 100%;
+      overscroll-behavior: none;
+    }
 
-        .container {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            max-width: 700px;
-            width: 100%;
-            margin-bottom: 20px;
-        }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      color: #e0e0e0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100dvh;
+      isolation: isolate;
+    }
 
-        h1 {
-            font-size: 2.5em;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(to right top, #2b5876, #4e4376);
+      background-size: cover;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
 
-        /* --- Enhanced Bio Section --- */
-        .bio {
-            font-size: 1.15em;
-            color: #4A4A4A; /* Darker grey for better readability */
-            line-height: 1.8;
-            margin-top: 25px; /* More space from the title */
-            margin-bottom: 50px; /* More space before the projects heading */
-            padding: 20px 25px;
-            background-color: #f8f9fa; /* Subtle background color */
-            border-left: 4px solid #3498db; /* Accent border using a theme color */
-            border-radius: 0 8px 8px 0; /* Rounded corners on right side */
-            text-align: left; /* Align text left for readability */
-            font-style: italic; /* Classic quote/bio style */
-        }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+      opacity: 0.03;
+      z-index: -1;
+      pointer-events: none;
+    }
 
-        .projects h2 {
-            font-size: 1.8em;
-            color: #34495e;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #eeeeee;
-            padding-bottom: 10px;
-        }
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 2;
+    }
 
-        .project-item {
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px 25px;
-            margin-bottom: 25px;
-            text-align: left;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.07);
-        }
+    .container {
+      padding: 40px;
+      max-width: 750px;
+      width: 95%;
+      margin-bottom: 30px;
+    }
 
-        .project-item h3 {
-            font-size: 1.45em;
-            color: #2980b9;
-            margin-bottom: 12px;
-        }
+    .profile-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      width: 100%;
+      margin-bottom: 25px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 25px;
+    }
 
-        .project-item .project-description {
-            font-size: 1em;
-            color: #444;
-            line-height: 1.65;
-            margin-bottom: 20px;
-        }
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        object-fit: cover;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease;
+    }
+    .profile-picture:hover {
+        transform: scale(1.15);
+    }
+    
+    h1 {
+      font-size: 2.8em;
+      color: #ffffff;
+      font-weight: 700;
+      text-align: center;
+    }
 
-        .project-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+    .interactive-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .interactive-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    }
+    
+    .bio-logo-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .bio-logo {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        padding: 10px;
+        background: rgba(0,0,0,0.1);
+        transition: filter 0.3s ease, transform 0.3s ease;
+    }
+    .bio-logo:hover {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+    }
 
-        .project-link {
-            display: inline-block;
-            color: #ffffff;
-            padding: 10px 18px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.2s ease, transform 0.15s ease;
-        }
+    .bio-text { font-style: italic; color: #e0e0e0; margin: 0; }
+    
+    .book-showcase {
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+    .book-text { flex: 1; text-align: left; }
+    .book-cover-image {
+        width: 100px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease;
+    }
+    .book-cover-image:hover { transform: scale(1.1); }
 
-        .project-link:hover,
-        .project-link:focus {
-            text-decoration: none;
-            transform: translateY(-2px);
-        }
+    .section-header {
+      font-size: 2em;
+      color: #f5f5f5;
+      margin: 50px 0 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 15px;
+      text-align: center;
+    }
+    .section-header a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+    .section-header a:hover { color: #ffffcb; }
 
-        /* --- Button Colors --- */
-        .github { background-color: #333; }
-        .github:hover { background-color: #222; }
+    .showcase-item {
+        padding: 20px;
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+    .item-text { flex: 1; text-align: left; }
+    .item-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    .item-image:hover { transform: scale(1.1); }
 
-        .gitlab { background-color: #fca326; }
-        .gitlab:hover { background-color: #e89422; }
+    .section-title {
+        font-size: 1.6em;
+        color: #85C1E9;
+        margin-bottom: 8px;
+        transition: color 0.2s ease;
+    }
+    .interactive-card:hover .section-title { color: #ffffff; }
+    .article-title { font-size: 1.2em; }
+    
+    .book-subtitle {
+        color: #ffffff;
+        font-size: 1.1em;
+    }
+    .view-on-text { color: #ccc; margin-bottom: 10px; font-size: 0.9em; font-weight: bold; }
+    .project-description { font-size: 1em; color: #c5c6c7; line-height: 1.65; margin-bottom: 20px; }
+    
+    .project-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-link {
+        display: inline-block;
+        color: #ffffff;
+        padding: 5px 10px;
+        font-size: 0.8em;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    .project-link:hover, .project-link:focus { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+    
+    .github { background-color: #333; }
+    .gitlab { background-color: #fca326; }
+    .bitbucket { background-color: #0052cc; }
+    .gitea { background-color: #609926; }
+    .medium { background-color: #12100e; }
+    .amazon { background-color: #FF9900; color: #111; font-weight: 600; }
+    .amazon:hover { background-color: #e68a00;}
 
-        .bitbucket { background-color: #0052cc; }
-        .bitbucket:hover { background-color: #0041a3; }
+    .projects-placeholder {
+        font-size: 1em;
+        color: #a0a0a0;
+        text-align: center;
+        font-style: normal;
+        margin-top: 30px;
+        padding-top: 15px;
+    }
 
-        .gitea { background-color: #609926; }
-        .gitea:hover { background-color: #4d7a1e; }
+    footer { font-size: 0.9em; padding: 25px; text-align: center; max-width: 750px; width: 95%; margin-top: 30px; }
+    footer a { color: #85C1E9; text-decoration: none; margin: 0 8px; transition: color 0.2s; }
+    footer a:hover { color: #ffffff; text-decoration: underline; }
+    footer .copyright { display: block; margin-top: 15px; color: #d1d1d1; }
 
-
-        .projects-placeholder {
-            font-size: 1em;
-            color: #666;
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            font-style: italic;
-            line-height: 1.6;
-        }
-
-        footer {
-            font-size: 0.9em;
-            color: #777;
-            padding: 10px 0;
-        }
-
-        footer a {
-            color: #007bff;
-            text-decoration: none;
-            margin: 0 8px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        footer .copyright {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-    </style>
+    @media (max-width: 700px) {
+      .profile-header { flex-direction: column; }
+      .showcase-item { flex-direction: column; text-align: center; }
+      .item-text { text-align: center; }
+      .item-image { margin-bottom: 20px; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Vitalii Starosta</h1>
-            <p class="bio">
-                Juggling business insights, data deep dives, and project timelines. Off the clock, I'm crafting Python magic for macOS and Google Chrome.
-            </p>
-        </header>
+  <div class="container glass-effect">
+    <header class="profile-header">
+      <img src="https://i.postimg.cc/q73ZM6ZM/vitalii-starosta-square.jpg" alt="Profile Picture of Vitalii Starosta" class="profile-picture">
+      <h1>Vitalii Starosta</h1>
+    </header>
+
+    <div class="main-content">
+        <div class="showcase-item glass-effect" style="margin-bottom: 40px;">
+            <a href="https://about.me/vitalii" target="_blank" aria-label="About Me Profile" class="bio-logo-link">
+                <img src="https://i.postimg.cc/qMhd05r8/aboutme-icon.png" alt="About.me Logo" class="bio-logo">
+            </a>
+            <div class="item-text">
+                <p class="bio-text">Juggling business insights, data deep dives, and project timelines. Off the clock, I'm crafting Python magic for macOS, Excel, and Google Chrome.</p>
+            </div>
+        </div>
+
+        <div class="book-showcase glass-effect interactive-card">
+            <div class="book-text">
+                <h3 class="section-title">THE AI ATLAS</h3>
+                <p class="project-description book-subtitle">1001 Tools, Platforms, and Services Shaping Our Digital Future</p>
+                <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" class="project-link amazon">Explore My Book on Amazon</a>
+            </div>
+            <img src="https://i.postimg.cc/TYcLLT4V/the-ai-atlas-full-cover-with-barcode-front.jpg" alt="Cover of The AI Atlas book" class="book-cover-image">
+        </div>
 
         <section class="projects">
-            <h2>Project Showcase</h2>
+          <h2 class="section-header"><a href="https://medium.com/@starosta/list/the-forge-de1516f4247e" target="_blank">Open Source Projects</a></h2>
 
-            <div class="project-item">
-                <h3>BM2Excel</h3>
-                <p class="project-description">
-                    A Python tool designed to convert browser bookmarks (HTML files) into well-structured and organized Excel spreadsheets.
-                </p>
-                <div class="project-links">
-                    <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="project-link github">View on GitHub</a>
-                    <a href="https://gitlab.com/sztaroszta/BM2Excel" target="_blank" class="project-link gitlab">View on GitLab</a>
-                    <a href="https://bitbucket.org/sztaroszta/bm2excel/src/main/" target="_blank" class="project-link bitbucket">View on Bitbucket</a>
-                    <a href="https://gitea.com/starosta/BM2Excel" target="_blank" class="project-link gitea">View on Gitea</a>
-                </div>
+          <div class="showcase-item glass-effect interactive-card">
+            <img src="https://i.postimg.cc/SxXmtPX2/bm2excel.jpg" alt="BM2Excel Project Image" class="item-image">
+            <div class="item-text">
+              <h3 class="section-title">BM2Excel</h3>
+              <p class="project-description">A Python tool designed to convert browser bookmarks (HTML files) into well-structured and organized Excel spreadsheets.</p>
+              <p class="view-on-text">View on:</p>
+              <div class="project-links">
+                <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="project-link github">GitHub</a>
+                <a href="https://gitlab.com/sztaroszta/BM2Excel" target="_blank" class="project-link gitlab">GitLab</a>
+                <a href="https://bitbucket.org/sztaroszta/bm2excel/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a>
+                <a href="https://gitea.com/starosta/BM2Excel" target="_blank" class="project-link gitea">Gitea</a>
+                <a href="https://medium.com/@starosta/bm2excel-python-bookmark-organizer-25ba822ad99c" target="_blank" class="project-link medium">Medium</a>
+              </div>
             </div>
+          </div>
 
-            <div class="project-item">
-                <h3>MacDirScope</h3>
-                <p class="project-description">
-                    A powerful Python tool for macOS that performs deep scans of any directory to catalog files and folders, extracting extended attributes like Finder tags and exporting the data into a clean, filterable Excel report.
-                </p>
-                <div class="project-links">
-                    <a href="https://github.com/sztaroszta/MacDirScope" target="_blank" class="project-link github">View on GitHub</a>
-                    <a href="https://gitlab.com/sztaroszta/MacDirScope" target="_blank" class="project-link gitlab">View on GitLab</a>
-                    <a href="https://bitbucket.org/sztaroszta/macdirscope/src/main/" target="_blank" class="project-link bitbucket">View on Bitbucket</a>
-                    <a href="https://gitea.com/starosta/MacDirScope" target="_blank" class="project-link gitea">View on Gitea</a>
-                </div>
+          <div class="showcase-item glass-effect interactive-card">
+            <img src="https://i.postimg.cc/tJmL3XNr/macdirscope.jpg" alt="MacDirScope Project Image" class="item-image">
+            <div class="item-text">
+              <h3 class="section-title">MacDirScope</h3>
+              <p class="project-description">A powerful Python tool for macOS that performs deep scans of any directory to catalog files and folders, extracting extended attributes like Finder tags and exporting the data into a clean, filterable Excel report.</p>
+              <p class="view-on-text">View on:</p>
+              <div class="project-links">
+                <a href="https://github.com/sztaroszta/MacDirScope" target="_blank" class="project-link github">GitHub</a>
+                <a href="https://gitlab.com/sztaroszta/MacDirScope" target="_blank" class="project-link gitlab">GitLab</a>
+                <a href="https://bitbucket.org/sztaroszta/macdirscope/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a>
+                <a href="https://gitea.com/starosta/MacDirScope" target="_blank" class="project-link gitea">Gitea</a>
+                <a href="https://medium.com/@starosta/organize-mac-files-free-01d2e1b5c8f8" target="_blank" class="project-link medium">Medium</a>
+              </div>
             </div>
-
-            <p class="projects-placeholder">
-                This section will showcase more of my projects once they are ready. Stay tuned for updates!
-            </p>
+          </div>
+          
+          <div class="showcase-item glass-effect interactive-card">
+            <img src="https://i.postimg.cc/Wzn35d1w/SplitXL.jpg" alt="SplitXL Project Image" class="item-image">
+            <div class="item-text">
+              <h3 class="section-title">SplitXL</h3>
+              <p class="project-description">A robust utility designed to slice large Excel spreadsheets into smaller, row-based files. It ensures data integrity by perfectly cloning headers, cell styles, and formats into each new chunk.</p>
+              <p class="view-on-text">View on:</p>
+              <div class="project-links">
+                <a href="https://github.com/sztaroszta/SplitXL" target="_blank" class="project-link github">GitHub</a>
+                <a href="https://gitlab.com/sztaroszta/SplitXL" target="_blank" class="project-link gitlab">GitLab</a>
+                <a href="https://bitbucket.org/sztaroszta/splitxl/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a>
+                <a href="https://gitea.com/starosta/SplitXL" target="_blank" class="project-link gitea">Gitea</a>
+                <a href="https://medium.com/@starosta/split-large-excel-with-python-e1e6453c91f9" target="_blank" class="project-link medium">Medium</a>
+              </div>
+            </div>
+          </div>
         </section>
-    </div>
 
-    <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank">LinkedIn</a> |
-            <a href="https://medium.com/@starosta" target="_blank">Medium</a> |
-            <a href="https://github.com/sztaroszta" target="_blank">GitHub</a> |
-            <a href="https://gitlab.com/sztaroszta" target="_blank">GitLab</a> |
-            <a href="https://bitbucket.org/sztaroszta/workspace/overview/" target="_blank">Bitbucket</a> |
-            <a href="https://gitea.com/starosta" target="_blank">Gitea</a>
-        </div>
-        <p class="copyright">© <script>document.write(new Date().getFullYear())</script> Vitalii Starosta</p>
-    </footer>
+        <section class="articles">
+            <h2 class="section-header"><a href="https://medium.com/@starosta/list/deep-dives-de05c051541f" target="_blank">Articles & Insights</a></h2>
+  
+            <div class="showcase-item glass-effect interactive-card">
+              <img src="https://i.postimg.cc/6qYBDJLR/GA.jpg" alt="Article Image about AI and Genetic Algorithms" class="item-image">
+              <div class="item-text">
+                <h3 class="section-title article-title">Bugs Be Gone! How My AI Research is Shaking Up Software Testing</h3>
+                <div class="project-links">
+                  <a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank" class="project-link medium">Read on Medium</a>
+                </div>
+              </div>
+            </div>
+  
+            <div class="showcase-item glass-effect interactive-card">
+              <img src="https://i.postimg.cc/cC9NF70B/euler.jpg" alt="Article Image about Euler's Identity" class="item-image">
+              <div class="item-text">
+                <h3 class="section-title article-title">The Product Manager’s Most Beautiful Equation</h3>
+                <div class="project-links">
+                  <a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank" class="project-link medium">Read on Medium</a>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <section class="digital-bookshelf">
+            <h2 class="section-header"><a href="https://medium.com/@starosta/list/the-library-dc6ae713a502" target="_blank">Digital Bookshelf</a></h2>
+  
+            <div class="showcase-item glass-effect interactive-card">
+              <img src="https://i.postimg.cc/52HnYBGW/the-ai-atlas.jpg" alt="Article Image related to The AI Atlas" class="item-image">
+              <div class="item-text">
+                <h3 class="section-title article-title">I Analyzed 1001 AI Tools. Here’s the Real Problem We’re All Facing</h3>
+                <div class="project-links">
+                  <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6" target="_blank" class="project-link medium">Read on Medium</a>
+                </div>
+              </div>
+            </div>
+        </section>
+        
+        <p class="projects-placeholder">More projects coming soon. Stay tuned!</p>
+    </div>
+  </div>
+
+  <footer class="glass-effect">
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank">LinkedIn</a> |
+      <a href="https://medium.com/@starosta" target="_blank">Medium</a> |
+      <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank">Amazon</a> |
+      <a href="https://github.com/sztaroszta" target="_blank">GitHub</a> |
+      <a href="https://gitlab.com/sztaroszta" target="_blank">GitLab</a> |
+      <a href="https://bitbucket.org/sztaroszta/workspace/overview/" target="_blank">Bitbucket</a> |
+      <a href="https://gitea.com/starosta" target="_blank">Gitea</a>
+    </div>
+    <p class="copyright">
+      © <script>document.write(new Date().getFullYear())</script> Vitalii Starosta
+    </p>
+  </footer>
 
 </body>
 </html>
