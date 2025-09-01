@@ -77,11 +77,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 25px;
       width: 100%;
       margin-bottom: 25px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       padding-bottom: 25px;
+    }
+    
+    .profile-main-link {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        text-decoration: none;
     }
 
     .profile-picture {
@@ -182,6 +188,7 @@
     }
     .item-image:hover { transform: scale(1.1); }
 
+    .card-title-link { text-decoration: none; color: inherit; }
     .section-title {
         font-size: 1.6em;
         color: #85C1E9;
@@ -218,6 +225,11 @@
     .medium { background-color: #12100e; }
     .amazon { background-color: #FF9900; color: #111; font-weight: 600; }
     .amazon:hover { background-color: #e68a00;}
+    .google-books { background-color: #4285F4; }
+    .apple-books { background-color: #333333; }
+    .kobo { background-color: #009D9F; }
+    .lulu { background-color: #D8242B; }
+    .gumroad { background-color: #FF90E8; }
 
     .projects-placeholder {
         font-size: 1em;
@@ -235,9 +247,9 @@
 
     @media (max-width: 700px) {
       .profile-header { flex-direction: column; }
-      .showcase-item { flex-direction: column; text-align: center; }
-      .item-text { text-align: center; }
-      .item-image { margin-bottom: 20px; }
+      .showcase-item, .book-showcase { flex-direction: column; text-align: center; }
+      .item-text, .book-text { text-align: center; }
+      .item-image, .book-cover-image { margin-bottom: 20px; }
     }
   </style>
 </head>
@@ -245,8 +257,10 @@
 
   <div class="container glass-effect">
     <header class="profile-header">
-      <img src="https://i.postimg.cc/q73ZM6ZM/vitalii-starosta-square.jpg" alt="Profile Picture of Vitalii Starosta" class="profile-picture">
-      <h1>Vitalii Starosta</h1>
+      <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank" class="profile-main-link">
+        <img src="https://i.postimg.cc/q73ZM6ZM/vitalii-starosta-square.jpg" alt="Profile Picture of Vitalii Starosta" class="profile-picture">
+        <h1>Vitalii Starosta</h1>
+      </a>
     </header>
 
     <div class="main-content">
@@ -261,9 +275,17 @@
 
         <div class="book-showcase glass-effect interactive-card">
             <div class="book-text">
-                <h3 class="section-title">THE AI ATLAS</h3>
+                <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" class="card-title-link"><h3 class="section-title">THE AI ATLAS</h3></a>
                 <p class="project-description book-subtitle">1001 Tools, Platforms, and Services Shaping Our Digital Future</p>
-                <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" class="project-link amazon">Explore My Book on Amazon</a>
+                <p class="view-on-text">Explore My Book on:</p>
+                <div class="project-links">
+                    <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" class="project-link amazon">Amazon</a>
+                    <a href="https://play.google.com/store/books/details?id=BTB3EQAAQBAJ" target="_blank" class="project-link google-books">Google Books</a>
+                    <a href="https://books.apple.com/us/book/the-ai-atlas/id6749574581?l=ru&ls=1" target="_blank" class="project-link apple-books">Apple Books</a>
+                    <a href="https://www.kobo.com/ww/en/ebook/the-ai-atlas?sId=e27cba48-5d49-4c33-b145-e73b05da67cd" target="_blank" class="project-link kobo">Kobo</a>
+                    <a href="https://www.lulu.com/shop/vitalii-starosta/the-ai-atlas/ebook/product-2mrmz62.html?page=1&pageSize=4" target="_blank" class="project-link lulu">Lulu</a>
+                    <a href="https://vitalosta.gumroad.com/l/the_ai_atlas" target="_blank" class="project-link gumroad">Gumroad</a>
+                </div>
             </div>
             <img src="https://i.postimg.cc/TYcLLT4V/the-ai-atlas-full-cover-with-barcode-front.jpg" alt="Cover of The AI Atlas book" class="book-cover-image">
         </div>
@@ -274,7 +296,7 @@
           <div class="showcase-item glass-effect interactive-card">
             <img src="https://i.postimg.cc/SxXmtPX2/bm2excel.jpg" alt="BM2Excel Project Image" class="item-image">
             <div class="item-text">
-              <h3 class="section-title">BM2Excel</h3>
+              <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="card-title-link"><h3 class="section-title">BM2Excel</h3></a>
               <p class="project-description">A Python tool designed to convert browser bookmarks (HTML files) into well-structured and organized Excel spreadsheets.</p>
               <p class="view-on-text">View on:</p>
               <div class="project-links">
@@ -290,7 +312,7 @@
           <div class="showcase-item glass-effect interactive-card">
             <img src="https://i.postimg.cc/tJmL3XNr/macdirscope.jpg" alt="MacDirScope Project Image" class="item-image">
             <div class="item-text">
-              <h3 class="section-title">MacDirScope</h3>
+              <a href="https://github.com/sztaroszta/MacDirScope" target="_blank" class="card-title-link"><h3 class="section-title">MacDirScope</h3></a>
               <p class="project-description">A powerful Python tool for macOS that performs deep scans of any directory to catalog files and folders, extracting extended attributes like Finder tags and exporting the data into a clean, filterable Excel report.</p>
               <p class="view-on-text">View on:</p>
               <div class="project-links">
@@ -306,7 +328,7 @@
           <div class="showcase-item glass-effect interactive-card">
             <img src="https://i.postimg.cc/Wzn35d1w/SplitXL.jpg" alt="SplitXL Project Image" class="item-image">
             <div class="item-text">
-              <h3 class="section-title">SplitXL</h3>
+              <a href="https://github.com/sztaroszta/SplitXL" target="_blank" class="card-title-link"><h3 class="section-title">SplitXL</h3></a>
               <p class="project-description">A robust utility designed to slice large Excel spreadsheets into smaller, row-based files. It ensures data integrity by perfectly cloning headers, cell styles, and formats into each new chunk.</p>
               <p class="view-on-text">View on:</p>
               <div class="project-links">
@@ -315,6 +337,22 @@
                 <a href="https://bitbucket.org/sztaroszta/splitxl/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a>
                 <a href="https://gitea.com/starosta/SplitXL" target="_blank" class="project-link gitea">Gitea</a>
                 <a href="https://medium.com/@starosta/split-large-excel-with-python-e1e6453c91f9" target="_blank" class="project-link medium">Medium</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="showcase-item glass-effect interactive-card">
+            <img src="https://i.postimg.cc/3wJNK6DM/Combine-XL.jpg" alt="CombineXL Project Image" class="item-image">
+            <div class="item-text">
+              <a href="https://github.com/sztaroszta/CombineXL" target="_blank" class="card-title-link"><h3 class="section-title">CombineXL</h3></a>
+              <p class="project-description">A Python GUI application for merging multiple Excel files into a single master workbook, meticulously preserving all original cell formatting, styles, and merged regions.</p>
+              <p class="view-on-text">View on:</p>
+              <div class="project-links">
+                <a href="https://github.com/sztaroszta/CombineXL" target="_blank" class="project-link github">GitHub</a>
+                <a href="https://gitlab.com/sztaroszta/CombineXL" target="_blank" class="project-link gitlab">GitLab</a>
+                <a href="https://bitbucket.org/sztaroszta/CombineXL/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a>
+                <a href="https://gitea.com/starosta/CombineXL" target="_blank" class="project-link gitea">Gitea</a>
+                <a href="https://medium.com/@starosta/combine-excel-files-with-python-c42005cf34c1" target="_blank" class="project-link medium">Medium</a>
               </div>
             </div>
           </div>
