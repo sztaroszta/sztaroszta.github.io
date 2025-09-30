@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vitalii Starosta - Project Showcase</title>
+
+  <!-- Favicon Links (Updated to use /assets/ folder) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <!-- End of Favicon Links -->
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -77,6 +85,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 25px;
       width: 100%;
       margin-bottom: 25px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -245,11 +254,37 @@
     footer a:hover { color: #ffffff; text-decoration: underline; }
     footer .copyright { display: block; margin-top: 15px; color: #d1d1d1; }
 
-    @media (max-width: 700px) {
-      .profile-header { flex-direction: column; }
-      .showcase-item, .book-showcase { flex-direction: column; text-align: center; }
-      .item-text, .book-text { text-align: center; }
-      .item-image, .book-cover-image { margin-bottom: 20px; }
+    /* --- Mobile Responsive Styles --- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 25px;
+      }
+      .profile-header {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .profile-main-link {
+        flex-direction: column;
+        gap: 15px;
+      }
+      h1 {
+        font-size: 2.2em;
+      }
+      .showcase-item, .book-showcase {
+        flex-direction: column;
+        text-align: center;
+      }
+      .item-text, .book-text {
+        text-align: center;
+      }
+      .item-image, .book-cover-image, .bio-logo {
+        margin-bottom: 20px;
+        width: 100px; /* Standardize image sizes on mobile */
+        height: 100px;
+      }
+      .project-links {
+        justify-content: center; /* Center buttons on mobile */
+      }
     }
   </style>
 </head>
