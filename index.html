@@ -20,6 +20,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
+    }
+
     html, body {
       background: #2b5876 linear-gradient(to right top, #2b5876, #4e4376) fixed;
       background-size: cover;
@@ -119,6 +123,29 @@
       text-align: center;
     }
 
+    /* --- NEW: Internal Page Navigation --- */
+    .internal-nav {
+      text-align: center;
+      margin: 10px 0 35px 0;
+    }
+    .internal-nav a {
+      color: #c0d4e8;
+      text-decoration: none;
+      margin: 0 8px;
+      font-weight: 500;
+      font-size: 1em;
+      transition: color 0.2s ease;
+    }
+    .internal-nav a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    .internal-nav .separator {
+      color: rgba(255, 255, 255, 0.4);
+      margin: 0 5px;
+    }
+
+
     .interactive-card {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -157,14 +184,54 @@
         border-radius: 10px;
     }
     .book-text { flex: 1; text-align: left; }
-    .book-cover-image {
+
+    .book-media-asset {
         width: 100px;
-        height: auto;
+        height: 150px; /* Fixed height for consistency */
+        object-fit: cover; /* Prevents image distortion */
         border-radius: 8px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         transition: transform 0.3s ease;
+        display: block;
     }
-    .book-cover-image:hover { transform: scale(1.1); }
+    .book-media-asset:hover { transform: scale(1.1); }
+
+    .video-play-container {
+      position: relative;
+      display: block;
+    }
+    .video-play-container::before { /* Dark overlay */
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+      pointer-events: none;
+    }
+    .video-play-container::after { /* Play button triangle */
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 25px 0 25px 42px;
+      border-color: transparent transparent transparent rgba(255, 255, 255, 0.95);
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5); 
+      transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+      pointer-events: none;
+    }
+    .video-play-container:hover::before {
+      opacity: 1;
+    }
+    .video-play-container:hover::after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
 
     .section-header {
       font-size: 2em;
@@ -250,7 +317,15 @@
         padding-top: 15px;
     }
 
-    footer { font-size: 0.9em; padding: 25px; text-align: center; max-width: 750px; width: 95%; margin-top: 30px; }
+    /* --- UPDATED: Footer Styling --- */
+    footer {
+      font-size: 0.9em;
+      padding: 25px;
+      text-align: center;
+      max-width: 850px; /* Match .container width */
+      width: 95%; /* Match .container width */
+      margin: 30px auto 0; /* Center the footer */
+    }
     footer a { color: #85C1E9; text-decoration: none; margin: 0 8px; transition: color 0.2s; }
     footer a:hover { color: #ffffff; text-decoration: underline; }
     footer .copyright { display: block; margin-top: 15px; color: #d1d1d1; }
@@ -271,6 +346,16 @@
       h1 {
         font-size: 2.2em;
       }
+      /* NEW: Responsive internal nav */
+      .internal-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 30px;
+      }
+      .internal-nav .separator {
+        display: none;
+      }
       .showcase-item, .book-showcase {
         flex-direction: column;
         text-align: center;
@@ -278,13 +363,13 @@
       .item-text, .book-text {
         text-align: center;
       }
-      .item-image, .book-cover-image, .bio-logo {
+      .item-image, .book-cover-image, .bio-logo, .book-media-asset {
         margin-bottom: 20px;
-        width: 100px; /* Standardize image sizes on mobile */
-        height: 100px;
+        width: 100px;
+        height: 150px;
       }
       .project-links {
-        justify-content: center; /* Center buttons on mobile */
+        justify-content: center;
       }
     }
   </style>
@@ -299,6 +384,15 @@
       </a>
     </header>
 
+    <!-- === NEW: Internal Page Navigation === -->
+    <nav class="internal-nav">
+      <a href="#open-source-projects">Open Source Projects</a>
+      <span class="separator">|</span>
+      <a href="#articles-insights">Articles & Insights</a>
+      <span class="separator">|</span>
+      <a href="#digital-bookshelf">Digital Bookshelf</a>
+    </nav>
+
     <div class="main-content">
         <div class="showcase-item glass-effect" style="margin-bottom: 40px;">
             <a href="https://about.me/vitalii" target="_blank" aria-label="About Me Profile" class="bio-logo-link">
@@ -310,45 +404,38 @@
         </div>
 
         <div class="book-showcase glass-effect interactive-card">
-  <div class="book-text">
-    <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" 
-       target="_blank" class="card-title-link">
-      <h3 class="section-title">THE AI ATLAS</h3>
-    </a>
-    <p class="project-description book-subtitle">1001 Tools, Platforms, and Services Shaping Our Digital Future</p>
-    <p class="view-on-text">Explore My Book on:</p>
-    <div class="project-links">
-      <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" class="project-link amazon">Amazon</a>
-      <a href="https://play.google.com/store/books/details?id=BTB3EQAAQBAJ" target="_blank" class="project-link google-books">Google Books</a>
-      <a href="https://books.apple.com/us/book/the-ai-atlas/id6749574581?l=ru&ls=1" target="_blank" class="project-link apple-books">Apple Books</a>
-      <a href="https://www.kobo.com/ww/en/ebook/the-ai-atlas?sId=e27cba48-5d49-4c33-b145-e73b05da67cd" target="_blank" class="project-link kobo">Kobo</a>
-      <a href="https://www.lulu.com/shop/vitalii-starosta/the-ai-atlas/ebook/product-2mrmz62.html?page=1&pageSize=4" target="_blank" class="project-link lulu">Lulu</a>
-      <a href="https://vitalosta.gumroad.com/l/the_ai_atlas" target="_blank" class="project-link gumroad">Gumroad</a>
-    </div>
-  </div>
+          <div class="book-text">
+            <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" 
+               target="_blank" class="card-title-link">
+              <h3 class="section-title">THE AI ATLAS</h3>
+            </a>
+            <p class="project-description book-subtitle">1001 Tools, Platforms, and Services Shaping Our Digital Future</p>
+            <p class="view-on-text">Explore My Book on:</p>
+            <div class="project-links">
+              <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" class="project-link amazon">Amazon</a>
+              <a href="https://play.google.com/store/books/details?id=BTB3EQAAQBAJ" target="_blank" class="project-link google-books">Google Books</a>
+              <a href="https://books.apple.com/us/book/the-ai-atlas/id6749574581?l=ru&ls=1" target="_blank" class="project-link apple-books">Apple Books</a>
+              <a href="https://www.kobo.com/ww/en/ebook/the-ai-atlas?sId=e27cba48-5d49-4c33-b145-e73b05da67cd" target="_blank" class="project-link kobo">Kobo</a>
+              <a href="https://www.lulu.com/shop/vitalii-starosta/the-ai-atlas/ebook/product-2mrmz62.html?page=1&pageSize=4" target="_blank" class="project-link lulu">Lulu</a>
+              <a href="https://vitalosta.gumroad.com/l/the_ai_atlas" target="_blank" class="project-link gumroad">Gumroad</a>
+            </div>
+          </div>
 
-  <!-- Book cover and video side by side -->
-  <div style="display: flex; gap: 15px; align-items: center;">
-    <!-- Book cover -->
-    <img src="https://i.postimg.cc/TYcLLT4V/the-ai-atlas-full-cover-with-barcode-front.jpg" 
-         alt="Cover of The AI Atlas book" 
-         class="book-cover-image">
+          <div style="display: flex; gap: 15px; align-items: center;">
+            <img src="https://i.postimg.cc/TYcLLT4V/the-ai-atlas-full-cover-with-barcode-front.jpg" 
+                 alt="Cover of The AI Atlas book" 
+                 class="book-media-asset">
 
-    <!-- YouTube iframe with overlay link -->
-    <div style="position: relative; width: 100px; height: 150px;">
-      <iframe width="100" height="150"
-              src="https://www.youtube.com/embed/UOdt1oXepeM"
-              title="The AI Atlas Book Showcase"
-              frameborder="0"
-              style="border-radius: 8px; pointer-events: none;">
-      </iframe>
-      <a href="https://youtube.com/shorts/UOdt1oXepeM" target="_blank"
-         style="position: absolute; inset: 0; display: block;"></a>
-    </div>
-  </div>
-</div>
+            <a href="https://youtube.com/shorts/UOdt1oXepeM" target="_blank" class="video-play-container">
+              <img src="https://i.postimg.cc/3rvQB4Yp/the-ai-atlas-video-play.jpg" 
+                   alt="Play The AI Atlas Book Showcase Video" 
+                   class="book-media-asset">
+            </a>
+          </div>
+        </div>
 
-        <section class="projects">
+        <!-- === UPDATED: Added ID for navigation === -->
+        <section class="projects" id="open-source-projects">
           <h2 class="section-header"><a href="https://medium.com/@starosta/list/the-forge-de1516f4247e" target="_blank">Open Source Projects</a></h2>
 
           <div class="showcase-item glass-effect interactive-card">
@@ -415,7 +502,6 @@
             </div>
           </div>
           
-          <!-- === NEW VOIDFINDER PROJECT START === -->
           <div class="showcase-item glass-effect interactive-card">
             <img src="https://i.postimg.cc/L57krpCL/Void-Finder.jpg" alt="VoidFinder Project Image" class="item-image">
             <div class="item-text">
@@ -431,11 +517,10 @@
               </div>
             </div>
           </div>
-          <!-- === NEW VOIDFINDER PROJECT END === -->
-
         </section>
 
-        <section class="articles">
+        <!-- === UPDATED: Added ID for navigation === -->
+        <section class="articles" id="articles-insights">
             <h2 class="section-header"><a href="https://medium.com/@starosta/list/deep-dives-de05c051541f" target="_blank">Articles & Insights</a></h2>
   
             <div class="showcase-item glass-effect interactive-card">
@@ -459,7 +544,8 @@
             </div>
         </section>
 
-        <section class="digital-bookshelf">
+        <!-- === UPDATED: Added ID for navigation === -->
+        <section class="digital-bookshelf" id="digital-bookshelf">
             <h2 class="section-header"><a href="https://medium.com/@starosta/list/the-library-dc6ae713a502" target="_blank">Digital Bookshelf</a></h2>
   
             <div class="showcase-item glass-effect interactive-card">
@@ -473,7 +559,6 @@
               </div>
             </div>
             
-            <!-- === NEW DIGITAL BOOKSHELF ITEM START === -->
             <div class="showcase-item glass-effect interactive-card">
               <img src="https://i.postimg.cc/RVPRZCH8/linkedin-gold-the-ai-atlas-2.jpg" alt="Article Image related to The AI Atlas" class="item-image">
               <div class="item-text">
@@ -484,8 +569,6 @@
                 </div>
               </div>
             </div>
-            <!-- === NEW DIGITAL BOOKSHELF ITEM END === -->
-
         </section>
         
         <p class="projects-placeholder">More projects coming soon. Stay tuned!</p>
