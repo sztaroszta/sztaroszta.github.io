@@ -22,13 +22,11 @@
 
     html {
       scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
+      min-height: 100%;
     }
 
+    /* REMOVED background styles from here to prevent mobile conflicts */
     html, body {
-      background: #2b5876 linear-gradient(to right top, #2b5876, #4e4376) fixed;
-      background-size: cover;
-      background-repeat: no-repeat;
-      min-height: 100%;
       overscroll-behavior: none;
     }
 
@@ -45,6 +43,7 @@
       position: relative;
       min-height: 100dvh;
       isolation: isolate;
+      background-color: #2b5876; /* ADDED fallback color */
     }
 
     body::before {
@@ -123,7 +122,6 @@
       text-align: center;
     }
 
-    /* --- NEW: Internal Page Navigation --- */
     .internal-nav {
       text-align: center;
       margin: 10px 0 35px 0;
@@ -187,8 +185,8 @@
 
     .book-media-asset {
         width: 100px;
-        height: 150px; /* Fixed height for consistency */
-        object-fit: cover; /* Prevents image distortion */
+        height: 150px; 
+        object-fit: cover; 
         border-radius: 8px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         transition: transform 0.3s ease;
@@ -200,7 +198,7 @@
       position: relative;
       display: block;
     }
-    .video-play-container::before { /* Dark overlay */
+    .video-play-container::before { 
       content: '';
       position: absolute;
       inset: 0;
@@ -210,7 +208,7 @@
       transition: opacity 0.3s ease-out;
       pointer-events: none;
     }
-    .video-play-container::after { /* Play button triangle */
+    .video-play-container::after {
       content: '';
       position: absolute;
       top: 50%;
@@ -317,14 +315,13 @@
         padding-top: 15px;
     }
 
-    /* --- UPDATED: Footer Styling --- */
     footer {
       font-size: 0.9em;
       padding: 25px;
       text-align: center;
-      max-width: 850px; /* Match .container width */
-      width: 95%; /* Match .container width */
-      margin: 30px auto 0; /* Center the footer */
+      max-width: 850px;
+      width: 95%;
+      margin: 30px auto 0;
     }
     footer a { color: #85C1E9; text-decoration: none; margin: 0 8px; transition: color 0.2s; }
     footer a:hover { color: #ffffff; text-decoration: underline; }
@@ -346,7 +343,6 @@
       h1 {
         font-size: 2.2em;
       }
-      /* NEW: Responsive internal nav */
       .internal-nav {
         display: flex;
         flex-direction: column;
@@ -363,11 +359,36 @@
       .item-text, .book-text {
         text-align: center;
       }
-      .item-image, .book-cover-image, .bio-logo, .book-media-asset {
-        margin-bottom: 20px;
+
+      /* === FIX FOR IMAGES START === */
+      .bio-logo {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 20px;
+      }
+      
+      .item-image {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 20px;
+      }
+      
+      .book-media-asset {
         width: 100px;
         height: 150px;
+        margin: 0 auto; /* Removed bottom margin to handle in flex gap */
       }
+      
+      /* Target the container of the two book assets */
+      .book-showcase > div:last-child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px; /* Add space between stacked items */
+        margin-top: 20px;
+      }
+      /* === FIX FOR IMAGES END === */
+
       .project-links {
         justify-content: center;
       }
@@ -384,7 +405,6 @@
       </a>
     </header>
 
-    <!-- === NEW: Internal Page Navigation === -->
     <nav class="internal-nav">
       <a href="#open-source-projects">Open Source Projects</a>
       <span class="separator">|</span>
@@ -434,7 +454,6 @@
           </div>
         </div>
 
-        <!-- === UPDATED: Added ID for navigation === -->
         <section class="projects" id="open-source-projects">
           <h2 class="section-header"><a href="https://medium.com/@starosta/list/the-forge-de1516f4247e" target="_blank">Open Source Projects</a></h2>
 
@@ -519,7 +538,6 @@
           </div>
         </section>
 
-        <!-- === UPDATED: Added ID for navigation === -->
         <section class="articles" id="articles-insights">
             <h2 class="section-header"><a href="https://medium.com/@starosta/list/deep-dives-de05c051541f" target="_blank">Articles & Insights</a></h2>
   
@@ -544,7 +562,6 @@
             </div>
         </section>
 
-        <!-- === UPDATED: Added ID for navigation === -->
         <section class="digital-bookshelf" id="digital-bookshelf">
             <h2 class="section-header"><a href="https://medium.com/@starosta/list/the-library-dc6ae713a502" target="_blank">Digital Bookshelf</a></h2>
   
