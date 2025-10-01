@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF--8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vitalii Starosta - Project Showcase</title>
 
@@ -21,12 +21,11 @@
     }
 
     html {
-      scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
-      min-height: 100%;
+      scroll-behavior: smooth;
     }
 
-    /* REMOVED background styles from here to prevent mobile conflicts */
     html, body {
+      min-height: 100%;
       overscroll-behavior: none;
     }
 
@@ -43,18 +42,15 @@
       position: relative;
       min-height: 100dvh;
       isolation: isolate;
-      background-color: #2b5876; /* ADDED fallback color */
-    }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(to right top, #2b5876, #4e4376);
+      /* === ROBUST BACKGROUND FIX === */
+      background-color: #2b5876; /* Fallback color */
+      background: linear-gradient(to right top, #2b5876, #4e4376) fixed;
       background-size: cover;
       background-repeat: no-repeat;
-      z-index: -1;
     }
+
+    /* REMOVED body::before pseudo-element for better mobile compatibility */
 
     body::after {
       content: "";
@@ -185,8 +181,8 @@
 
     .book-media-asset {
         width: 100px;
-        height: 150px; 
-        object-fit: cover; 
+        height: 150px;
+        object-fit: cover;
         border-radius: 8px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         transition: transform 0.3s ease;
@@ -198,7 +194,7 @@
       position: relative;
       display: block;
     }
-    .video-play-container::before { 
+    .video-play-container::before {
       content: '';
       position: absolute;
       inset: 0;
@@ -360,7 +356,6 @@
         text-align: center;
       }
 
-      /* === FIX FOR IMAGES START === */
       .bio-logo {
         width: 100px;
         height: 100px;
@@ -376,18 +371,18 @@
       .book-media-asset {
         width: 100px;
         height: 150px;
-        margin: 0 auto; /* Removed bottom margin to handle in flex gap */
+        margin: 0;
       }
       
-      /* Target the container of the two book assets */
+      /* === FIX FOR SIDE-BY-SIDE BOOK IMAGES ON MOBILE === */
       .book-showcase > div:last-child {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
-        gap: 20px; /* Add space between stacked items */
+        gap: 15px;
         margin-top: 20px;
       }
-      /* === FIX FOR IMAGES END === */
 
       .project-links {
         justify-content: center;
@@ -441,6 +436,7 @@
             </div>
           </div>
 
+          <!-- This div is the container for the two book images -->
           <div style="display: flex; gap: 15px; align-items: center;">
             <img src="https://i.postimg.cc/TYcLLT4V/the-ai-atlas-full-cover-with-barcode-front.jpg" 
                  alt="Cover of The AI Atlas book" 
@@ -544,7 +540,10 @@
             <div class="showcase-item glass-effect interactive-card">
               <img src="https://i.postimg.cc/6qYBDJLR/GA.jpg" alt="Article Image about AI and Genetic Algorithms" class="item-image">
               <div class="item-text">
-                <h3 class="section-title article-title">Bugs Be Gone! How My AI Research is Shaking Up Software Testing</h3>
+                <!-- === FIX: LINKED TITLE === -->
+                <a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank" class="card-title-link">
+                  <h3 class="section-title article-title">Bugs Be Gone! How My AI Research is Shaking Up Software Testing</h3>
+                </a>
                 <div class="project-links">
                   <a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank" class="project-link medium">Read on Medium</a>
                 </div>
@@ -554,7 +553,10 @@
             <div class="showcase-item glass-effect interactive-card">
               <img src="https://i.postimg.cc/cC9NF70B/euler.jpg" alt="Article Image about Euler's Identity" class="item-image">
               <div class="item-text">
-                <h3 class="section-title article-title">The Product Manager’s Most Beautiful Equation</h3>
+                <!-- === FIX: LINKED TITLE === -->
+                <a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank" class="card-title-link">
+                  <h3 class="section-title article-title">The Product Manager’s Most Beautiful Equation</h3>
+                </a>
                 <div class="project-links">
                   <a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank" class="project-link medium">Read on Medium</a>
                 </div>
@@ -568,7 +570,10 @@
             <div class="showcase-item glass-effect interactive-card">
               <img src="https://i.postimg.cc/52HnYBGW/the-ai-atlas.jpg" alt="Article Image related to The AI Atlas" class="item-image">
               <div class="item-text">
-                <h3 class="section-title article-title">I Analyzed 1001 AI Tools. Here’s the Real Problem We’re All Facing</h3>
+                <!-- === FIX: LINKED TITLE === -->
+                <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6" target="_blank" class="card-title-link">
+                  <h3 class="section-title article-title">I Analyzed 1001 AI Tools. Here’s the Real Problem We’re All Facing</h3>
+                </a>
                 <div class="project-links">
                   <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6" target="_blank" class="project-link medium">Read on Medium</a>
                   <a href="https://youtube.com/shorts/UOdt1oXepeM" target="_blank" class="project-link youtube">Watch on YouTube</a>
@@ -579,7 +584,10 @@
             <div class="showcase-item glass-effect interactive-card">
               <img src="https://i.postimg.cc/RVPRZCH8/linkedin-gold-the-ai-atlas-2.jpg" alt="Article Image related to The AI Atlas" class="item-image">
               <div class="item-text">
-                <h3 class="section-title article-title">The AI Atlas: 1001 Tools, Platforms, and Services Shaping Our Digital Future</h3>
+                <!-- === FIX: LINKED TITLE === -->
+                <a href="https://medium.com/@starosta/the-ai-atlas-7ecf0edb810e" target="_blank" class="card-title-link">
+                  <h3 class="section-title article-title">The AI Atlas: 1001 Tools, Platforms, and Services Shaping Our Digital Future</h3>
+                </a>
                 <div class="project-links">
                   <a href="https://medium.com/@starosta/the-ai-atlas-7ecf0edb810e" target="_blank" class="project-link medium">Read on Medium</a>
                   <a href="https://youtube.com/shorts/UOdt1oXepeM" target="_blank" class="project-link youtube">Watch on YouTube</a>
