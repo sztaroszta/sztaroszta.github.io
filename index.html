@@ -76,13 +76,22 @@
       background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
       opacity: 0.03; z-index: -1; pointer-events: none;
     }
+
     .glass-effect {
-      background: rgba(255, 255, 255, 0.07); 
-      -webkit-backdrop-filter: blur(15px);
-      backdrop-filter: blur(15px);
+      background: rgba(44, 88, 118, 0.85);
       border-radius: var(--radius-main);
-      border: 1px solid var(--border-color); box-shadow: 0 8px 20px var(--shadow-color); position: relative;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 8px 20px var(--shadow-color);
+      position: relative;
     }
+    @supports (backdrop-filter: blur(15px)) or (-webkit-backdrop-filter: blur(15px)) {
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.07);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+      }
+    }
+
     .container { padding: 40px; max-width: 850px; width: 95%; margin-bottom: 30px; }
     .profile-header {
       display: flex; justify-content: center; align-items: center; gap: 25px;
@@ -97,7 +106,21 @@
     h1 { font-size: 2.8em; color: var(--text-light); font-weight: 700; text-align: center; }
     h2 { font-size: 2em; }
     
-    .internal-nav { text-align: center; margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 25px; margin-bottom: 40px; }
+    /* === DESKTOP NAVIGATION STYLES === */
+    .internal-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 25px;
+      margin-bottom: 40px;
+    }
+    .internal-nav-row-1, .internal-nav-row-2 {
+      display: flex;
+      align-items: center;
+    }
     .internal-nav a { color: var(--text-accent); text-decoration: none; margin: 0 8px; font-size: 1.1em; font-weight: 600; transition: color 0.2s ease; }
     .internal-nav a:hover { color: var(--text-light); text-decoration: underline; }
     .internal-nav .separator { color: rgba(255, 255, 255, 0.4); margin: 0 5px; }
@@ -122,16 +145,8 @@
     .top-social-links .fa-brands { font-size: 28px; }
     .top-social-links svg { width: 28px; height: 28px; }
     .top-social-links a[title="Gitea"] svg { width: auto; height: 25px; }
-
-    /* === SHARPIE & BOUNCY HOVER EFFECT (ORIGINAL RESTORED) === */
-    .interactive-card {
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-    }
-    .interactive-card.visible:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
-    }
-    
+    .interactive-card { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; }
+    .interactive-card.visible:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25); }
     .showcase-item { display: flex; align-items: center; gap: 20px; padding: 0 20px; width: 100%; }
     .bio-logo-link { position: relative; display: block; overflow: visible; border-radius: 8px; width: 80px; height: 80px; flex-shrink: 0; perspective: 1000px; background: none; }
     .bio-logo { width: 100%; height: 100%; border-radius: 8px; padding: 10px; background: rgba(0,0,0,0.1); display: block; }
@@ -141,7 +156,6 @@
     .back { transform: rotateY(180deg); background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; font-size: 2.2em; color: white; }
     .item-text { flex: 1; text-align: left; }
     .bio-text { font-style: italic; color: var(--text-main); margin: 0; }
-    
     .book-showcase { padding: 20px; margin-bottom: 30px; display: flex; align-items: center; gap: 20px; }
     .book-text { flex: 1; text-align: left; }
     .book-media-asset { width: 100px; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s ease; display: block; }
@@ -151,16 +165,7 @@
     .video-play-container::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-style: solid; border-width: 25px 0 25px 42px; border-color: transparent transparent transparent rgba(255, 255, 255, 0.95); opacity: 0; transform: translate(-50%, -50%) scale(0.5); transition: opacity 0.3s ease-out, transform 0.3s ease-out; pointer-events: none; }
     .video-play-container:hover::before { opacity: 1; }
     .video-play-container:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    
-    #open-source-projects .showcase-item, #articles-insights .showcase-item, #digital-bookshelf .showcase-item { 
-        padding: 20px; 
-        margin-top: 30px; 
-        /* === FIX FOR HOVER EFFECT === */
-        margin-bottom: 15px; 
-        display: flex; 
-        align-items: center; 
-        gap: 20px; 
-    }
+    #open-source-projects .showcase-item, #articles-insights .showcase-item, #digital-bookshelf .showcase-item { padding: 20px; margin-top: 30px; margin-bottom: 15px; display: flex; align-items: center; gap: 20px; }
     .item-image { width: 120px; height: 120px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); object-fit: cover; transition: transform 0.3s ease; }
     .item-image:hover { transform: scale(1.1); }
     .card-title-link { text-decoration: none; color: inherit; }
@@ -171,7 +176,6 @@
     .view-on-text { color: #ccc; margin-bottom: 10px; font-size: 0.9em; font-weight: bold; }
     .project-description { font-size: 1em; color: #c5c6c7; line-height: 1.65; margin-bottom: 20px; }
     .project-links { display: flex; flex-wrap: wrap; gap: 8px; }
-    
     .project-link { display: inline-block; color: #ffffff; padding: 5px 10px; font-size: 0.8em; border-radius: 5px; text-decoration: none; font-weight: 500; transition: all 0.2s ease; border: 1px solid rgba(255, 255, 255, 0.2); }
     .project-link:hover, .project-link:focus { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
     .github { background-color: rgba(51, 51, 51, 0.85); } .github:hover { background-color: rgba(51, 51, 51, 1); }
@@ -186,7 +190,6 @@
     .lulu { background-color: rgba(216, 36, 43, 0.85); } .lulu:hover { background-color: rgba(216, 36, 43, 1); }
     .gumroad { background-color: rgba(255, 144, 232, 0.85); } .gumroad:hover { background-color: rgba(255, 144, 232, 1); }
     .youtube { background-color: rgba(255, 0, 0, 0.75); } .youtube:hover { background-color: rgba(255, 0, 0, 1); }
-
     .projects-placeholder { font-size: 1em; color: #a0a0a0; text-align: center; font-style: normal; margin-top: 30px; padding-top: 15px; }
     footer { font-size: 0.9em; padding: 25px; text-align: center; max-width: 850px; width: 95%; margin: 30px auto 0; background-color: transparent; }
     footer a { color: #85C1E9; text-decoration: none; transition: color 0.2s; }
@@ -194,44 +197,24 @@
     footer .copyright { display: block; margin-top: 15px; color: #d1d1d1; }
     .footer-separator { color: rgba(255, 255, 255, 0.4); margin: 0 5px; }
     .mobile-break { display: none; } .mobile-hide-separator { display: inline; }
-
     #back-to-top { position: fixed; bottom: 20px; right: 20px; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background-color: rgba(44, 62, 80, 0.8); color: #ecf0f1; border-radius: 50%; font-size: 20px; text-decoration: none; box-shadow: 0 4px 12px var(--shadow-color); z-index: 100; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s; }
     #back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
     #back-to-top:hover { background-color: #34495e; transform: scale(1.1); }
-    
     .fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .fade-in-up.visible { opacity: 1; transform: translateY(0); }
     .mobile-icons-container, .bio-text-mobile, .mobile-social-break { display: none; }
-
-    /*
-    ================================================
-    === COLLAPSIBLE SECTION STYLES ===
-    ================================================
-    */
-    .section-header {
-      color: #f5f5f5; margin: 50px 0 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding-bottom: 15px; text-align: center; font-size: 2em;
-    }
+    .section-header { color: #f5f5f5; margin: 50px 0 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 15px; text-align: center; font-size: 2em; }
     .section-header a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
     .section-header a:hover { color: #ffffcb; }
-    
-    .section-trigger {
-        background: none; border: none; padding: 0; margin: 0; font: inherit; color: inherit; width: 100%;
-        display: flex; align-items: center; justify-content: center; cursor: pointer; transition: color 0.2s ease;
-    }
+    .section-trigger { background: none; border: none; padding: 0; margin: 0; font: inherit; color: inherit; width: 100%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: color 0.2s ease; }
     .section-trigger:hover, .section-trigger:focus { color: var(--text-light); outline: none; }
     .folder-icon-toggle { font-size: 0.8em; color: var(--highlight-color); margin-right: 15px; }
     .folder-icon-toggle .fa-folder-open { display: none; }
     .section-trigger.expanded .folder-icon-toggle .fa-folder { display: none; }
     .section-trigger.expanded .folder-icon-toggle .fa-folder-open { display: inline-block; }
-
     .trigger-chevron { font-size: 0.7em; margin-left: 15px; color: var(--text-accent); transition: transform 0.3s ease-in-out; }
     .section-trigger.expanded .trigger-chevron { transform: rotate(180deg); }
-    
-    .collapsible-section-content {
-        display: grid; grid-template-rows: 0fr;
-        transition: grid-template-rows 0.5s ease-in-out;
-    }
+    .collapsible-section-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s ease-in-out; }
     .collapsible-section-content.expanded { grid-template-rows: 1fr; }
     .collapsible-section-content > div { overflow: hidden; }
 
@@ -328,19 +311,20 @@
       </div>
     </section>
 
-    <!-- === MODIFIED NAVIGATION FOR TWO-ROW MOBILE LAYOUT === -->
-      <nav class="internal-nav">
-        <div class="internal-nav-row-1">
-          <a href="#open-source-projects">Open Source Projects</a>
-          <span class="separator">|</span>
-          <a href="#articles-insights">Articles & Insights</a>
-        </div>
-        <div class="internal-nav-row-2">
-          <a href="#digital-bookshelf">Digital Bookshelf</a>
-        </div>
-      </nav>
+    <!-- === NAVIGATION WITH DESKTOP SEPARATOR FIX === -->
+    <nav class="internal-nav">
+      <div class="internal-nav-row-1">
+        <a href="#open-source-projects">Open Source Projects</a>
+        <span class="separator">|</span>
+        <a href="#articles-insights">Articles & Insights</a>
+      </div>
+      <span class="separator mobile-hide-separator">|</span>
+      <div class="internal-nav-row-2">
+        <a href="#digital-bookshelf">Digital Bookshelf</a>
+      </div>
+    </nav>
+
     <div class="main-content">
-        <!-- === AI ATLAS SECTION: Corrected Layout === -->
         <div class="book-showcase glass-effect interactive-card fade-in-up">
             <div class="book-text">
               <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" class="card-title-link">
@@ -438,8 +422,12 @@
                   <a href="https://github.com/sztaroszta/BGone" target="_blank" class="card-title-link"><h3 class="section-title">BGone</h3></a>
                   <p class="project-description">A GUI-based Python utility engineered to remove image backgrounds using a suite of AI models. It streamlines testing by processing one image with multiple algorithms (rembg, mediapipe) and saving separate, transparent outputs for easy side-by-side comparison.</p>
                   <p class="view-on-text">View on:</p>
+                  <!-- === BGone FIX: REMOVED GITEA LINK === -->
                   <div class="project-links">
-                    <a href="https://github.com/sztaroszta/BGone" target="_blank" class="project-link github">GitHub</a> <a href="https://gitlab.com/sztaroszta/BGone" target="_blank" class="project-link gitlab">GitLab</a> <a href="https://bitbucket.org/sztaroszta/BGone" target="_blank" class="project-link bitbucket">Bitbucket</a> <a href="https://gitea.com/starosta/BGone" target="_blank" class="project-link gitea">Gitea</a> <a href="https://medium.com/@starosta/ai-background-remover-tool-9c30dded5387" target="_blank" class="project-link medium">Medium</a>
+                    <a href="https://github.com/sztaroszta/BGone" target="_blank" class="project-link github">GitHub</a>
+                    <a href="https://gitlab.com/sztaroszta/BGone" target="_blank" class="project-link gitlab">GitLab</a>
+                    <a href="https://bitbucket.org/sztaroszta/BGone" target="_blank" class="project-link bitbucket">Bitbucket</a>
+                    <a href="https://medium.com/@starosta/ai-background-remover-tool-9c30dded5387" target="_blank" class="project-link medium">Medium</a>
                   </div>
                 </div>
               </article>
@@ -533,11 +521,9 @@
         const triggers = document.querySelectorAll('.section-trigger, .atlas-trigger');
         triggers.forEach(trigger => {
             trigger.addEventListener('click', function (event) {
-                // Allows links within triggers to open in a new tab without toggling
                 if (event.target.closest('a') && event.target.closest('a').hasAttribute('target')) {
                     return;
                 }
-                // Prevents the page from jumping if a link is clicked
                 event.preventDefault(); 
                 const targetId = this.getAttribute('data-target');
                 const contentWrapper = document.getElementById(targetId);
