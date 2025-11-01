@@ -1,598 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF--8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vitalii Starosta - Project Showcase</title>
 
-  <!-- Favicon Links (Updated to use /assets/ folder) -->
+  <!-- === SEO Enhancements === -->
+  <meta name="description" content="The official project showcase for Vitalii Starosta, featuring open-source work, articles, and professional insights.">
+  <link rel="canonical" href="https://sztaroszta.github.io/" />
+
+  <!-- === FONT AWESOME CDN LINK === -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- === SOCIAL MEDIA & LINK PREVIEW TAGS (OG & TWITTER) === -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sztaroszta.github.io/">
+  <meta property="og:title" content="Vitalii Starosta - Project Showcase">
+  <meta property="og:description" content="A showcase of open-source projects, articles, and a digital bookshelf by Vitalii Starosta.">
+  <meta property="og:image" content="https://i.postimg.cc/m2VgfvwN/Znimok-ekrana-2025-10-31-o-18-16-37-copy.png">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://sztaroszta.github.io/">
+  <meta property="twitter:title" content="Vitalii Starosta - Project Showcase">
+  <meta property="twitter:description" content="A showcase of open-source projects, articles, and a digital bookshelf by Vitalii Starosta.">
+  <meta property="twitter:image" content="https://i.postimg.cc/m2VgfvwN/Znimok-ekrana-2025-10-31-o-18-16-37-copy.png">
+  
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
-  <!-- End of Favicon Links -->
   
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- === Performance: Async Font Loading === -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
+  
+  <!-- === JSON-LD Structured Data === -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://sztaroszta.github.io/#person",
+    "name": "Vitalii Starosta",
+    "jobTitle": "Project Manager and Developer"
+  }
+  </script>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* === CSS Variables for Easy Theming === */
+    :root {
+      --bg-grad-start: #2b5876;
+      --bg-grad-end: #4e4376;
+      --text-main: #e0e0e0;
+      --text-light: #ffffff;
+      --text-accent: #c0d4e8;
+      --border-color: rgba(255, 255, 255, 0.12);
+      --shadow-color: rgba(0, 0, 0, 0.3);
+      --radius-main: 12px;
+      --highlight-color: #85C1E9;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    html, body {
-      min-height: 100%;
-      overscroll-behavior: none;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { min-height: 100%; overscroll-behavior: none; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.7;
-      color: #e0e0e0;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100dvh;
-      isolation: isolate;
-
-      /* === ROBUST BACKGROUND FIX === */
-      background-color: #2b5876; /* Fallback color */
-      background: linear-gradient(to right top, #2b5876, #4e4376) fixed;
-      background-size: cover;
-      background-repeat: no-repeat;
+      line-height: 1.7; color: var(--text-main); padding: 40px 20px;
+      position: relative; z-index: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; overflow-x: hidden; min-height: 100dvh;
     }
-
-    /* REMOVED body::before pseudo-element for better mobile compatibility */
-
+    body::before {
+      content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: linear-gradient(to right top, var(--bg-grad-start), var(--bg-grad-end)) fixed; z-index: -2;
+    }
     body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
+      content: ""; position: fixed; inset: 0;
       background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
-      opacity: 0.03;
-      z-index: -1;
-      pointer-events: none;
+      opacity: 0.03; z-index: -1; pointer-events: none;
     }
-
     .glass-effect {
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.07); 
       -webkit-backdrop-filter: blur(15px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      position: relative;
-      z-index: 2;
+      backdrop-filter: blur(15px);
+      border-radius: var(--radius-main);
+      border: 1px solid var(--border-color); box-shadow: 0 8px 20px var(--shadow-color); position: relative;
     }
-
-    .container {
-      padding: 40px;
-      max-width: 850px;
-      width: 95%;
-      margin-bottom: 30px;
-    }
-
+    .container { padding: 40px; max-width: 850px; width: 95%; margin-bottom: 30px; }
     .profile-header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 25px;
-      width: 100%;
-      margin-bottom: 25px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding-bottom: 25px;
+      display: flex; justify-content: center; align-items: center; gap: 25px;
+      width: 100%; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 25px;
     }
-    
-    .profile-main-link {
-        display: flex;
-        align-items: center;
-        gap: 25px;
-        text-decoration: none;
-    }
-
+    .profile-main-link { display: flex; align-items: center; gap: 25px; text-decoration: none; }
     .profile-picture {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        border: 3px solid rgba(255, 255, 255, 0.2);
-        object-fit: cover;
-        box-shadow: 0 0 15px rgba(0,0,0,0.3);
-        transition: transform 0.3s ease;
+      width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--border-color);
+      object-fit: cover; box-shadow: 0 0 15px var(--shadow-color); transition: transform 0.3s ease;
     }
-    .profile-picture:hover {
-        transform: scale(1.15);
-    }
+    .profile-picture:hover { transform: scale(1.15); }
+    h1 { font-size: 2.8em; color: var(--text-light); font-weight: 700; text-align: center; }
+    h2 { font-size: 2em; }
     
-    h1 {
-      font-size: 2.8em;
-      color: #ffffff;
-      font-weight: 700;
-      text-align: center;
+    .internal-nav { text-align: center; margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 25px; margin-bottom: 40px; }
+    .internal-nav a { color: var(--text-accent); text-decoration: none; margin: 0 8px; font-size: 1.1em; font-weight: 600; transition: color 0.2s ease; }
+    .internal-nav a:hover { color: var(--text-light); text-decoration: underline; }
+    .internal-nav .separator { color: rgba(255, 255, 255, 0.4); margin: 0 5px; }
+    
+    .actions-section { display: flex; flex-direction: column; align-items: center; gap: 25px; width: 100%; }
+    .contact-btn {
+      font-size: 1.1em; padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none;
+      width: 100%; text-align: center; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      position: relative; overflow: hidden; z-index: 1; background-color: #485563; color: #ecf0f1; border: none; 
+      transition: color 0.3s ease, transform 0.2s ease;
     }
+    .contact-btn::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 100%; background-color: #2c3e50; transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1); z-index: -1; }
+    .contact-btn .icon { transition: transform 0.4s ease-in-out; }
+    .contact-btn:hover::before { width: 100%; }
+    .contact-btn:hover .icon { transform: rotate(360deg); }
+    .contact-btn:hover { transform: translateY(-2px); }
+    .contact-btn:active { transform: translateY(1px); }
+    
+    .top-social-links { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px; }
+    .top-social-links a { color: var(--text-main); text-decoration: none; transition: color 0.3s ease, transform 0.3s ease; display: inline-flex; align-items: center; justify-content: center; }
+    .top-social-links a:hover { color: var(--text-light); transform: scale(1.2); }
+    .top-social-links .fa-brands { font-size: 28px; }
+    .top-social-links svg { width: 28px; height: 28px; }
+    .top-social-links a[title="Gitea"] svg { width: auto; height: 25px; }
 
-    .internal-nav {
-      text-align: center;
-      margin: 10px 0 35px 0;
-    }
-    .internal-nav a {
-      color: #c0d4e8;
-      text-decoration: none;
-      margin: 0 8px;
-      font-weight: 500;
-      font-size: 1em;
-      transition: color 0.2s ease;
-    }
-    .internal-nav a:hover {
-      color: #ffffff;
-      text-decoration: underline;
-    }
-    .internal-nav .separator {
-      color: rgba(255, 255, 255, 0.4);
-      margin: 0 5px;
-    }
-
-
+    /* === SHARPIE & BOUNCY HOVER EFFECT (ORIGINAL RESTORED) === */
     .interactive-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
     }
-    .interactive-card:hover {
+    .interactive-card.visible:hover {
         transform: translateY(-5px);
         box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
     }
     
-    .bio-logo-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .bio-logo {
-        width: 80px;
-        height: 80px;
-        border-radius: 8px;
-        padding: 10px;
-        background: rgba(0,0,0,0.1);
-        transition: filter 0.3s ease, transform 0.3s ease;
-    }
-    .bio-logo:hover {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
-    }
-
-    .bio-text { font-style: italic; color: #e0e0e0; margin: 0; }
+    .showcase-item { display: flex; align-items: center; gap: 20px; padding: 0 20px; width: 100%; }
+    .bio-logo-link { position: relative; display: block; overflow: visible; border-radius: 8px; width: 80px; height: 80px; flex-shrink: 0; perspective: 1000px; background: none; }
+    .bio-logo { width: 100%; height: 100%; border-radius: 8px; padding: 10px; background: rgba(0,0,0,0.1); display: block; }
+    .flipper { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.6s; }
+    .bio-logo-link:hover .flipper { transform: rotateY(180deg); }
+    .front, .back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 8px; }
+    .back { transform: rotateY(180deg); background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; font-size: 2.2em; color: white; }
+    .item-text { flex: 1; text-align: left; }
+    .bio-text { font-style: italic; color: var(--text-main); margin: 0; }
     
-    .book-showcase {
-        padding: 20px;
-        margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-    }
+    .book-showcase { padding: 20px; margin-bottom: 30px; display: flex; align-items: center; gap: 20px; }
     .book-text { flex: 1; text-align: left; }
-
-    .book-media-asset {
-        width: 100px;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        transition: transform 0.3s ease;
-        display: block;
-    }
+    .book-media-asset { width: 100px; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s ease; display: block; }
     .book-media-asset:hover { transform: scale(1.1); }
+    .video-play-container { position: relative; display: block; }
+    .video-play-container::before { content: ''; position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.5); border-radius: 8px; opacity: 0; transition: opacity 0.3s ease-out; pointer-events: none; }
+    .video-play-container::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-style: solid; border-width: 25px 0 25px 42px; border-color: transparent transparent transparent rgba(255, 255, 255, 0.95); opacity: 0; transform: translate(-50%, -50%) scale(0.5); transition: opacity 0.3s ease-out, transform 0.3s ease-out; pointer-events: none; }
+    .video-play-container:hover::before { opacity: 1; }
+    .video-play-container:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    
+    #open-source-projects .showcase-item, #articles-insights .showcase-item, #digital-bookshelf .showcase-item { 
+        padding: 20px; 
+        margin-top: 30px; 
+        /* === FIX FOR HOVER EFFECT === */
+        margin-bottom: 15px; 
+        display: flex; 
+        align-items: center; 
+        gap: 20px; 
+    }
+    .item-image { width: 120px; height: 120px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); object-fit: cover; transition: transform 0.3s ease; }
+    .item-image:hover { transform: scale(1.1); }
+    .card-title-link { text-decoration: none; color: inherit; }
+    .section-title { font-size: 1.6em; color: #85C1E9; margin-bottom: 8px; transition: color 0.2s ease; }
+    .interactive-card:hover .section-title { color: #ffffff; }
+    .article-title { font-size: 1.2em; }
+    .book-subtitle { color: #ffffff; font-size: 1.1em; }
+    .view-on-text { color: #ccc; margin-bottom: 10px; font-size: 0.9em; font-weight: bold; }
+    .project-description { font-size: 1em; color: #c5c6c7; line-height: 1.65; margin-bottom: 20px; }
+    .project-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    
+    .project-link { display: inline-block; color: #ffffff; padding: 5px 10px; font-size: 0.8em; border-radius: 5px; text-decoration: none; font-weight: 500; transition: all 0.2s ease; border: 1px solid rgba(255, 255, 255, 0.2); }
+    .project-link:hover, .project-link:focus { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+    .github { background-color: rgba(51, 51, 51, 0.85); } .github:hover { background-color: rgba(51, 51, 51, 1); }
+    .gitlab { background-color: rgba(252, 163, 38, 0.80); } .gitlab:hover { background-color: rgba(252, 163, 38, 1); }
+    .bitbucket { background-color: rgba(0, 82, 204, 0.85); } .bitbucket:hover { background-color: rgba(0, 82, 204, 1); }
+    .gitea { background-color: rgba(96, 153, 38, 0.85); } .gitea:hover { background-color: rgba(96, 153, 38, 1); }
+    .medium { background-color: rgba(18, 16, 14, 0.85); } .medium:hover { background-color: rgba(18, 16, 14, 1); }
+    .amazon { background-color: rgba(255, 153, 0, 0.85); color: #fff; font-weight: 600; } .amazon:hover { background-color: rgba(255, 153, 0, 1); }
+    .google-books { background-color: rgba(66, 133, 244, 0.85); } .google-books:hover { background-color: rgba(66, 133, 244, 1); }
+    .apple-books { background-color: rgba(51, 51, 51, 0.85); } .apple-books:hover { background-color: rgba(51, 51, 51, 1); }
+    .kobo { background-color: rgba(0, 157, 159, 0.85); } .kobo:hover { background-color: rgba(0, 157, 159, 1); }
+    .lulu { background-color: rgba(216, 36, 43, 0.85); } .lulu:hover { background-color: rgba(216, 36, 43, 1); }
+    .gumroad { background-color: rgba(255, 144, 232, 0.85); } .gumroad:hover { background-color: rgba(255, 144, 232, 1); }
+    .youtube { background-color: rgba(255, 0, 0, 0.75); } .youtube:hover { background-color: rgba(255, 0, 0, 1); }
 
-    .video-play-container {
-      position: relative;
-      display: block;
-    }
-    .video-play-container::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 8px;
-      opacity: 0;
-      transition: opacity 0.3s ease-out;
-      pointer-events: none;
-    }
-    .video-play-container::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 25px 0 25px 42px;
-      border-color: transparent transparent transparent rgba(255, 255, 255, 0.95);
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.5); 
-      transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-      pointer-events: none;
-    }
-    .video-play-container:hover::before {
-      opacity: 1;
-    }
-    .video-play-container:hover::after {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
+    .projects-placeholder { font-size: 1em; color: #a0a0a0; text-align: center; font-style: normal; margin-top: 30px; padding-top: 15px; }
+    footer { font-size: 0.9em; padding: 25px; text-align: center; max-width: 850px; width: 95%; margin: 30px auto 0; background-color: transparent; }
+    footer a { color: #85C1E9; text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: #ffffff; text-decoration: underline; }
+    footer .copyright { display: block; margin-top: 15px; color: #d1d1d1; }
+    .footer-separator { color: rgba(255, 255, 255, 0.4); margin: 0 5px; }
+    .mobile-break { display: none; } .mobile-hide-separator { display: inline; }
 
+    #back-to-top { position: fixed; bottom: 20px; right: 20px; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background-color: rgba(44, 62, 80, 0.8); color: #ecf0f1; border-radius: 50%; font-size: 20px; text-decoration: none; box-shadow: 0 4px 12px var(--shadow-color); z-index: 100; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s; }
+    #back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    #back-to-top:hover { background-color: #34495e; transform: scale(1.1); }
+    
+    .fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+    .mobile-icons-container, .bio-text-mobile, .mobile-social-break { display: none; }
+
+    /*
+    ================================================
+    === COLLAPSIBLE SECTION STYLES ===
+    ================================================
+    */
     .section-header {
-      font-size: 2em;
-      color: #f5f5f5;
-      margin: 50px 0 10px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding-bottom: 15px;
-      text-align: center;
+      color: #f5f5f5; margin: 50px 0 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 15px; text-align: center; font-size: 2em;
     }
     .section-header a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
     .section-header a:hover { color: #ffffcb; }
-
-    .showcase-item {
-        padding: 20px;
-        margin-top: 30px;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-    }
-    .item-text { flex: 1; text-align: left; }
-    .item-image {
-        width: 120px;
-        height: 120px;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-    .item-image:hover { transform: scale(1.1); }
-
-    .card-title-link { text-decoration: none; color: inherit; }
-    .section-title {
-        font-size: 1.6em;
-        color: #85C1E9;
-        margin-bottom: 8px;
-        transition: color 0.2s ease;
-    }
-    .interactive-card:hover .section-title { color: #ffffff; }
-    .article-title { font-size: 1.2em; }
     
-    .book-subtitle {
-        color: #ffffff;
-        font-size: 1.1em;
+    .section-trigger {
+        background: none; border: none; padding: 0; margin: 0; font: inherit; color: inherit; width: 100%;
+        display: flex; align-items: center; justify-content: center; cursor: pointer; transition: color 0.2s ease;
     }
-    .view-on-text { color: #ccc; margin-bottom: 10px; font-size: 0.9em; font-weight: bold; }
-    .project-description { font-size: 1em; color: #c5c6c7; line-height: 1.65; margin-bottom: 20px; }
+    .section-trigger:hover, .section-trigger:focus { color: var(--text-light); outline: none; }
+    .folder-icon-toggle { font-size: 0.8em; color: var(--highlight-color); margin-right: 15px; }
+    .folder-icon-toggle .fa-folder-open { display: none; }
+    .section-trigger.expanded .folder-icon-toggle .fa-folder { display: none; }
+    .section-trigger.expanded .folder-icon-toggle .fa-folder-open { display: inline-block; }
+
+    .trigger-chevron { font-size: 0.7em; margin-left: 15px; color: var(--text-accent); transition: transform 0.3s ease-in-out; }
+    .section-trigger.expanded .trigger-chevron { transform: rotate(180deg); }
     
-    .project-links { display: flex; flex-wrap: wrap; gap: 8px; }
-    .project-link {
-        display: inline-block;
-        color: #ffffff;
-        padding: 5px 10px;
-        font-size: 0.8em;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.2s ease;
+    .collapsible-section-content {
+        display: grid; grid-template-rows: 0fr;
+        transition: grid-template-rows 0.5s ease-in-out;
     }
-    .project-link:hover, .project-link:focus { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
-    
-    .github { background-color: #333; }
-    .gitlab { background-color: #fca326; }
-    .bitbucket { background-color: #0052cc; }
-    .gitea { background-color: #609926; }
-    .medium { background-color: #12100e; }
-    .amazon { background-color: #FF9900; color: #111; font-weight: 600; }
-    .amazon:hover { background-color: #e68a00;}
-    .google-books { background-color: #4285F4; }
-    .apple-books { background-color: #333333; }
-    .kobo { background-color: #009D9F; }
-    .lulu { background-color: #D8242B; }
-    .gumroad { background-color: #FF90E8; }
-    .youtube { background-color: #FF0000; }
+    .collapsible-section-content.expanded { grid-template-rows: 1fr; }
+    .collapsible-section-content > div { overflow: hidden; }
 
-    .projects-placeholder {
-        font-size: 1em;
-        color: #a0a0a0;
-        text-align: center;
-        font-style: normal;
-        margin-top: 30px;
-        padding-top: 15px;
-    }
-
-    footer {
-      font-size: 0.9em;
-      padding: 25px;
-      text-align: center;
-      max-width: 850px;
-      width: 95%;
-      margin: 30px auto 0;
-    }
-    footer a { color: #85C1E9; text-decoration: none; margin: 0 8px; transition: color 0.2s; }
-    footer a:hover { color: #ffffff; text-decoration: underline; }
-    footer .copyright { display: block; margin-top: 15px; color: #d1d1d1; }
-
-    /* --- Mobile Responsive Styles --- */
+    /* === Mobile Breakpoint === */
     @media (max-width: 768px) {
-      .container {
-        padding: 25px;
-      }
-      .profile-header {
-        flex-direction: column;
-        gap: 15px;
-      }
-      .profile-main-link {
-        flex-direction: column;
-        gap: 15px;
-      }
-      h1 {
-        font-size: 2.2em;
-      }
-      .internal-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 30px;
-      }
-      .internal-nav .separator {
-        display: none;
-      }
-      .showcase-item, .book-showcase {
-        flex-direction: column;
-        text-align: center;
-      }
-      .item-text, .book-text {
-        text-align: center;
-      }
-
-      .bio-logo {
-        width: 100px;
-        height: 100px;
-        margin: 0 auto 20px;
-      }
-      
-      .item-image {
-        width: 120px;
-        height: 120px;
-        margin: 0 auto 20px;
-      }
-      
-      .book-media-asset {
-        width: 100px;
-        height: 150px;
-        margin: 0;
-      }
-      
-      /* === FIX FOR SIDE-BY-SIDE BOOK IMAGES ON MOBILE === */
-      .book-showcase > div:last-child {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        margin-top: 20px;
-      }
-
-      .project-links {
-        justify-content: center;
-      }
+      body { font-size: 15px; line-height: 1.6; padding: 20px 10px; }
+      .project-description { line-height: 1.55; }
+      .container { padding: 25px; }
+      .profile-header { flex-direction: column; gap: 15px; }
+      .profile-picture { width: 80px; height: 80px; }
+      h1 { font-size: 1.9em; white-space: nowrap; }
+      .section-header { font-size: 1.8em; margin-top: 30px; }
+      .actions-section { gap: 20px; }
+      .showcase-item, #open-source-projects .showcase-item, #articles-insights .showcase-item, #digital-bookshelf .showcase-item { flex-direction: column; text-align: center; }
+      .actions-section > .showcase-item, .actions-section > .top-social-links { display: none; }
+      .bio-text-mobile { display: block; order: 1; text-align: left; font-style: italic; padding: 0 15px; font-size: 14px; }
+      .mobile-icons-container { display: flex; order: 2; justify-content: flex-start; align-items: center; width: 100%; padding: 0 15px; gap: 20px; }
+      .mobile-icons-container .bio-logo-link { width: 70px; height: 70px; margin: 0; }
+      .mobile-icons-container .top-social-links { display: flex; flex-wrap: wrap; justify-content: flex-start; max-width: 150px; row-gap: 5px; column-gap: 15px; }
+      .mobile-icons-container .top-social-links .fa-brands { font-size: 22px; }
+      .mobile-icons-container .top-social-links svg { width: 22px; height: 22px; }
+      .mobile-icons-container .top-social-links a[title="Gitea"] svg { width: auto; height: 21px; }
+      .mobile-social-break { display: block; flex-basis: 100%; height: 0; }
+      .actions-section .tooltip-wrapper { order: 3; width: 100%; }
+      .item-text, .book-text { text-align: center; }
+      .book-showcase { flex-direction: column; }
+      .item-image { width: 120px; height: 120px; margin: 0 auto 20px; }
+      .book-media-asset { width: 100px; height: 150px; margin: 0; }
+      .book-showcase > div:last-child { display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 15px; margin-top: 20px; }
+      .project-links { justify-content: center; }
+      #open-source-projects .showcase-item, #open-source-projects .item-text, #open-source-projects .project-links { text-align: left; justify-content: flex-start;}
+      .mobile-break { display: block; height: 8px; }
+      .mobile-hide-separator { display: none; }
+      .book-showcase .book-text { text-align: left; }
+      .book-showcase .project-links { justify-content: flex-start; }
+      .internal-nav { display: block; text-align: center; }
+      .internal-nav-row-1 { margin-bottom: 10px; }
+      .internal-nav .separator { margin: 0; }
+      .internal-nav-row-1, .internal-nav-row-2 { display: flex; justify-content: center; align-items: center; gap: 8px; }
+      .internal-nav a { white-space: nowrap; font-size: 16px; margin: 0; }
+      .internal-nav .separator:nth-of-type(2) { display: none; }
     }
   </style>
 </head>
 <body>
-
   <div class="container glass-effect">
     <header class="profile-header">
       <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank" class="profile-main-link">
-        <img src="https://i.postimg.cc/q73ZM6ZM/vitalii-starosta-square.jpg" alt="Profile Picture of Vitalii Starosta" class="profile-picture">
+        <img src="https://i.postimg.cc/hvjy2xZ0/vitalii-starosta-square.jpg" alt="Profile Picture of Vitalii Starosta" class="profile-picture" width="100" height="100">
         <h1>Vitalii Starosta</h1>
       </a>
     </header>
+    
+    <section class="actions-section">
+      <div class="showcase-item">
+        <a href="https://about.me/vitalii" target="_blank" aria-label="About Me Profile" class="bio-logo-link">
+          <div class="flipper">
+            <div class="front"><img src="https://i.postimg.cc/qMhd05r8/aboutme-icon.png" alt="About.me Logo" class="bio-logo" width="80" height="80"></div>
+            <div class="back"><i class="fa-solid fa-arrow-pointer"></i></div>
+          </div>
+        </a>
+        <div class="item-text">
+            <p class="bio-text">Juggling business insights, data deep dives, and project timelines. Off the clock, I'm crafting Python magic for macOS, Excel, and Google Chrome.</p>
+        </div>
+      </div>
+      <div class="top-social-links">
+        <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://medium.com/@starosta" target="_blank" title="Medium"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z"/></svg></a>
+        <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" title="Amazon"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://github.com/sztaroszta" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://gitlab.com/sztaroszta" target="_blank" title="GitLab"><i class="fa-brands fa-gitlab"></i></a>
+        <a href="https://bitbucket.org/sztaroszta/workspace/repositories/" target="_blank" title="Bitbucket"><i class="fa-brands fa-bitbucket"></i></a>
+        <a href="https://gitea.com/starosta" target="_blank" title="Gitea"><svg fill="currentColor" viewBox="0 4 24 16" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M4.209 4.603c-.247 0-.525.02-.84.088-.333.07-1.28.283-2.054 1.027C-.403 7.25.035 9.685.089 10.052c.065.446.263 1.687 1.21 2.768 1.749 2.141 5.513 2.092 5.513 2.092s.462 1.103 1.168 2.119c.955 1.263 1.936 2.248 2.89 2.367 2.406 0 7.212-.004 7.212-.004s.458.004 1.08-.394c.535-.324 1.013-.893 1.013-.893s.492-.527 1.18-1.73c.21-.37.385-.729.538-1.068 0 0 2.107-4.471 2.107-8.823-.042-1.318-.367-1.55-.443-1.627-.156-.156-.366-.153-.366-.153s-4.475.252-6.792.306c-.508.011-1.012.023-1.512.027v4.474l-.634-.301c0-1.39-.004-4.17-.004-4.17-1.107.016-3.405-.084-3.405-.084s-5.399-.27-5.987-.324c-.187-.011-.401-.032-.648-.032zm.354 1.832h.111s.271 2.269.6 3.597C5.549 11.147 6.22 13 6.22 13s-.996-.119-1.641-.348c-.99-.324-1.409-.714-1.409-.714s-.73-.511-1.096-1.52C1.444 8.73 2.021 7.7 2.021 7.7s.32-.859 1.47-1.145c.395-.106.863-.12 1.072-.12zm8.33 2.554c.26.003.509.127.509.127l.868.422-.529 1.075a.686.686 0 0 0-.614.359.685.685 0 0 0 .072.756l-.939 1.924a.69.69 0 0 0-.66.527.687.687 0 0 0 .347.763.686.686 0 0 0 .867-.206.688.688 0 0 0-.069-.882l.916-1.874a.667.667 0 0 0 .237-.02.657.657 0 0 0 .271-.137 8.826 8.826 0 0 1 1.016.512.761.761 0 0 1 .286.282c.073.21-.073.569-.073.569-.087.29-.702 1.55-.702 1.55a.692.692 0 0 0-.676.477.681.681 0 1 0 1.157-.252c.073-.141.141-.282.214-.431.19-.397.515-1.16.515-1.16.035-.066.218-.394.103-.814-.095-.435-.48-.638-.48-.638-.467-.301-1.116-.58-1.116-.58s0-.156-.042-.27a.688.688 0 0 0-.148-.241l.516-1.062 2.89 1.401s.48.218.583.619c.073.282-.019.534-.069.657-.24.587-2.1 4.317-2.1 4.317s-.232.554-.748.588a1.065 1.065 0 0 1-.393-.045l-.202-.08-4.31-2.1s-.417-.218-.49-.596c-.083-.31.104-.691.104-.691l2.073-4.272s.183-.37.466-.497a.855.855 0 0 1 .35-.077z"/></svg></a>
+      </div>
+      <p class="bio-text-mobile">Juggling business insights, data deep dives, and project timelines. Off the clock, I'm crafting Python magic for macOS, Excel, and Google Chrome.</p>
+      <div class="mobile-icons-container">
+        <a href="https://about.me/vitalii" target="_blank" class="bio-logo-link"><img src="https://i.postimg.cc/qMhd05r8/aboutme-icon.png" alt="About.me Logo" class="bio-logo" width="80" height="80"></a>
+        <div class="top-social-links">
+            <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://medium.com/@starosta" target="_blank" title="Medium"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z"/></svg></a>
+            <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" title="Amazon"><i class="fa-brands fa-amazon"></i></a>
+            <div class="mobile-social-break"></div>
+            <a href="https://github.com/sztaroszta" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://gitlab.com/sztaroszta" target="_blank" title="GitLab"><i class="fa-brands fa-gitlab"></i></a>
+            <a href="https://bitbucket.org/sztaroszta/workspace/repositories/" target="_blank" title="Bitbucket"><i class="fa-brands fa-bitbucket"></i></a>
+            <a href="https://gitea.com/starosta" target="_blank" title="Gitea"><svg fill="currentColor" viewBox="0 4 24 16" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M4.209 4.603c-.247 0-.525.02-.84.088-.333.07-1.28.283-2.054 1.027C-.403 7.25.035 9.685.089 10.052c.065.446.263 1.687 1.21 2.768 1.749 2.141 5.513 2.092 5.513 2.092s.462 1.103 1.168 2.119c.955 1.263 1.936 2.248 2.89 2.367 2.406 0 7.212-.004 7.212-.004s.458.004 1.08-.394c.535-.324 1.013-.893 1.013-.893s.492-.527 1.18-1.73c.21-.37.385-.729.538-1.068 0 0 2.107-4.471 2.107-8.823-.042-1.318-.367-1.55-.443-1.627-.156-.156-.366-.153-.366-.153s-4.475.252-6.792.306c-.508.011-1.012.023-1.512.027v4.474l-.634-.301c0-1.39-.004-4.17-.004-4.17-1.107.016-3.405-.084-3.405-.084s-5.399-.27-5.987-.324c-.187-.011-.401-.032-.648-.032zm.354 1.832h.111s.271 2.269.6 3.597C5.549 11.147 6.22 13 6.22 13s-.996-.119-1.641-.348c-.99-.324-1.409-.714-1.409-.714s-.73-.511-1.096-1.52C1.444 8.73 2.021 7.7 2.021 7.7s.32-.859 1.47-1.145c.395-.106.863-.12 1.072-.12zm8.33 2.554c.26.003.509.127.509.127l.868.422-.529 1.075a.686.686 0 0 0-.614.359.685.685 0 0 0 .072.756l-.939 1.924a.69.69 0 0 0-.66.527.687.687 0 0 0 .347.763.686.686 0 0 0 .867-.206.688.688 0 0 0-.069-.882l.916-1.874a.667.667 0 0 0 .237-.02.657.657 0 0 0 .271-.137 8.826 8.826 0 0 1 1.016.512.761.761 0 0 1 .286.282c.073.21-.073.569-.073.569-.087.29-.702 1.55-.702 1.55a.692.692 0 0 0-.676.477.681.681 0 1 0 1.157-.252c.073-.141.141-.282.214-.431.19-.397.515-1.16.515-1.16.035-.066.218-.394.103-.814-.095-.435-.48-.638-.48-.638-.467-.301-1.116-.58-1.116-.58s0-.156-.042-.27a.688.688 0 0 0-.148-.241l.516-1.062 2.89 1.401s.48.218.583.619c.073.282-.019.534-.069.657-.24.587-2.1 4.317-2.1 4.317s-.232.554-.748.588a1.065 1.065 0 0 1-.393-.045l-.202-.08-4.31-2.1s-.417-.218-.49-.596c-.083-.31.104-.691.104-.691l2.073-4.272s.183-.37.466-.497a.855.855 0 0 1 .35-.077z"/></svg></a>
+        </div>
+      </div>
+      <div class="tooltip-wrapper tooltip-right" data-tooltip="Send me an email">
+        <a href="mailto:v_starosta@outlook.com" class="contact-btn">
+          <span class="icon"><i class="fa-regular fa-envelope"></i></span>
+          <span class="text">Let’s Connect</span>
+        </a>
+      </div>
+    </section>
 
     <nav class="internal-nav">
-      <a href="#open-source-projects">Open Source Projects</a>
-      <span class="separator">|</span>
-      <a href="#articles-insights">Articles & Insights</a>
-      <span class="separator">|</span>
+      <a href="#open-source-projects">Open Source Projects</a> <span class="separator">|</span>
+      <a href="#articles-insights">Articles & Insights</a> <span class="separator">|</span>
       <a href="#digital-bookshelf">Digital Bookshelf</a>
     </nav>
-
     <div class="main-content">
-        <div class="showcase-item glass-effect" style="margin-bottom: 40px;">
-            <a href="https://about.me/vitalii" target="_blank" aria-label="About Me Profile" class="bio-logo-link">
-                <img src="https://i.postimg.cc/qMhd05r8/aboutme-icon.png" alt="About.me Logo" class="bio-logo">
-            </a>
-            <div class="item-text">
-                <p class="bio-text">Juggling business insights, data deep dives, and project timelines. Off the clock, I'm crafting Python magic for macOS, Excel, and Google Chrome.</p>
+        <!-- === AI ATLAS SECTION: Corrected Layout === -->
+        <div class="book-showcase glass-effect interactive-card fade-in-up">
+            <div class="book-text">
+              <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" class="card-title-link">
+                <h3 class="section-title">THE AI ATLAS</h3>
+              </a>
+              <p class="project-description book-subtitle">1001 Tools, Platforms, and Services Shaping Our Digital Future</p>
+              <p class="view-on-text">Explore My Book on:</p>
+              <div class="project-links">
+                <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" class="project-link amazon">Amazon</a>
+                <a href="https://play.google.com/store/books/details?id=BTB3EQAAQBAJ" target="_blank" class="project-link google-books">Google Books</a>
+                <a href="https://books.apple.com/us/book/the-ai-atlas/id6749574581?l=ru&ls=1" target="_blank" class="project-link apple-books">Apple Books</a>
+                <a href="https://www.kobo.com/ww/en/ebook/the-ai-atlas?sId=e27cba48-5d49-4c33-b145-e73b05da67cd" target="_blank" class="project-link kobo">Kobo</a>
+                <a href="https://www.lulu.com/shop/vitalii-starosta/the-ai-atlas/ebook/product-2mrmz62.html?page=1&pageSize=4" target="_blank" class="project-link lulu">Lulu</a>
+                <a href="https://vitalosta.gumroad.com/l/the_ai_atlas" target="_blank" class="project-link gumroad">Gumroad</a>
+              </div>
             </div>
-        </div>
-
-        <div class="book-showcase glass-effect interactive-card">
-          <div class="book-text">
-            <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" 
-               target="_blank" class="card-title-link">
-              <h3 class="section-title">THE AI ATLAS</h3>
-            </a>
-            <p class="project-description book-subtitle">1001 Tools, Platforms, and Services Shaping Our Digital Future</p>
-            <p class="view-on-text">Explore My Book on:</p>
-            <div class="project-links">
-              <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" class="project-link amazon">Amazon</a>
-              <a href="https://play.google.com/store/books/details?id=BTB3EQAAQBAJ" target="_blank" class="project-link google-books">Google Books</a>
-              <a href="https://books.apple.com/us/book/the-ai-atlas/id6749574581?l=ru&ls=1" target="_blank" class="project-link apple-books">Apple Books</a>
-              <a href="https://www.kobo.com/ww/en/ebook/the-ai-atlas?sId=e27cba48-5d49-4c33-b145-e73b05da67cd" target="_blank" class="project-link kobo">Kobo</a>
-              <a href="https://www.lulu.com/shop/vitalii-starosta/the-ai-atlas/ebook/product-2mrmz62.html?page=1&pageSize=4" target="_blank" class="project-link lulu">Lulu</a>
-              <a href="https://vitalosta.gumroad.com/l/the_ai_atlas" target="_blank" class="project-link gumroad">Gumroad</a>
+            <div style="display: flex; gap: 15px; align-items: center;">
+              <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" aria-label="View The AI Atlas on Amazon">
+                  <img src="https://i.postimg.cc/Y2sbpvyd/the-ai-atlas-full-cover-with-barcode-front.jpg" alt="Cover of The AI Atlas book" class="book-media-asset" loading="lazy" width="100" height="150">
+              </a>
+              <a href="https://youtube.com/shorts/UOdt1oXepeM" target="_blank" class="video-play-container" aria-label="Watch The AI Atlas book showcase video on YouTube">
+                <img src="https://i.postimg.cc/1t63k4WW/the-ai-atlas-video-play.jpg" alt="Play The AI Atlas Book Showcase Video" class="book-media-asset" loading="lazy" width="100" height="150">
+              </a>
             </div>
-          </div>
-
-          <!-- This div is the container for the two book images -->
-          <div style="display: flex; gap: 15px; align-items: center;">
-            <img src="https://i.postimg.cc/TYcLLT4V/the-ai-atlas-full-cover-with-barcode-front.jpg" 
-                 alt="Cover of The AI Atlas book" 
-                 class="book-media-asset">
-
-            <a href="https://youtube.com/shorts/UOdt1oXepeM" target="_blank" class="video-play-container">
-              <img src="https://i.postimg.cc/3rvQB4Yp/the-ai-atlas-video-play.jpg" 
-                   alt="Play The AI Atlas Book Showcase Video" 
-                   class="book-media-asset">
-            </a>
-          </div>
         </div>
 
         <section class="projects" id="open-source-projects">
-          <h2 class="section-header"><a href="https://medium.com/@starosta/list/the-forge-de1516f4247e" target="_blank">Open Source Projects</a></h2>
-
-          <div class="showcase-item glass-effect interactive-card">
-            <img src="https://i.postimg.cc/SxXmtPX2/bm2excel.jpg" alt="BM2Excel Project Image" class="item-image">
-            <div class="item-text">
-              <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="card-title-link"><h3 class="section-title">BM2Excel</h3></a>
-              <p class="project-description">A Python tool designed to convert browser bookmarks (HTML files) into well-structured and organized Excel spreadsheets.</p>
-              <p class="view-on-text">View on:</p>
-              <div class="project-links">
-                <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="project-link github">GitHub</a>
-                <a href="https://gitlab.com/sztaroszta/BM2Excel" target="_blank" class="project-link gitlab">GitLab</a>
-                <a href="https://bitbucket.org/sztaroszta/bm2excel/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a>
-                <a href="https://gitea.com/starosta/BM2Excel" target="_blank" class="project-link gitea">Gitea</a>
-                <a href="https://medium.com/@starosta/bm2excel-python-bookmark-organizer-25ba822ad99c" target="_blank" class="project-link medium">Medium</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="showcase-item glass-effect interactive-card">
-            <img src="https://i.postimg.cc/tJmL3XNr/macdirscope.jpg" alt="MacDirScope Project Image" class="item-image">
-            <div class="item-text">
-              <a href="https://github.com/sztaroszta/MacDirScope" target="_blank" class="card-title-link"><h3 class="section-title">MacDirScope</h3></a>
-              <p class="project-description">A powerful Python tool for macOS that performs deep scans of any directory to catalog files and folders, extracting extended attributes like Finder tags and exporting the data into a clean, filterable Excel report.</p>
-              <p class="view-on-text">View on:</p>
-              <div class="project-links">
-                <a href="https://github.com/sztaroszta/MacDirScope" target="_blank" class="project-link github">GitHub</a>
-                <a href="https://gitlab.com/sztaroszta/MacDirScope" target="_blank" class="project-link gitlab">GitLab</a>
-                <a href="https://bitbucket.org/sztaroszta/macdirscope/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a>
-                <a href="https://gitea.com/starosta/MacDirScope" target="_blank" class="project-link gitea">Gitea</a>
-                <a href="https://medium.com/@starosta/organize-mac-files-free-01d2e1b5c8f8" target="_blank" class="project-link medium">Medium</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="showcase-item glass-effect interactive-card">
-            <img src="https://i.postimg.cc/Wzn35d1w/SplitXL.jpg" alt="SplitXL Project Image" class="item-image">
-            <div class="item-text">
-              <a href="https://github.com/sztaroszta/SplitXL" target="_blank" class="card-title-link"><h3 class="section-title">SplitXL</h3></a>
-              <p class="project-description">A robust utility designed to slice large Excel spreadsheets into smaller, row-based files. It ensures data integrity by perfectly cloning headers, cell styles, and formats into each new chunk.</p>
-              <p class="view-on-text">View on:</p>
-              <div class="project-links">
-                <a href="https://github.com/sztaroszta/SplitXL" target="_blank" class="project-link github">GitHub</a>
-                <a href="https://gitlab.com/sztaroszta/SplitXL" target="_blank" class="project-link gitlab">GitLab</a>
-                <a href="https://bitbucket.org/sztaroszta/splitxl/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a>
-                <a href="https://gitea.com/starosta/SplitXL" target="_blank" class="project-link gitea">Gitea</a>
-                <a href="https://medium.com/@starosta/split-large-excel-with-python-e1e6453c91f9" target="_blank" class="project-link medium">Medium</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="showcase-item glass-effect interactive-card">
-            <img src="https://i.postimg.cc/3wJNK6DM/Combine-XL.jpg" alt="CombineXL Project Image" class="item-image">
-            <div class="item-text">
-              <a href="https://github.com/sztaroszta/CombineXL" target="_blank" class="card-title-link"><h3 class="section-title">CombineXL</h3></a>
-              <p class="project-description">A Python GUI application for merging multiple Excel files into a single master workbook, meticulously preserving all original cell formatting, styles, and merged regions.</p>
-              <p class="view-on-text">View on:</p>
-              <div class="project-links">
-                <a href="https://github.com/sztaroszta/CombineXL" target="_blank" class="project-link github">GitHub</a>
-                <a href="https://gitlab.com/sztaroszta/CombineXL" target="_blank" class="project-link gitlab">GitLab</a>
-                <a href="https://bitbucket.org/sztaroszta/CombineXL/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a>
-                <a href="https://gitea.com/starosta/CombineXL" target="_blank" class="project-link gitea">Gitea</a>
-                <a href="https://medium.com/@starosta/combine-excel-files-with-python-c42005cf34c1" target="_blank" class="project-link medium">Medium</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="showcase-item glass-effect interactive-card">
-            <img src="https://i.postimg.cc/L57krpCL/Void-Finder.jpg" alt="VoidFinder Project Image" class="item-image">
-            <div class="item-text">
-              <a href="https://github.com/sztaroszta/VoidFinder" target="_blank" class="card-title-link"><h3 class="section-title">VoidFinder</h3></a>
-              <p class="project-description">A robust Python tool engineered to declutter drives by identifying and removing folders that appear empty, even when containing system-generated files.</p>
-              <p class="view-on-text">View on:</p>
-              <div class="project-links">
-                <a href="https://github.com/sztaroszta/VoidFinder" target="_blank" class="project-link github">GitHub</a>
-                <a href="https://gitlab.com/sztaroszta/VoidFinder" target="_blank" class="project-link gitlab">GitLab</a>
-                <a href="https://bitbucket.org/sztaroszta/VoidFinder" target="_blank" class="project-link bitbucket">Bitbucket</a>
-                <a href="https://gitea.com/starosta/VoidFinder" target="_blank" class="project-link gitea">Gitea</a>
-                <a href="https://medium.com/@starosta/find-and-remove-empty-folders-7360740695dd" target="_blank" class="project-link medium">Medium</a>
-              </div>
+          <h2 class="section-header">
+            <button class="section-trigger expanded" data-target="open-source-content-wrapper" aria-expanded="true">
+              <span class="folder-icon-toggle"><i class="fas fa-folder"></i><i class="fas fa-folder-open"></i></span>
+              <a href="https://medium.com/@starosta/list/the-forge-de1516f4247e" target="_blank" onclick="event.stopPropagation()">Open Source Projects</a>
+              <i class="fas fa-chevron-down trigger-chevron"></i>
+            </button>
+          </h2>
+          <div id="open-source-content-wrapper" class="collapsible-section-content expanded">
+            <div>
+              <article class="showcase-item glass-effect interactive-card fade-in-up">
+                <a href="https://github.com/sztaroszta/BM2Excel" target="_blank"><img src="https://i.postimg.cc/mDry443B/bm2excel.jpg" alt="BM2Excel Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <div class="item-text">
+                  <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="card-title-link"><h3 class="section-title">BM2Excel</h3></a>
+                  <p class="project-description">A Python tool designed to convert browser bookmarks (HTML files) into well-structured and organized Excel spreadsheets.</p>
+                  <p class="view-on-text">View on:</p>
+                  <div class="project-links">
+                    <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="project-link github">GitHub</a> <a href="https://gitlab.com/sztaroszta/BM2Excel" target="_blank" class="project-link gitlab">GitLab</a> <a href="https://bitbucket.org/sztaroszta/bm2excel/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a> <a href="https://gitea.com/starosta/BM2Excel" target="_blank" class="project-link gitea">Gitea</a> <a href="https://medium.com/@starosta/bm2excel-python-bookmark-organizer-25ba822ad99c" target="_blank" class="project-link medium">Medium</a>
+                  </div>
+                </div>
+              </article>
+              <article class="showcase-item glass-effect interactive-card fade-in-up">
+                <a href="https://github.com/sztaroszta/MacDirScope" target="_blank"><img src="https://i.postimg.cc/hGD98n5Q/macdirscope.jpg" alt="MacDirScope Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <div class="item-text">
+                  <a href="https://github.com/sztaroszta/MacDirScope" target="_blank" class="card-title-link"><h3 class="section-title">MacDirScope</h3></a>
+                  <p class="project-description">A powerful Python tool for macOS that performs deep scans of any directory to catalog files and folders, extracting extended attributes like Finder tags and exporting the data into a clean, filterable Excel report.</p>
+                  <p class="view-on-text">View on:</p>
+                  <div class="project-links">
+                    <a href="https://github.com/sztaroszta/MacDirScope" target="_blank" class="project-link github">GitHub</a> <a href="https://gitlab.com/sztaroszta/MacDirScope" target="_blank" class="project-link gitlab">GitLab</a> <a href="https://bitbucket.org/sztaroszta/macdirscope/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a> <a href="https://gitea.com/starosta/MacDirScope" target="_blank" class="project-link gitea">Gitea</a> <a href="https://medium.com/@starosta/organize-mac-files-free-01d2e1b5c8f8" target="_blank" class="project-link medium">Medium</a>
+                  </div>
+                </div>
+              </article>
+              <article class="showcase-item glass-effect interactive-card fade-in-up">
+                <a href="https://github.com/sztaroszta/SplitXL" target="_blank"><img src="https://i.postimg.cc/TwyDpRkM/SplitXL.jpg" alt="SplitXL Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <div class="item-text">
+                  <a href="https://github.com/sztaroszta/SplitXL" target="_blank" class="card-title-link"><h3 class="section-title">SplitXL</h3></a>
+                  <p class="project-description">A robust utility designed to slice large Excel spreadsheets into smaller, row-based files. It ensures data integrity by perfectly cloning headers, cell styles, and formats into each new chunk.</p>
+                  <p class="view-on-text">View on:</p>
+                  <div class="project-links">
+                    <a href="https://github.com/sztaroszta/SplitXL" target="_blank" class="project-link github">GitHub</a> <a href="https://gitlab.com/sztaroszta/SplitXL" target="_blank" class="project-link gitlab">GitLab</a> <a href="https://bitbucket.org/sztaroszta/splitxl/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a> <a href="https://gitea.com/starosta/SplitXL" target="_blank" class="project-link gitea">Gitea</a> <a href="https://medium.com/@starosta/split-large-excel-with-python-e1e6453c91f9" target="_blank" class="project-link medium">Medium</a>
+                  </div>
+                </div>
+              </article>
+              <article class="showcase-item glass-effect interactive-card fade-in-up">
+                <a href="https://github.com/sztaroszta/CombineXL" target="_blank"><img src="https://i.postimg.cc/139VD0WJ/Combine-XL.jpg" alt="CombineXL Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <div class="item-text">
+                  <a href="https://github.com/sztaroszta/CombineXL" target="_blank" class="card-title-link"><h3 class="section-title">CombineXL</h3></a>
+                  <p class="project-description">A Python GUI application for merging multiple Excel files into a single master workbook, meticulously preserving all original cell formatting, styles, and merged regions.</p>
+                  <p class="view-on-text">View on:</p>
+                  <div class="project-links">
+                    <a href="https://github.com/sztaroszta/CombineXL" target="_blank" class="project-link github">GitHub</a> <a href="https://gitlab.com/sztaroszta/CombineXL" target="_blank" class="project-link gitlab">GitLab</a> <a href="https://bitbucket.org/sztaroszta/CombineXL/src/main/" target="_blank" class="project-link bitbucket">Bitbucket</a> <a href="https://gitea.com/starosta/CombineXL" target="_blank" class="project-link gitea">Gitea</a> <a href="https://medium.com/@starosta/combine-excel-files-with-python-c42005cf34c1" target="_blank" class="project-link medium">Medium</a>
+                  </div>
+                </div>
+              </article>
+              <article class="showcase-item glass-effect interactive-card fade-in-up">
+                <a href="https://github.com/sztaroszta/VoidFinder" target="_blank"><img src="https://i.postimg.cc/SNGJQ2yh/Void-Finder.jpg" alt="VoidFinder Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <div class="item-text">
+                  <a href="https://github.com/sztaroszta/VoidFinder" target="_blank" class="card-title-link"><h3 class="section-title">VoidFinder</h3></a>
+                  <p class="project-description">A robust Python tool engineered to declutter drives by identifying and removing folders that appear empty, even when containing system-generated files.</p>
+                  <p class="view-on-text">View on:</p>
+                  <div class="project-links">
+                    <a href="https://github.com/sztaroszta/VoidFinder" target="_blank" class="project-link github">GitHub</a> <a href="https://gitlab.com/sztaroszta/VoidFinder" target="_blank" class="project-link gitlab">GitLab</a> <a href="https://bitbucket.org/sztaroszta/VoidFinder" target="_blank" class="project-link bitbucket">Bitbucket</a> <a href="https://gitea.com/starosta/VoidFinder" target="_blank" class="project-link gitea">Gitea</a> <a href="https://medium.com/@starosta/find-and-remove-empty-folders-7360740695dd" target="_blank" class="project-link medium">Medium</a>
+                  </div>
+                </div>
+              </article>
+              <article class="showcase-item glass-effect interactive-card fade-in-up">
+                <a href="https://github.com/sztaroszta/BGone" target="_blank"><img src="https://i.postimg.cc/sfY2KQGZ/BGone.jpg" alt="BGone Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <div class="item-text">
+                  <a href="https://github.com/sztaroszta/BGone" target="_blank" class="card-title-link"><h3 class="section-title">BGone</h3></a>
+                  <p class="project-description">A GUI-based Python utility engineered to remove image backgrounds using a suite of AI models. It streamlines testing by processing one image with multiple algorithms (rembg, mediapipe) and saving separate, transparent outputs for easy side-by-side comparison.</p>
+                  <p class="view-on-text">View on:</p>
+                  <div class="project-links">
+                    <a href="https://github.com/sztaroszta/BGone" target="_blank" class="project-link github">GitHub</a> <a href="https://gitlab.com/sztaroszta/BGone" target="_blank" class="project-link gitlab">GitLab</a> <a href="https://bitbucket.org/sztaroszta/BGone" target="_blank" class="project-link bitbucket">Bitbucket</a> <a href="https://gitea.com/starosta/BGone" target="_blank" class="project-link gitea">Gitea</a> <a href="https://medium.com/@starosta/ai-background-remover-tool-9c30dded5387" target="_blank" class="project-link medium">Medium</a>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
         </section>
 
         <section class="articles" id="articles-insights">
-            <h2 class="section-header"><a href="https://medium.com/@starosta/list/deep-dives-de05c051541f" target="_blank">Articles & Insights</a></h2>
-  
-            <div class="showcase-item glass-effect interactive-card">
-              <img src="https://i.postimg.cc/6qYBDJLR/GA.jpg" alt="Article Image about AI and Genetic Algorithms" class="item-image">
-              <div class="item-text">
-                <!-- === FIX: LINKED TITLE === -->
-                <a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank" class="card-title-link">
-                  <h3 class="section-title article-title">Bugs Be Gone! How My AI Research is Shaking Up Software Testing</h3>
-                </a>
-                <div class="project-links">
-                  <a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank" class="project-link medium">Read on Medium</a>
+            <h2 class="section-header">
+              <button class="section-trigger expanded" data-target="articles-content-wrapper" aria-expanded="true">
+                <span class="folder-icon-toggle"><i class="fas fa-folder"></i><i class="fas fa-folder-open"></i></span>
+                <a href="https://medium.com/@starosta/list/deep-dives-de05c051541f" target="_blank" onclick="event.stopPropagation()">Articles & Insights</a>
+                <i class="fas fa-chevron-down trigger-chevron"></i>
+              </button>
+            </h2>
+            <div id="articles-content-wrapper" class="collapsible-section-content expanded">
+                <div>
+                    <article class="showcase-item glass-effect interactive-card fade-in-up">
+                      <a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank"><img src="https://i.postimg.cc/FHjZgDss/GA.jpg" alt="Article Image" class="item-image" loading="lazy"></a>
+                      <div class="item-text">
+                        <a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank" class="card-title-link"><h3 class="section-title article-title">Bugs Be Gone! How My AI Research is Shaking Up Software Testing</h3></a>
+                        <div class="project-links"><a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank" class="project-link medium">Read on Medium</a></div>
+                      </div>
+                    </article>
+                    <article class="showcase-item glass-effect interactive-card fade-in-up">
+                      <a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank"><img src="https://i.postimg.cc/SQ37BwJw/euler.jpg" alt="Article Image" class="item-image" loading="lazy"></a>
+                      <div class="item-text">
+                        <a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank" class="card-title-link"><h3 class="section-title article-title">The Product Manager's Most Beautiful Equation</h3></a>
+                        <div class="project-links"><a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank" class="project-link medium">Read on Medium</a></div>
+                      </div>
+                    </article>
                 </div>
-              </div>
-            </div>
-  
-            <div class="showcase-item glass-effect interactive-card">
-              <img src="https://i.postimg.cc/cC9NF70B/euler.jpg" alt="Article Image about Euler's Identity" class="item-image">
-              <div class="item-text">
-                <!-- === FIX: LINKED TITLE === -->
-                <a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank" class="card-title-link">
-                  <h3 class="section-title article-title">The Product Manager’s Most Beautiful Equation</h3>
-                </a>
-                <div class="project-links">
-                  <a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank" class="project-link medium">Read on Medium</a>
-                </div>
-              </div>
             </div>
         </section>
 
         <section class="digital-bookshelf" id="digital-bookshelf">
-            <h2 class="section-header"><a href="https://medium.com/@starosta/list/the-library-dc6ae713a502" target="_blank">Digital Bookshelf</a></h2>
-  
-            <div class="showcase-item glass-effect interactive-card">
-              <img src="https://i.postimg.cc/52HnYBGW/the-ai-atlas.jpg" alt="Article Image related to The AI Atlas" class="item-image">
-              <div class="item-text">
-                <!-- === FIX: LINKED TITLE === -->
-                <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6" target="_blank" class="card-title-link">
-                  <h3 class="section-title article-title">I Analyzed 1001 AI Tools. Here’s the Real Problem We’re All Facing</h3>
-                </a>
-                <div class="project-links">
-                  <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6" target="_blank" class="project-link medium">Read on Medium</a>
-                  <a href="https://youtube.com/shorts/UOdt1oXepeM" target="_blank" class="project-link youtube">Watch on YouTube</a>
+            <h2 class="section-header">
+                <button class="section-trigger expanded" data-target="bookshelf-content-wrapper" aria-expanded="true">
+                    <span class="folder-icon-toggle"><i class="fas fa-folder"></i><i class="fas fa-folder-open"></i></span>
+                    <a href="https://medium.com/@starosta/list/the-library-dc6ae713a502" target="_blank" onclick="event.stopPropagation()">Digital Bookshelf</a>
+                    <i class="fas fa-chevron-down trigger-chevron"></i>
+                </button>
+            </h2>
+            <div id="bookshelf-content-wrapper" class="collapsible-section-content expanded">
+                <div>
+                    <article class="showcase-item glass-effect interactive-card fade-in-up">
+                      <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6" target="_blank"><img src="https://i.postimg.cc/d1XrKytS/the-ai-atlas.jpg" alt="Article Image" class="item-image" loading="lazy"></a>
+                      <div class="item-text">
+                        <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6" target="_blank" class="card-title-link"><h3 class="section-title article-title">I Analyzed 1001 AI Tools. Here's the Real Problem We're All Facing</h3></a>
+                        <div class="project-links">
+                          <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6" target="_blank" class="project-link medium">Read on Medium</a> <a href="https://youtube.com/shorts/UOdt1oXepeM" target="_blank" class="project-link youtube">Watch on YouTube</a>
+                        </div>
+                      </div>
+                    </article>
+                    <article class="showcase-item glass-effect interactive-card fade-in-up">
+                      <a href="https://medium.com/@starosta/the-ai-atlas-7ecf0edb810e" target="_blank"><img src="https://i.postimg.cc/LsWqdcmW/linkedin-gold-the-ai-atlas-2.jpg" alt="Article Image" class="item-image" loading="lazy"></a>
+                      <div class="item-text">
+                        <a href="https://medium.com/@starosta/the-ai-atlas-7ecf0edb810e" target="_blank" class="card-title-link"><h3 class="section-title article-title">The AI Atlas: 1001 Tools, Platforms, and Services Shaping Our Digital Future</h3></a>
+                        <div class="project-links">
+                          <a href="https://medium.com/@starosta/the-ai-atlas-7ecf0edb810e" target="_blank" class="project-link medium">Read on Medium</a> <a href="https://youtube.com/shorts/UOdt1oXepeM" target="_blank" class="project-link youtube">Watch on YouTube</a>
+                        </div>
+                      </div>
+                    </article>
                 </div>
-              </div>
-            </div>
-            
-            <div class="showcase-item glass-effect interactive-card">
-              <img src="https://i.postimg.cc/RVPRZCH8/linkedin-gold-the-ai-atlas-2.jpg" alt="Article Image related to The AI Atlas" class="item-image">
-              <div class="item-text">
-                <!-- === FIX: LINKED TITLE === -->
-                <a href="https://medium.com/@starosta/the-ai-atlas-7ecf0edb810e" target="_blank" class="card-title-link">
-                  <h3 class="section-title article-title">The AI Atlas: 1001 Tools, Platforms, and Services Shaping Our Digital Future</h3>
-                </a>
-                <div class="project-links">
-                  <a href="https://medium.com/@starosta/the-ai-atlas-7ecf0edb810e" target="_blank" class="project-link medium">Read on Medium</a>
-                  <a href="https://youtube.com/shorts/UOdt1oXepeM" target="_blank" class="project-link youtube">Watch on YouTube</a>
-                </div>
-              </div>
             </div>
         </section>
         
@@ -600,20 +505,78 @@
     </div>
   </div>
 
-  <footer class="glass-effect">
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank">LinkedIn</a> |
-      <a href="https://medium.com/@starosta" target="_blank">Medium</a> |
-      <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank">Amazon</a> |
-      <a href="https://github.com/sztaroszta" target="_blank">GitHub</a> |
-      <a href="https://gitlab.com/sztaroszta" target="_blank">GitLab</a> |
-      <a href="https://bitbucket.org/sztaroszta/workspace/overview/" target="_blank">Bitbucket</a> |
+  <footer>
+    <nav class="social-links" aria-label="Footer social links">
+      <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank">LinkedIn</a><span class="footer-separator"> |</span>
+      <a href="https://medium.com/@starosta" target="_blank">Medium</a><span class="footer-separator"> |</span>
+      <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank">Amazon</a><span class="footer-separator mobile-hide-separator"> |</span>
+      <br class="mobile-break">
+      <a href="https://github.com/sztaroszta" target="_blank">GitHub</a><span class="footer-separator"> |</span>
+      <a href="https://gitlab.com/sztaroszta" target="_blank">GitLab</a><span class="footer-separator"> |</span>
+      <a href="https://bitbucket.org/sztaroszta/workspace/repositories/" target="_blank">Bitbucket</a><span class="footer-separator"> |</span>
       <a href="https://gitea.com/starosta" target="_blank">Gitea</a>
-    </div>
-    <p class="copyright">
-      © <script>document.write(new Date().getFullYear())</script> Vitalii Starosta
-    </p>
+    </nav>
+    <p class="copyright">&copy; <script>document.write(new Date().getFullYear())</script> Vitalii Starosta</p>
   </footer>
+
+  <a href="#" id="back-to-top" title="Back to top" aria-label="Scroll back to top"><i class="fa-solid fa-arrow-up"></i></a>
+
+  <script>
+    // === SCRIPT FOR ALL COLLAPSIBLE TRIGGERS ===
+    document.addEventListener('DOMContentLoaded', function () {
+        const triggers = document.querySelectorAll('.section-trigger, .atlas-trigger');
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', function (event) {
+                // Allows links within triggers to open in a new tab without toggling
+                if (event.target.closest('a') && event.target.closest('a').hasAttribute('target')) {
+                    return;
+                }
+                // Prevents the page from jumping if a link is clicked
+                event.preventDefault(); 
+                const targetId = this.getAttribute('data-target');
+                const contentWrapper = document.getElementById(targetId);
+                if (contentWrapper) {
+                    this.classList.toggle('expanded');
+                    contentWrapper.classList.toggle('expanded');
+                    const isExpanded = this.classList.contains('expanded');
+                    this.setAttribute('aria-expanded', isExpanded);
+                }
+            });
+        });
+    });
+
+    // === BACK TO TOP BUTTON SCRIPT ===
+    let backToTopButton = document.getElementById("back-to-top");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        backToTopButton.classList.add("visible");
+      } else {
+        backToTopButton.classList.remove("visible");
+      }
+    };
+    backToTopButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // === ENTRANCE ANIMATION SCRIPT ===
+    document.addEventListener("DOMContentLoaded", function() {
+      const animatedElements = document.querySelectorAll('.fade-in-up');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      animatedElements.forEach(element => {
+        observer.observe(element);
+      });
+    });
+  </script>
 
 </body>
 </html>
