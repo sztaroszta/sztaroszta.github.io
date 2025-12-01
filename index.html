@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vitalii Starosta - Project Showcase</title>
+   <meta name="color-scheme" content="dark only">
+  <title>Vitalii Starosta – Project Showcase</title>
 
   <!-- === SEO Enhancements === -->
   <meta name="description" content="The official project showcase for Vitalii Starosta, featuring open-source work, articles, and professional insights.">
@@ -143,17 +144,17 @@
       background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
       opacity: 0.03; z-index: -1; pointer-events: none;
     }
-
-    .glass-effect {
-      background: rgba(44, 88, 118, 0.85);
+.glass-effect {
+      background: rgba(44, 88, 118, 0.85) !important; /* !important added */
       border-radius: var(--radius-main);
       border: 1px solid var(--border-color);
       box-shadow: 0 8px 20px var(--shadow-color);
       position: relative;
     }
+
     @supports (backdrop-filter: blur(15px)) or (-webkit-backdrop-filter: blur(15px)) {
       .glass-effect {
-        background: rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.07) !important; /* !important added */
         -webkit-backdrop-filter: blur(15px);
         backdrop-filter: blur(15px);
       }
