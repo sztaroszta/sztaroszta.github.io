@@ -145,18 +145,29 @@
       opacity: 0.03; z-index: -1; pointer-events: none;
     }
 .glass-effect {
-      background: rgba(44, 88, 118, 0.85) !important; /* !important added */
+      /* Fallback: Dark Blue (Safe if transparency fails) */
+      background: rgba(30, 50, 70, 0.9) !important;
       border-radius: var(--radius-main);
       border: 1px solid var(--border-color);
       box-shadow: 0 8px 20px var(--shadow-color);
       position: relative;
+      /* Fix for some mobile rendering glitches */
+      z-index: 1; 
     }
 
-    @supports (backdrop-filter: blur(15px)) or (-webkit-backdrop-filter: blur(15px)) {
+    /* Target iOS (iPhone) and modern browsers */
+    @supports (-webkit-backdrop-filter: blur(15px)) or (backdrop-filter: blur(15px)) {
       .glass-effect {
-        background: rgba(255, 255, 255, 0.07) !important; /* !important added */
+        /* CHANGE: Use Dark Transparent Blue instead of White.
+           If the browser forces 100% opacity, this becomes Dark Blue, not White. */
+        background: rgba(20, 30, 45, 0.6) !important;
+        
+        /* Blur effects */
         -webkit-backdrop-filter: blur(15px);
         backdrop-filter: blur(15px);
+        
+        /* Force hardware acceleration on iOS to prevent white-outs */
+        -webkit-transform: translate3d(0,0,0);
       }
     }
 
