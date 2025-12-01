@@ -33,14 +33,80 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
   
-  <!-- === JSON-LD Structured Data === -->
+  <!-- === JSON-LD Structured Data (Enhanced Version) === -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": "https://sztaroszta.github.io/#person",
     "name": "Vitalii Starosta",
-    "jobTitle": "Project Manager and Developer"
+    "inLanguage": "en-US",
+    "url": "https://sztaroszta.github.io/",
+    "image": "https://i.postimg.cc/hvjy2xZ0/vitalii-starosta-square.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/vitalii-starosta",
+      "https://medium.com/@starosta",
+      "https://github.com/sztaroszta",
+      "https://gitlab.com/sztaroszta",
+      "https://bitbucket.org/sztaroszta/workspace/repositories/",
+      "https://gitea.com/starosta",
+      "https://about.me/vitalii"
+    ],
+    "jobTitle": "Project Manager and Developer",
+    "description": "Juggling business insights, data deep dives, and project timelines. Crafting Python magic for macOS, Excel, and Google Chrome.",
+    "workExample": [
+      {
+        "@type": "Book",
+        "name": "THE AI ATLAS: 1001 Tools, Platforms, and Services Shaping Our Digital Future",
+        "url": "https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/",
+        "author": {
+          "@id": "https://sztaroszta.github.io/#person"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "BM2Excel",
+        "url": "https://github.com/sztaroszta/BM2Excel",
+        "applicationCategory": "DeveloperTool",
+        "description": "A Python tool designed to convert browser bookmarks (HTML files) into well-structured and organized Excel spreadsheets."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "MacDirScope",
+        "url": "https://github.com/sztaroszta/MacDirScope",
+        "applicationCategory": "Utilities",
+        "operatingSystem": "macOS",
+        "description": "A powerful Python tool for macOS that performs deep scans of any directory to catalog files and folders, extracting extended attributes like Finder tags and exporting the data into a clean, filterable Excel report."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "SplitXL",
+        "url": "https://github.com/sztaroszta/SplitXL",
+        "applicationCategory": "Utilities",
+        "description": "A robust utility designed to slice large Excel spreadsheets into smaller, row-based files. It ensures data integrity by perfectly cloning headers, cell styles, and formats into each new chunk."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "CombineXL",
+        "url": "https://github.com/sztaroszta/CombineXL",
+        "applicationCategory": "Utilities",
+        "description": "A Python GUI application for merging multiple Excel files into a single master workbook, meticulously preserving all original cell formatting, styles, and merged regions."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "VoidFinder",
+        "url": "https://github.com/sztaroszta/VoidFinder",
+        "applicationCategory": "Utilities",
+        "description": "A robust Python tool engineered to declutter drives by identifying and removing folders that appear empty, even when containing system-generated files."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "BGone",
+        "url": "https://github.com/sztaroszta/BGone",
+        "applicationCategory": "Multimedia",
+        "description": "A GUI-based Python utility engineered to remove image backgrounds using a suite of AI models."
+      }
+    ]
   }
   </script>
 
@@ -60,6 +126,7 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    /* This rule helps prevent the white flash on mobile */
     html, body { min-height: 100%; overscroll-behavior: none; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -106,24 +173,48 @@
     h1 { font-size: 2.8em; color: var(--text-light); font-weight: 700; text-align: center; }
     h2 { font-size: 2em; }
     
-    /* === DESKTOP NAVIGATION STYLES === */
-    .internal-nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      margin-top: 30px;
-      border-top: 1px solid var(--border-color);
-      padding-top: 25px;
-      margin-bottom: 40px;
+/* === NAVIGATION PILLS STYLE === */
+    .internal-nav { 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        flex-wrap: wrap; 
+        gap: 15px; 
+        margin-top: 30px; 
+        margin-bottom: 40px; 
+        
+        /* Top and Bottom lines */
+        border-top: 1px solid var(--border-color); 
+        padding-top: 25px; 
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 25px;
     }
-    .internal-nav-row-1, .internal-nav-row-2 {
-      display: flex;
-      align-items: center;
+
+    /* Pill Button Style */
+    .nav-pill { 
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-accent); 
+        text-decoration: none; 
+        font-size: 0.95em; 
+        font-weight: 600; 
+        padding: 8px 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        transition: all 0.3s ease;
     }
-    .internal-nav a { color: var(--text-accent); text-decoration: none; margin: 0 8px; font-size: 1.1em; font-weight: 600; transition: color 0.2s ease; }
-    .internal-nav a:hover { color: var(--text-light); text-decoration: underline; }
-    .internal-nav .separator { color: rgba(255, 255, 255, 0.4); margin: 0 5px; }
+
+    .nav-pill:hover { 
+        background: var(--highlight-color); 
+        color: #2b5876;
+        border-color: var(--highlight-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(133, 193, 233, 0.3);
+    }
+    
+    .nav-pill i { font-size: 0.9em; }
     
     .actions-section { display: flex; flex-direction: column; align-items: center; gap: 25px; width: 100%; }
     .contact-btn {
@@ -160,6 +251,8 @@
     .book-text { flex: 1; text-align: left; }
     .book-media-asset { width: 100px; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s ease; display: block; }
     .book-media-asset:hover { transform: scale(1.1); }
+    /* === FIX: Replaced inline style with a class === */
+    .book-media-container { display: flex; gap: 15px; align-items: center; }
     .video-play-container { position: relative; display: block; }
     .video-play-container::before { content: ''; position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.5); border-radius: 8px; opacity: 0; transition: opacity 0.3s ease-out; pointer-events: none; }
     .video-play-container::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-style: solid; border-width: 25px 0 25px 42px; border-color: transparent transparent transparent rgba(255, 255, 255, 0.95); opacity: 0; transform: translate(-50%, -50%) scale(0.5); transition: opacity 0.3s ease-out, transform 0.3s ease-out; pointer-events: none; }
@@ -202,11 +295,31 @@
     #back-to-top:hover { background-color: #34495e; transform: scale(1.1); }
     .fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+    /* === AI ATLAS SPECIFIC STYLES === */
+    .section-header.align-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 10px;
+    }
+    
+    .section-trigger.icon-only { gap: 8px; }
+    .section-trigger.icon-only .trigger-chevron { margin-left: 0; }
+
+    /* Book Icons */
+    .book-icon-toggle { font-size: 0.8em; color: var(--highlight-color); }
+    .book-icon-toggle .fa-book-open { display: none; }
+    .section-trigger.expanded .book-icon-toggle .fa-book { display: none; }
+    .section-trigger.expanded .book-icon-toggle .fa-book-open { display: inline-block; }
+
+    /* Atlas Layout */
+    .atlas-layout { display: flex; gap: 20px; align-items: center; padding: 25px; margin-top: 10px; }
+
     .mobile-icons-container, .bio-text-mobile, .mobile-social-break { display: none; }
     .section-header { color: #f5f5f5; margin: 50px 0 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 15px; text-align: center; font-size: 2em; }
     .section-header a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
     .section-header a:hover { color: #ffffcb; }
-    .section-trigger { background: none; border: none; padding: 0; margin: 0; font: inherit; color: inherit; width: 100%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: color 0.2s ease; }
+    .section-trigger { background: none; border: none; padding: 0; margin: 0; font: inherit; color: inherit; width: auto; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: color 0.2s ease; }
     .section-trigger:hover, .section-trigger:focus { color: var(--text-light); outline: none; }
     .folder-icon-toggle { font-size: 0.8em; color: var(--highlight-color); margin-right: 15px; }
     .folder-icon-toggle .fa-folder-open { display: none; }
@@ -217,6 +330,69 @@
     .collapsible-section-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s ease-in-out; }
     .collapsible-section-content.expanded { grid-template-rows: 1fr; }
     .collapsible-section-content > div { overflow: hidden; }
+    
+    /* === TOOLTIP STYLES (New Addition) === */
+    .tooltip-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      display: flex;
+      justify-content: center;
+    }
+    [data-tooltip] {
+      position: relative;
+      cursor: pointer;
+    }
+    .tooltip-right[data-tooltip]::after,
+    [data-tooltip]:not([class*="tooltip-"])::after { /* Added a default for mobile */
+      content: attr(data-tooltip);
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%) translateX(5px);
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+      margin-left: 12px;
+    }
+    .tooltip-right[data-tooltip]:hover::after,
+    [data-tooltip]:not([class*="tooltip-"]):hover::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-50%) translateX(0);
+    }
+    
+    /* === NEW: Tooltip Top positioning === */
+    .tooltip-top[data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(5px);
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+      margin-bottom: 12px;
+    }
+    .tooltip-top[data-tooltip]:hover::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
 
     /* === Mobile Breakpoint === */
     @media (max-width: 768px) {
@@ -256,13 +432,146 @@
       .internal-nav-row-1, .internal-nav-row-2 { display: flex; justify-content: center; align-items: center; gap: 8px; }
       .internal-nav a { white-space: nowrap; font-size: 16px; margin: 0; }
       .internal-nav .separator:nth-of-type(2) { display: none; }
-    }
+    /* === NAVIGATION MOBILE FIX === */
+      .internal-nav {
+        flex-direction: column; /* Stacks them vertically */
+        gap: 100px !important;   /* Force the 30px gap you want */
+        width: 100%;
+      }
+
+      .nav-pill {
+        width: 100%;            /* Full width buttons */
+        justify-content: center; 
+        margin: 2;              /* Reset margin so 'gap' handles the spacing cleanly */
+      }
+      
+      .internal-nav .separator { display: none; }   
   </style>
+
+  <!-- === FIX: Moved script to head with defer attribute === -->
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+        // === SCRIPT FOR ALL COLLAPSIBLE TRIGGERS ===
+        const triggers = document.querySelectorAll('.section-trigger, .atlas-trigger');
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', function (event) {
+                // Allows clicks on links within the trigger to function normally
+                if (event.target.closest('a') && event.target.closest('a').hasAttribute('target')) {
+                    return;
+                }
+                event.preventDefault(); 
+                const targetId = this.getAttribute('data-target');
+                const contentWrapper = document.getElementById(targetId);
+                if (contentWrapper) {
+                    this.classList.toggle('expanded');
+                    contentWrapper.classList.toggle('expanded');
+                    const isExpanded = this.classList.contains('expanded');
+                    this.setAttribute('aria-expanded', isExpanded);
+                }
+            });
+        });
+
+        // === FIX: AI ATLAS TOOLTIP LOGIC (Added this block) ===
+        const atlasTrigger = document.getElementById('atlas-trigger-btn');
+        if (atlasTrigger) {
+            atlasTrigger.addEventListener('click', function() {
+                // Use a tiny timeout to ensure the 'expanded' class has finished toggling
+                setTimeout(() => {
+                    if (this.classList.contains('expanded')) {
+                        this.setAttribute('data-tooltip', 'Collapse details');
+                    } else {
+                        this.setAttribute('data-tooltip', 'Expand details');
+                    }
+                }, 10);
+            });
+        }
+
+        // === SCRIPT FOR DYNAMIC SECTION TOOLTIPS (Counts items) ===
+        const sections = [
+            { triggerSelector: '[data-target="open-source-content-wrapper"]', contentSelector: '#open-source-content-wrapper' },
+            { triggerSelector: '[data-target="articles-content-wrapper"]', contentSelector: '#articles-content-wrapper' },
+            { triggerSelector: '[data-target="bookshelf-content-wrapper"]', contentSelector: '#bookshelf-content-wrapper' }
+        ];
+
+        sections.forEach(section => {
+            const trigger = document.querySelector(section.triggerSelector);
+            const content = document.querySelector(section.contentSelector);
+            if (trigger && content) {
+                const itemCount = content.querySelectorAll('.showcase-item').length;
+                
+                trigger.classList.add('tooltip-right');
+
+                const updateTooltip = () => {
+                    if (trigger.classList.contains('expanded')) {
+                        trigger.setAttribute('data-tooltip', `Collapse (${itemCount} entries)`);
+                    } else {
+                        trigger.setAttribute('data-tooltip', `Expand (${itemCount} entries)`);
+                    }
+                };
+                
+                // Initialize on load
+                updateTooltip();
+
+                // Update on click
+                trigger.addEventListener('click', () => {
+                    setTimeout(updateTooltip, 10);
+                });
+            }
+        });
+
+        // === NAV LINKS COUNTER TOOLTIPS ===
+        const navLinks = [
+            { navId: 'nav-opensource', contentId: 'open-source-content-wrapper' },
+            { navId: 'nav-articles',   contentId: 'articles-content-wrapper' },
+            { navId: 'nav-bookshelf',  contentId: 'bookshelf-content-wrapper' }
+        ];
+
+        navLinks.forEach(link => {
+            const navEl = document.getElementById(link.navId);
+            const contentEl = document.getElementById(link.contentId);
+            
+            if (navEl && contentEl) {
+                const count = contentEl.querySelectorAll('.showcase-item').length;
+                navEl.setAttribute('data-tooltip', `${count} entries`);
+            }
+        });
+
+        // === BACK TO TOP BUTTON SCRIPT ===
+        let backToTopButton = document.getElementById("back-to-top");
+        window.onscroll = function() {
+          if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            backToTopButton.classList.add("visible");
+          } else {
+            backToTopButton.classList.remove("visible");
+          }
+        };
+        backToTopButton.addEventListener("click", function(e) {
+          e.preventDefault();
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // === ENTRANCE ANIMATION SCRIPT ===
+        const animatedElements = document.querySelectorAll('.fade-in-up');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+        animatedElements.forEach(element => {
+          observer.observe(element);
+        });
+    });
+</script>
 </head>
 <body>
   <div class="container glass-effect">
     <header class="profile-header">
-      <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank" class="profile-main-link">
+      <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank" class="profile-main-link" aria-label="View Vitalii Starosta's profile on LinkedIn">
         <img src="https://i.postimg.cc/hvjy2xZ0/vitalii-starosta-square.jpg" alt="Profile Picture of Vitalii Starosta" class="profile-picture" width="100" height="100">
         <h1>Vitalii Starosta</h1>
       </a>
@@ -270,28 +579,35 @@
     
     <section class="actions-section">
       <div class="showcase-item">
-        <a href="https://about.me/vitalii" target="_blank" aria-label="About Me Profile" class="bio-logo-link">
+        <a href="https://about.me/vitalii" target="_blank" aria-label="About Me Profile" class="bio-logo-link tooltip-top" data-tooltip="Explore my work">
           <div class="flipper">
             <div class="front"><img src="https://i.postimg.cc/qMhd05r8/aboutme-icon.png" alt="About.me Logo" class="bio-logo" width="80" height="80"></div>
             <div class="back"><i class="fa-solid fa-arrow-pointer"></i></div>
           </div>
         </a>
         <div class="item-text">
-            <p class="bio-text">Juggling business insights, data deep dives, and project timelines. Off the clock, I'm crafting Python magic for macOS, Excel, and Google Chrome.</p>
+            <p class="bio-text">
+            Juggling business insights, data deep dives, and project timelines.<br>
+            Off the clock, I'm crafting Python magic for macOS, Excel, and Google Chrome.
+            </p>
         </div>
       </div>
       <div class="top-social-links">
+        <!-- === FIX: Removed redundant aria-label attributes === -->
         <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
         <a href="https://medium.com/@starosta" target="_blank" title="Medium"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z"/></svg></a>
         <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" title="Amazon"><i class="fa-brands fa-amazon"></i></a>
         <a href="https://github.com/sztaroszta" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="https://gitlab.com/sztaroszta" target="_blank" title="GitLab"><i class="fa-brands fa-gitlab"></i></a>
         <a href="https://bitbucket.org/sztaroszta/workspace/repositories/" target="_blank" title="Bitbucket"><i class="fa-brands fa-bitbucket"></i></a>
-        <a href="https://gitea.com/starosta" target="_blank" title="Gitea"><svg fill="currentColor" viewBox="0 4 24 16" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M4.209 4.603c-.247 0-.525.02-.84.088-.333.07-1.28.283-2.054 1.027C-.403 7.25.035 9.685.089 10.052c.065.446.263 1.687 1.21 2.768 1.749 2.141 5.513 2.092 5.513 2.092s.462 1.103 1.168 2.119c.955 1.263 1.936 2.248 2.89 2.367 2.406 0 7.212-.004 7.212-.004s.458.004 1.08-.394c.535-.324 1.013-.893 1.013-.893s.492-.527 1.18-1.73c.21-.37.385-.729.538-1.068 0 0 2.107-4.471 2.107-8.823-.042-1.318-.367-1.55-.443-1.627-.156-.156-.366-.153-.366-.153s-4.475.252-6.792.306c-.508.011-1.012.023-1.512.027v4.474l-.634-.301c0-1.39-.004-4.17-.004-4.17-1.107.016-3.405-.084-3.405-.084s-5.399-.27-5.987-.324c-.187-.011-.401-.032-.648-.032zm.354 1.832h.111s.271 2.269.6 3.597C5.549 11.147 6.22 13 6.22 13s-.996-.119-1.641-.348c-.99-.324-1.409-.714-1.409-.714s-.73-.511-1.096-1.52C1.444 8.73 2.021 7.7 2.021 7.7s.32-.859 1.47-1.145c.395-.106.863-.12 1.072-.12zm8.33 2.554c.26.003.509.127.509.127l.868.422-.529 1.075a.686.686 0 0 0-.614.359.685.685 0 0 0 .072.756l-.939 1.924a.69.69 0 0 0-.66.527.687.687 0 0 0 .347.763.686.686 0 0 0 .867-.206.688.688 0 0 0-.069-.882l.916-1.874a.667.667 0 0 0 .237-.02.657.657 0 0 0 .271-.137 8.826 8.826 0 0 1 1.016.512.761.761 0 0 1 .286.282c.073.21-.073.569-.073.569-.087.29-.702 1.55-.702 1.55a.692.692 0 0 0-.676.477.681.681 0 1 0 1.157-.252c.073-.141.141-.282.214-.431.19-.397.515-1.16.515-1.16.035-.066.218-.394.103-.814-.095-.435-.48-.638-.48-.638-.467-.301-1.116-.58-1.116-.58s0-.156-.042-.27a.688.688 0 0 0-.148-.241l.516-1.062 2.89 1.401s.48.218.583.619c.073.282-.019.534-.069.657-.24.587-2.1 4.317-2.1 4.317s-.232.554-.748.588a1.065 1.065 0 0 1-.393-.045l-.202-.08-4.31-2.1s-.417-.218-.49-.596c-.083-.31.104-.691.104-.691l2.073-4.272s.183-.37.466-.497a.855.855 0 0 1 .35-.077z"/></svg></a>
       </div>
-      <p class="bio-text-mobile">Juggling business insights, data deep dives, and project timelines. Off the clock, I'm crafting Python magic for macOS, Excel, and Google Chrome.</p>
+      <p class="bio-text-mobile">
+        Juggling business insights, data deep dives, and project timelines.<br>
+         Off the clock, I'm crafting Python magic for macOS, Excel, and Google Chrome.
+        </p>
       <div class="mobile-icons-container">
-        <a href="https://about.me/vitalii" target="_blank" class="bio-logo-link"><img src="https://i.postimg.cc/qMhd05r8/aboutme-icon.png" alt="About.me Logo" class="bio-logo" width="80" height="80"></a>
+        <!-- === FIX: Removed redundant tooltip wrapper here === -->
+        <a href="https://about.me/vitalii" target="_blank" class="bio-logo-link" data-tooltip="Explore my work"><img src="https://i.postimg.cc/qMhd05r8/aboutme-icon.png" alt="About.me Logo" class="bio-logo" width="80" height="80"></a>
         <div class="top-social-links">
             <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
             <a href="https://medium.com/@starosta" target="_blank" title="Medium"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z"/></svg></a>
@@ -300,7 +616,6 @@
             <a href="https://github.com/sztaroszta" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
             <a href="https://gitlab.com/sztaroszta" target="_blank" title="GitLab"><i class="fa-brands fa-gitlab"></i></a>
             <a href="https://bitbucket.org/sztaroszta/workspace/repositories/" target="_blank" title="Bitbucket"><i class="fa-brands fa-bitbucket"></i></a>
-            <a href="https://gitea.com/starosta" target="_blank" title="Gitea"><svg fill="currentColor" viewBox="0 4 24 16" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M4.209 4.603c-.247 0-.525.02-.84.088-.333.07-1.28.283-2.054 1.027C-.403 7.25.035 9.685.089 10.052c.065.446.263 1.687 1.21 2.768 1.749 2.141 5.513 2.092 5.513 2.092s.462 1.103 1.168 2.119c.955 1.263 1.936 2.248 2.89 2.367 2.406 0 7.212-.004 7.212-.004s.458.004 1.08-.394c.535-.324 1.013-.893 1.013-.893s.492-.527 1.18-1.73c.21-.37.385-.729.538-1.068 0 0 2.107-4.471 2.107-8.823-.042-1.318-.367-1.55-.443-1.627-.156-.156-.366-.153-.366-.153s-4.475.252-6.792.306c-.508.011-1.012.023-1.512.027v4.474l-.634-.301c0-1.39-.004-4.17-.004-4.17-1.107.016-3.405-.084-3.405-.084s-5.399-.27-5.987-.324c-.187-.011-.401-.032-.648-.032zm.354 1.832h.111s.271 2.269.6 3.597C5.549 11.147 6.22 13 6.22 13s-.996-.119-1.641-.348c-.99-.324-1.409-.714-1.409-.714s-.73-.511-1.096-1.52C1.444 8.73 2.021 7.7 2.021 7.7s.32-.859 1.47-1.145c.395-.106.863-.12 1.072-.12zm8.33 2.554c.26.003.509.127.509.127l.868.422-.529 1.075a.686.686 0 0 0-.614.359.685.685 0 0 0 .072.756l-.939 1.924a.69.69 0 0 0-.66.527.687.687 0 0 0 .347.763.686.686 0 0 0 .867-.206.688.688 0 0 0-.069-.882l.916-1.874a.667.667 0 0 0 .237-.02.657.657 0 0 0 .271-.137 8.826 8.826 0 0 1 1.016.512.761.761 0 0 1 .286.282c.073.21-.073.569-.073.569-.087.29-.702 1.55-.702 1.55a.692.692 0 0 0-.676.477.681.681 0 1 0 1.157-.252c.073-.141.141-.282.214-.431.19-.397.515-1.16.515-1.16.035-.066.218-.394.103-.814-.095-.435-.48-.638-.48-.638-.467-.301-1.116-.58-1.116-.58s0-.156-.042-.27a.688.688 0 0 0-.148-.241l.516-1.062 2.89 1.401s.48.218.583.619c.073.282-.019.534-.069.657-.24.587-2.1 4.317-2.1 4.317s-.232.554-.748.588a1.065 1.065 0 0 1-.393-.045l-.202-.08-4.31-2.1s-.417-.218-.49-.596c-.083-.31.104-.691.104-.691l2.073-4.272s.183-.37.466-.497a.855.855 0 0 1 .35-.077z"/></svg></a>
         </div>
       </div>
       <div class="tooltip-wrapper tooltip-right" data-tooltip="Send me an email">
@@ -311,24 +626,44 @@
       </div>
     </section>
 
-    <!-- === NAVIGATION WITH DESKTOP SEPARATOR FIX === -->
+    <!-- === NEW NAVIGATION (Glass Pills) === -->
     <nav class="internal-nav">
-      <div class="internal-nav-row-1">
-        <a href="#open-source-projects">Open Source Projects</a>
-        <span class="separator">|</span>
-        <a href="#articles-insights">Articles & Insights</a>
-      </div>
-      <span class="separator mobile-hide-separator">|</span>
-      <div class="internal-nav-row-2">
-        <a href="#digital-bookshelf">Digital Bookshelf</a>
-      </div>
+      <a href="#open-source-projects" id="nav-opensource" class="nav-pill tooltip-top">
+        <i class="fas fa-code"></i> Open Source Projects
+      </a>
+      <a href="#articles-insights" id="nav-articles" class="nav-pill tooltip-top">
+        <i class="fas fa-newspaper"></i> Articles & Insights
+      </a>
+      <a href="#digital-bookshelf" id="nav-bookshelf" class="nav-pill tooltip-top">
+        <i class="fas fa-book"></i> Digital Bookshelf
+      </a>
     </nav>
 
     <div class="main-content">
-        <div class="book-showcase glass-effect interactive-card fade-in-up">
+        <!-- === AI ATLAS SECTION === -->
+        <section id="ai-atlas-section">
+            <h2 class="section-header align-right">
+                <!-- Icon Only Button -->
+                <button class="section-trigger icon-only expanded tooltip-top" 
+                        id="atlas-trigger-btn"
+                        data-target="atlas-content-wrapper" 
+                        aria-expanded="true" 
+                        data-tooltip="Collapse details">
+                    <span class="book-icon-toggle">
+                        <i class="fas fa-book"></i>
+                        <i class="fas fa-book-open"></i>
+                    </span>
+                    <i class="fas fa-chevron-down trigger-chevron"></i>
+                </button>
+            </h2>
+            
+            <div id="atlas-content-wrapper" class="collapsible-section-content expanded">
+                <div> 
+                    <div class="book-showcase glass-effect interactive-card fade-in-up">
             <div class="book-text">
               <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" class="card-title-link">
-                <h3 class="section-title">THE AI ATLAS</h3>
+                <!-- === FIX: Changed h3 to h2 for semantic structure === -->
+                <h2 class="section-title">THE AI ATLAS</h2>
               </a>
               <p class="project-description book-subtitle">1001 Tools, Platforms, and Services Shaping Our Digital Future</p>
               <p class="view-on-text">Explore My Book on:</p>
@@ -341,7 +676,8 @@
                 <a href="https://vitalosta.gumroad.com/l/the_ai_atlas" target="_blank" class="project-link gumroad">Gumroad</a>
               </div>
             </div>
-            <div style="display: flex; gap: 15px; align-items: center;">
+
+            <div class="book-media-container">
               <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0" target="_blank" aria-label="View The AI Atlas on Amazon">
                   <img src="https://i.postimg.cc/Y2sbpvyd/the-ai-atlas-full-cover-with-barcode-front.jpg" alt="Cover of The AI Atlas book" class="book-media-asset" loading="lazy" width="100" height="150">
               </a>
@@ -350,8 +686,10 @@
               </a>
             </div>
         </div>
+      </div> 
+    </div>   
 
-        <section class="projects" id="open-source-projects">
+    <section class="projects" id="open-source-projects">
           <h2 class="section-header">
             <button class="section-trigger expanded" data-target="open-source-content-wrapper" aria-expanded="true">
               <span class="folder-icon-toggle"><i class="fas fa-folder"></i><i class="fas fa-folder-open"></i></span>
@@ -362,9 +700,9 @@
           <div id="open-source-content-wrapper" class="collapsible-section-content expanded">
             <div>
               <article class="showcase-item glass-effect interactive-card fade-in-up">
-                <a href="https://github.com/sztaroszta/BM2Excel" target="_blank"><img src="https://i.postimg.cc/mDry443B/bm2excel.jpg" alt="BM2Excel Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" aria-label="BM2Excel Project Image"><img src="https://i.postimg.cc/mDry443B/bm2excel.jpg" alt="BM2Excel Project" class="item-image" loading="lazy" width="120" height="120"></a>
                 <div class="item-text">
-                  <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="card-title-link"><h3 class="section-title">BM2Excel</h3></a>
+                  <a href="https://github.com/sztaroszta/BM2Excel" target="_blank" class="card-title-link"><h3>BM2Excel</h3></a>
                   <p class="project-description">A Python tool designed to convert browser bookmarks (HTML files) into well-structured and organized Excel spreadsheets.</p>
                   <p class="view-on-text">View on:</p>
                   <div class="project-links">
@@ -373,9 +711,9 @@
                 </div>
               </article>
               <article class="showcase-item glass-effect interactive-card fade-in-up">
-                <a href="https://github.com/sztaroszta/MacDirScope" target="_blank"><img src="https://i.postimg.cc/hGD98n5Q/macdirscope.jpg" alt="MacDirScope Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <a href="https://github.com/sztaroszta/MacDirScope" target="_blank" aria-label="MacDirScope Project Image"><img src="https://i.postimg.cc/hGD98n5Q/macdirscope.jpg" alt="MacDirScope Project" class="item-image" loading="lazy" width="120" height="120"></a>
                 <div class="item-text">
-                  <a href="https://github.com/sztaroszta/MacDirScope" target="_blank" class="card-title-link"><h3 class="section-title">MacDirScope</h3></a>
+                  <a href="https://github.com/sztaroszta/MacDirScope" target="_blank" class="card-title-link"><h3>MacDirScope</h3></a>
                   <p class="project-description">A powerful Python tool for macOS that performs deep scans of any directory to catalog files and folders, extracting extended attributes like Finder tags and exporting the data into a clean, filterable Excel report.</p>
                   <p class="view-on-text">View on:</p>
                   <div class="project-links">
@@ -384,9 +722,9 @@
                 </div>
               </article>
               <article class="showcase-item glass-effect interactive-card fade-in-up">
-                <a href="https://github.com/sztaroszta/SplitXL" target="_blank"><img src="https://i.postimg.cc/TwyDpRkM/SplitXL.jpg" alt="SplitXL Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <a href="https://github.com/sztaroszta/SplitXL" target="_blank" aria-label="SplitXL Project Image"><img src="https://i.postimg.cc/TwyDpRkM/SplitXL.jpg" alt="SplitXL Project" class="item-image" loading="lazy" width="120" height="120"></a>
                 <div class="item-text">
-                  <a href="https://github.com/sztaroszta/SplitXL" target="_blank" class="card-title-link"><h3 class="section-title">SplitXL</h3></a>
+                  <a href="https://github.com/sztaroszta/SplitXL" target="_blank" class="card-title-link"><h3>SplitXL</h3></a>
                   <p class="project-description">A robust utility designed to slice large Excel spreadsheets into smaller, row-based files. It ensures data integrity by perfectly cloning headers, cell styles, and formats into each new chunk.</p>
                   <p class="view-on-text">View on:</p>
                   <div class="project-links">
@@ -395,9 +733,9 @@
                 </div>
               </article>
               <article class="showcase-item glass-effect interactive-card fade-in-up">
-                <a href="https://github.com/sztaroszta/CombineXL" target="_blank"><img src="https://i.postimg.cc/139VD0WJ/Combine-XL.jpg" alt="CombineXL Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <a href="https://github.com/sztaroszta/CombineXL" target="_blank" aria-label="CombineXL Project Image"><img src="https://i.postimg.cc/139VD0WJ/Combine-XL.jpg" alt="CombineXL Project" class="item-image" loading="lazy" width="120" height="120"></a>
                 <div class="item-text">
-                  <a href="https://github.com/sztaroszta/CombineXL" target="_blank" class="card-title-link"><h3 class="section-title">CombineXL</h3></a>
+                  <a href="https://github.com/sztaroszta/CombineXL" target="_blank" class="card-title-link"><h3>CombineXL</h3></a>
                   <p class="project-description">A Python GUI application for merging multiple Excel files into a single master workbook, meticulously preserving all original cell formatting, styles, and merged regions.</p>
                   <p class="view-on-text">View on:</p>
                   <div class="project-links">
@@ -406,9 +744,9 @@
                 </div>
               </article>
               <article class="showcase-item glass-effect interactive-card fade-in-up">
-                <a href="https://github.com/sztaroszta/VoidFinder" target="_blank"><img src="https://i.postimg.cc/SNGJQ2yh/Void-Finder.jpg" alt="VoidFinder Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <a href="https://github.com/sztaroszta/VoidFinder" target="_blank" aria-label="VoidFinder Project Image"><img src="https://i.postimg.cc/SNGJQ2yh/Void-Finder.jpg" alt="VoidFinder Project" class="item-image" loading="lazy" width="120" height="120"></a>
                 <div class="item-text">
-                  <a href="https://github.com/sztaroszta/VoidFinder" target="_blank" class="card-title-link"><h3 class="section-title">VoidFinder</h3></a>
+                  <a href="https://github.com/sztaroszta/VoidFinder" target="_blank" class="card-title-link"><h3>VoidFinder</h3></a>
                   <p class="project-description">A robust Python tool engineered to declutter drives by identifying and removing folders that appear empty, even when containing system-generated files.</p>
                   <p class="view-on-text">View on:</p>
                   <div class="project-links">
@@ -417,12 +755,11 @@
                 </div>
               </article>
               <article class="showcase-item glass-effect interactive-card fade-in-up">
-                <a href="https://github.com/sztaroszta/BGone" target="_blank"><img src="https://i.postimg.cc/sfY2KQGZ/BGone.jpg" alt="BGone Project Image" class="item-image" loading="lazy" width="120" height="120"></a>
+                <a href="https://github.com/sztaroszta/BGone" target="_blank" aria-label="BGone Project Image"><img src="https://i.postimg.cc/sfY2KQGZ/BGone.jpg" alt="BGone Project" class="item-image" loading="lazy" width="120" height="120"></a>
                 <div class="item-text">
-                  <a href="https://github.com/sztaroszta/BGone" target="_blank" class="card-title-link"><h3 class="section-title">BGone</h3></a>
+                  <a href="https://github.com/sztaroszta/BGone" target="_blank" class="card-title-link"><h3>BGone</h3></a>
                   <p class="project-description">A GUI-based Python utility engineered to remove image backgrounds using a suite of AI models. It streamlines testing by processing one image with multiple algorithms (rembg, mediapipe) and saving separate, transparent outputs for easy side-by-side comparison.</p>
                   <p class="view-on-text">View on:</p>
-                  <!-- === BGone FIX: REMOVED GITEA LINK === -->
                   <div class="project-links">
                     <a href="https://github.com/sztaroszta/BGone" target="_blank" class="project-link github">GitHub</a>
                     <a href="https://gitlab.com/sztaroszta/BGone" target="_blank" class="project-link gitlab">GitLab</a>
@@ -431,8 +768,22 @@
                   </div>
                 </div>
               </article>
+              <article class="showcase-item glass-effect interactive-card fade-in-up">
+  <a href="https://github.com/sztaroszta/NetscapeGen" target="_blank" aria-label="NetscapeGen Project Image"><img src="https://i.postimg.cc/Zn8Ck6yQ/Netscape-Gen.jpg" alt="NetscapeGen Project" class="item-image" loading="lazy" width="120" height="120"></a>
+  <div class="item-text">
+    <a href="https://github.com/sztaroszta/NetscapeGen" target="_blank" class="card-title-link"><h3>NetscapeGen</h3></a>
+    <p class="project-description">A cross-platform Python GUI utility that converts structured Excel spreadsheets into standard Netscape HTML bookmark files. It automatically detects nested folder hierarchies from spreadsheet columns and generates a universal file compatible for import into Chrome, Firefox, Safari, and Edge.</p>
+    <p class="view-on-text">View on:</p>
+    <div class="project-links">
+      <a href="https://github.com/sztaroszta/NetscapeGen" target="_blank" class="project-link github">GitHub</a>
+      <a href="https://gitlab.com/sztaroszta/NetscapeGen" target="_blank" class="project-link gitlab">GitLab</a>
+      <a href="https://bitbucket.org/sztaroszta/NetscapeGen" target="_blank" class="project-link bitbucket">Bitbucket</a>
+      <a href="https://medium.com/@starosta/excel-to-browser-bookmarks-5a60da8864d8" target="_blank" class="project-link medium">Medium</a>
+    </div>
+  </div>
+</article>
             </div>
-          </div>
+            </div>
         </section>
 
         <section class="articles" id="articles-insights">
@@ -446,14 +797,14 @@
             <div id="articles-content-wrapper" class="collapsible-section-content expanded">
                 <div>
                     <article class="showcase-item glass-effect interactive-card fade-in-up">
-                      <a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank"><img src="https://i.postimg.cc/FHjZgDss/GA.jpg" alt="Article Image" class="item-image" loading="lazy"></a>
+                      <a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank"><img src="https://i.postimg.cc/FHjZgDss/GA.jpg" alt="Article titled Bugs Be Gone!" class="item-image" loading="lazy"></a>
                       <div class="item-text">
                         <a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank" class="card-title-link"><h3 class="section-title article-title">Bugs Be Gone! How My AI Research is Shaking Up Software Testing</h3></a>
                         <div class="project-links"><a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156" target="_blank" class="project-link medium">Read on Medium</a></div>
                       </div>
                     </article>
                     <article class="showcase-item glass-effect interactive-card fade-in-up">
-                      <a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank"><img src="https://i.postimg.cc/SQ37BwJw/euler.jpg" alt="Article Image" class="item-image" loading="lazy"></a>
+                      <a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank"><img src="https://i.postimg.cc/SQ37BwJw/euler.jpg" alt="Article titled The Product Manager's Most Beautiful Equation" class="item-image" loading="lazy"></a>
                       <div class="item-text">
                         <a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank" class="card-title-link"><h3 class="section-title article-title">The Product Manager's Most Beautiful Equation</h3></a>
                         <div class="project-links"><a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc" target="_blank" class="project-link medium">Read on Medium</a></div>
@@ -474,7 +825,7 @@
             <div id="bookshelf-content-wrapper" class="collapsible-section-content expanded">
                 <div>
                     <article class="showcase-item glass-effect interactive-card fade-in-up">
-                      <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6" target="_blank"><img src="https://i.postimg.cc/d1XrKytS/the-ai-atlas.jpg" alt="Article Image" class="item-image" loading="lazy"></a>
+                      <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6" target="_blank"><img src="https://i.postimg.cc/d1XrKytS/the-ai-atlas.jpg" alt="Article titled I Analyzed 1001 AI Tools" class="item-image" loading="lazy"></a>
                       <div class="item-text">
                         <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6" target="_blank" class="card-title-link"><h3 class="section-title article-title">I Analyzed 1001 AI Tools. Here's the Real Problem We're All Facing</h3></a>
                         <div class="project-links">
@@ -483,7 +834,7 @@
                       </div>
                     </article>
                     <article class="showcase-item glass-effect interactive-card fade-in-up">
-                      <a href="https://medium.com/@starosta/the-ai-atlas-7ecf0edb810e" target="_blank"><img src="https://i.postimg.cc/LsWqdcmW/linkedin-gold-the-ai-atlas-2.jpg" alt="Article Image" class="item-image" loading="lazy"></a>
+                      <a href="https://medium.com/@starosta/the-ai-atlas-7ecf0edb810e" target="_blank"><img src="https://i.postimg.cc/LsWqdcmW/linkedin-gold-the-ai-atlas-2.jpg" alt="Article about The AI Atlas" class="item-image" loading="lazy"></a>
                       <div class="item-text">
                         <a href="https://medium.com/@starosta/the-ai-atlas-7ecf0edb810e" target="_blank" class="card-title-link"><h3 class="section-title article-title">The AI Atlas: 1001 Tools, Platforms, and Services Shaping Our Digital Future</h3></a>
                         <div class="project-links">
@@ -499,7 +850,7 @@
     </div>
   </div>
 
-  <footer>
+ <footer>
     <nav class="social-links" aria-label="Footer social links">
       <a href="https://www.linkedin.com/in/vitalii-starosta" target="_blank">LinkedIn</a><span class="footer-separator"> |</span>
       <a href="https://medium.com/@starosta" target="_blank">Medium</a><span class="footer-separator"> |</span>
@@ -508,67 +859,13 @@
       <a href="https://github.com/sztaroszta" target="_blank">GitHub</a><span class="footer-separator"> |</span>
       <a href="https://gitlab.com/sztaroszta" target="_blank">GitLab</a><span class="footer-separator"> |</span>
       <a href="https://bitbucket.org/sztaroszta/workspace/repositories/" target="_blank">Bitbucket</a><span class="footer-separator"> |</span>
-      <a href="https://gitea.com/starosta" target="_blank">Gitea</a>
+      <a href="https://gitea.com/starosta" target="_blank">Gitea</a><span class="footer-separator"> |</span>
+      <a href="https://x.com/desspacion" target="_blank">Twitter</a>
     </nav>
     <p class="copyright">&copy; <script>document.write(new Date().getFullYear())</script> Vitalii Starosta</p>
   </footer>
 
   <a href="#" id="back-to-top" title="Back to top" aria-label="Scroll back to top"><i class="fa-solid fa-arrow-up"></i></a>
-
-  <script>
-    // === SCRIPT FOR ALL COLLAPSIBLE TRIGGERS ===
-    document.addEventListener('DOMContentLoaded', function () {
-        const triggers = document.querySelectorAll('.section-trigger, .atlas-trigger');
-        triggers.forEach(trigger => {
-            trigger.addEventListener('click', function (event) {
-                if (event.target.closest('a') && event.target.closest('a').hasAttribute('target')) {
-                    return;
-                }
-                event.preventDefault(); 
-                const targetId = this.getAttribute('data-target');
-                const contentWrapper = document.getElementById(targetId);
-                if (contentWrapper) {
-                    this.classList.toggle('expanded');
-                    contentWrapper.classList.toggle('expanded');
-                    const isExpanded = this.classList.contains('expanded');
-                    this.setAttribute('aria-expanded', isExpanded);
-                }
-            });
-        });
-    });
-
-    // === BACK TO TOP BUTTON SCRIPT ===
-    let backToTopButton = document.getElementById("back-to-top");
-    window.onscroll = function() {
-      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        backToTopButton.classList.add("visible");
-      } else {
-        backToTopButton.classList.remove("visible");
-      }
-    };
-    backToTopButton.addEventListener("click", function(e) {
-      e.preventDefault();
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    });
-
-    // === ENTRANCE ANIMATION SCRIPT ===
-    document.addEventListener("DOMContentLoaded", function() {
-      const animatedElements = document.querySelectorAll('.fade-in-up');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.1
-      });
-      animatedElements.forEach(element => {
-        observer.observe(element);
-      });
-    });
-  </script>
 
 </body>
 </html>
