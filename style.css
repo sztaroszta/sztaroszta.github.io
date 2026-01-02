@@ -2057,13 +2057,19 @@
         z-index: 4;
     }
 
-    .planet {
-        position: absolute;
-        animation: counterSpin inherit;
-        transition: all 0.3s ease;
-        cursor: default;
-        max-width: 160px;
-    }
+.planet {
+    position: absolute;
+    /* FIX: Split shorthand to ensure counter-rotation works with inherited timing */
+    animation-name: counterSpin;
+    animation-duration: inherit;
+    animation-timing-function: inherit;
+    animation-iteration-count: inherit;
+    animation-direction: inherit;
+    
+    transition: all 0.3s ease;
+    cursor: default;
+    max-width: 160px;
+}
 
     .planet-content {
         background: var(--planet-bg);
@@ -2202,13 +2208,26 @@
         }
     }
 
+    @keyframes selfSpin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 
-    @keyframes counterSpin {
+    @keyframes selfSpinReverse {
         100% {
             transform: rotate(-360deg);
         }
     }
 
+@keyframes counterSpin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
 
 
 
@@ -4024,7 +4043,7 @@
 
 
 
-/* ================== >600px ================== */
+    /* ================== >600px ================== */
 
     @media (max-width: 600px) {
         .gallery-toggles {
