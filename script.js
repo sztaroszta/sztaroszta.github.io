@@ -30,6 +30,87 @@ function toggleBio() {
 
 
 
+// === LIGHTBOX FUNCTIONALITY (Image + Video) ===
+
+function openLightbox(element) {
+    const modal = document.getElementById("lightbox-modal");
+    const modalImg = document.getElementById("lightbox-img");
+    const modalVideo = document.getElementById("lightbox-video");
+    const captionText = document.getElementById("lightbox-caption");
+
+    // Get Data Attributes
+    const fullSizeUrl = element.getAttribute('data-full-src') || element.src; // Logic: Use 'data-full-src' if it exists (HD image), otherwise use 'src'
+    const videoUrl = element.getAttribute('data-video-src'); // Check for video
+
+    modal.style.display = "flex";
+
+    // === LOGIC: IS IT A VIDEO OR IMAGE? ===
+    if (videoUrl) {
+        // --- IT IS A VIDEO ---
+        modalImg.style.display = "none";   // Hide Image
+        modalVideo.style.display = "block"; // Show Video
+
+        // 1. Detect if it is a Short (Vertical)
+        const isShort = videoUrl.includes("shorts/");
+
+        // 2. Apply or Remove the 'vertical' CSS class based on detection
+        if (isShort) {
+            modalVideo.classList.add("vertical");
+        } else {
+            modalVideo.classList.remove("vertical");
+        }
+
+        // 3. Extract ID and Play
+        // (This regex handles shorts, watch, embed, etc.)
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
+        const match = videoUrl.match(regExp);
+        
+if (match && match[2].length === 11) {
+    const videoId = match[2];
+    
+    const origin = window.location.origin; 
+
+    // === KEY FIXES FOR MOBILE ===
+    // mute=1        -> Required for autoplay on mobile
+    // playsinline=1 -> Prevents iOS from hijacking the video to native player
+    // origin=...    -> Tells YouTube this request is legitimate
+    modalVideo.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&rel=0&loop=1&playlist=${videoId}&origin=${origin}`;
+} else {
+            console.error("Could not extract YouTube ID");
+        }
+
+    } else {
+        // --- IT IS AN IMAGE ---
+        modalVideo.style.display = "none"; // Hide Video
+        modalVideo.src = "";               // Stop video audio
+        modalImg.style.display = "block";  // Show Image
+        modalImg.src = fullSizeUrl;
+    }
+
+    // Use alt text as caption
+    if (captionText) {
+        captionText.innerHTML = element.alt;
+    }
+}
+
+function closeLightbox() {
+    const modal = document.getElementById("lightbox-modal");
+    modal.style.display = "none";
+
+    // CLEANUP: Clear both sources to stop memory leaks and STOP AUDIO
+    document.getElementById("lightbox-img").src = "";
+    document.getElementById("lightbox-video").src = "";
+}
+
+// Close on 'Escape' key
+document.addEventListener('keydown', function (event) {
+    if (event.key === "Escape") {
+        closeLightbox();
+    }
+});
+
+
+
 
 
 
@@ -323,7 +404,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const navLinks = [
         { navId: 'nav-opensource', contentId: 'open-source-content-wrapper' },
         { navId: 'nav-articles', contentId: 'articles-content-wrapper' },
-        { navId: 'nav-bookshelf', contentId: 'bookshelf-content-wrapper' }
+        { navId: 'nav-bookshelf', contentId: 'bookshelf-content-wrapper' },
+        { navId: 'nav-updates', contentId: 'updates-content-wrapper' }
     ];
 
     navLinks.forEach(link => {
@@ -1677,12 +1759,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // FUNCTION TO READ THE URL HASH AND SWITCH THE VIEW
     function handleUrlHash() {
-        const hash = window.location.hash.substring(1);
+        const hash = window.location.hash.substring(1); // removes the '#'
 
-        // This handles #list, #gallery, etc., and defaults to 'card'
-        switchView(hash || 'card');
+        // 1. Handle Deep Links for Analytics Sub-views
+        if (hash === 'analytics-orbit') {
+            switchView('analytics');       // Open main Analytics tab
+            switchAnalyticsView('orbit');  // Switch internal view to Orbit
+        }
+        else if (hash === 'analytics-carousel') {
+            switchView('analytics');       // Open main Analytics tab
+            switchAnalyticsView('carousel');// Switch internal view to Carousel
+        }
+        // 2. Handle Standard Views (#gallery, #matrix, #card, #analytics)
+        else {
+            switchView(hash || 'card');
+
+            // If the user just clicked "Analytics" main button, force default (Carousel)
+            if (hash === 'analytics') {
+                switchAnalyticsView('carousel');
+            }
+        }
     }
-
     // Attach click events to buttons that CHANGE THE HASH
     btnCard.addEventListener('click', () => { window.location.hash = 'card'; });
     btnMatrix.addEventListener('click', () => { window.location.hash = 'matrix'; });
