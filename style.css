@@ -400,10 +400,6 @@
     }
 
     .book-showcase {
-        padding: 20px;
-        margin-top: 10px;
-        /* space from the bottom of the section line*/
-        margin-bottom: 30px;
         display: flex;
         align-items: center;
         gap: 20px;
@@ -475,13 +471,21 @@
         transform: translate(-50%, -50%) scale(1);
     }
 
+    #ai-atlas-section .book-showcase,
     #open-source-projects .showcase-item,
     #articles-insights .showcase-item,
-    #digital-bookshelf .showcase-item {
+    #digital-bookshelf .showcase-item,
+    #spotlight .showcase-item {
         padding: 20px;
         margin-top: 10px;
         /* space from the bottom of the section line*/
         margin-bottom: 30px;
+    }
+
+    @media (min-width: 769px) {
+        #spotlight .showcase-item {
+            flex-direction: row-reverse;
+        }
     }
 
     .item-image {
@@ -500,18 +504,24 @@
     .card-title-link {
         text-decoration: none;
         color: inherit;
+        display: inline-block;
     }
 
     .section-title {
         font-size: 1.3em;
-        color: #85C1E9;
+        color: var(--text-main);
         margin-bottom: 8px;
         transition: color 0.2s ease;
     }
 
     .interactive-card:hover .section-title {
-        color: #ffffff;
+        color: var(--highlight-color);
     }
+
+    .card-title-link:hover .section-title {
+    color: #9ff0e7e2 !important;
+    text-shadow: 0 0 8px rgba(159, 240, 231, 0.3); 
+}
 
     .article-title {
         font-size: 1.2em;
@@ -523,11 +533,29 @@
     }
 
     .view-on-text {
-        color: #ccc;
-        margin-bottom: 10px;
-        font-size: 0.9em;
-        font-weight: bold;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        color: #85C1E9;
+        opacity: 0.9;
+        margin-top: 20px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
+
+    /* Sleek line */
+    .view-on-text::after {
+        content: '';
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(133, 193, 233, 0.3), transparent);
+        margin-top: 1px;
+    }
+
+
 
     .project-description {
         font-size: 1em;
@@ -561,12 +589,20 @@
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
+        margin-bottom: 20px;
+    }
+
+.item-text .project-links:last-of-type,
+    .book-text .project-links:last-of-type {
+        margin-bottom: 0;
     }
 
     .project-link {
-        display: inline-block;
-        color: #ffffff;
-        padding: 5px 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.75);
+        padding: 5px 12px;
         font-size: 0.8em;
         border-radius: 5px;
         text-decoration: none;
@@ -577,8 +613,15 @@
 
     .project-link:hover,
     .project-link:focus {
-        transform: translateY(-2px);
+        transform: translateY(-3px);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        color: #ffffff; 
+    }
+
+    .project-link-svg-icon {
+        width: 1em;
+        height: 1em;
+        fill: currentColor;
     }
 
     .github {
@@ -614,16 +657,33 @@
     }
 
     .medium {
-        background-color: rgba(18, 16, 14, 0.65);
+        background-color: rgba(18, 16, 14, 0.45);
     }
 
     .project-link.medium:hover {
         background-color: rgba(18, 16, 14, 1);
     }
 
+
+    .linkedin {
+        background-color: rgba(0, 118, 181, 0.45);
+    }
+
+    .project-link.linkedin:hover {
+        background-color: rgba(0, 119, 181, 1);
+    }
+
+    .x-twitter {
+        background-color: rgba(18, 16, 14, 0.45);
+    }
+
+    .project-link.x-twitter:hover {
+        background-color: rgba(18, 16, 14, 1);
+    }
+
     .amazon {
         background-color: rgba(255, 153, 0, 0.65);
-        color: #fff;
+  
         font-weight: 600;
     }
 
@@ -992,19 +1052,19 @@
     }
 
 
-#spotlight .folder-icon-toggle .fa-paper-plane {
-    display: none;
-}
+    #spotlight .folder-icon-toggle .fa-paper-plane {
+        display: none;
+    }
 
 
-#spotlight .section-trigger.expanded .folder-icon-toggle .fa-paper-plane {
-    display: inline-block;
-}
+    #spotlight .section-trigger.expanded .folder-icon-toggle .fa-paper-plane {
+        display: inline-block;
+    }
 
 
-#spotlight .section-trigger.expanded .folder-icon-toggle .fa-bookmark {
-    display: none;
-}
+    #spotlight .section-trigger.expanded .folder-icon-toggle .fa-bookmark {
+        display: none;
+    }
 
     .trigger-chevron {
         font-size: 0.7em;
@@ -3464,7 +3524,30 @@
         }
 
         .view-on-text {
-            color: rgba(255, 255, 255, 0.9) !important;
+            /* 1. Stack the text and line vertically */
+            flex-direction: column;
+            align-items: center;
+            /* Center them horizontally */
+            justify-content: center;
+            /* Center vertically */
+            gap: 10px;
+            /* Creates space between text and line */
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .view-on-text::after {
+            display: block;
+            content: '';
+            width: 95%;
+            /* Span 95% of the card's width */
+            height: 3px;
+            flex: none;
+            /* Remove the flex-grow property from desktop */
+            background: linear-gradient(to right,
+                    transparent,
+                    rgba(133, 193, 233, 0.3) 50%,
+                    transparent);
         }
 
         body {
@@ -3515,7 +3598,8 @@
         .showcase-item,
         #open-source-projects .showcase-item,
         #articles-insights .showcase-item,
-        #digital-bookshelf .showcase-item {
+        #digital-bookshelf .showcase-item,
+        #spotlight .showcase-item {
             flex-direction: column;
         }
 
@@ -3648,7 +3732,8 @@
 
         #open-source-projects .item-text,
         #articles-insights .item-text,
-        #digital-bookshelf .item-text {
+        #digital-bookshelf .item-text,
+        #spotlight .item-text {
             text-align: left;
         }
 

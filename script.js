@@ -857,85 +857,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
-
-
-
-
-
-
-    // === JUMP TO CARD FUNCTION ===
+// === JUMP TO CARD ===
     window.jumpToCard = function (targetId) {
-        // 1. PREVENT DEFAULT LINK BEHAVIOR
-        // This stops the <a href="#"> from resetting the URL to #
         if (window.event) {
             window.event.preventDefault();
             window.event.stopPropagation();
         }
-
-        // 2. UPDATE URL TO #CARD
-        if (history.pushState) {
-            history.pushState(null, null, '#card');
-        } else {
-            window.location.hash = 'card';
-        }
-
-        // 3. SWITCH VIEW
-        switchView('card');
-
-        // 4. FIND & HIGHLIGHT TARGET
-        const targetElement = document.getElementById(targetId);
-
-        if (targetElement) {
-            // Expand Accordion if needed
-            const parentSection = targetElement.closest('.collapsible-section-content');
-            if (parentSection) {
-                parentSection.classList.add('expanded');
-                const sectionId = parentSection.id;
-                const triggerBtn = document.querySelector(`.section-trigger[data-target="${sectionId}"]`);
-                if (triggerBtn) {
-                    triggerBtn.classList.add('expanded');
-                    triggerBtn.setAttribute('aria-expanded', 'true');
-                    const itemCount = parentSection.querySelectorAll('.showcase-item').length;
-                    triggerBtn.setAttribute('data-tooltip', `Collapse (${itemCount} Items)`);
-                }
-            }
-
-            // Scroll & Highlight
-            setTimeout(() => {
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-                targetElement.classList.remove('highlight-card');
-                void targetElement.offsetWidth; // Trigger reflow
-                targetElement.classList.add('highlight-card');
-
-                setTimeout(() => {
-                    targetElement.classList.remove('highlight-card');
-                }, 6000);
-            }, 300);
-        } else {
-            console.warn(`Target card with ID '${targetId}' not found.`);
-        }
+        window.location.hash = targetId; 
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1757,39 +1686,83 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    // FUNCTION TO READ THE URL HASH AND SWITCH THE VIEW
+    // === CENTRAL URL HASH HANDLER (Deep Linking) ===
     function handleUrlHash() {
-        const hash = window.location.hash.substring(1); // removes the '#'
+        const hash = window.location.hash.substring(1); // Remove '#'
 
-        // 1. Handle Deep Links for Analytics Sub-views
-        if (hash === 'analytics-orbit') {
-            switchView('analytics');       // Open main Analytics tab
-            switchAnalyticsView('orbit');  // Switch internal view to Orbit
-        }
-        else if (hash === 'analytics-carousel') {
-            switchView('analytics');       // Open main Analytics tab
-            switchAnalyticsView('carousel');// Switch internal view to Carousel
-        }
-        // 2. Handle Standard Views (#gallery, #matrix, #card, #analytics)
-        else {
-            switchView(hash || 'card');
+        // 1. Handle Main View Keywords
+        if (hash === 'matrix') {
+            switchView('matrix');
+        } 
+        else if (hash === 'gallery') {
+            switchView('gallery');
+        } 
+        // 2. Handle Analytics Sub-views
+        else if (hash === 'analytics-orbit') {
+            switchView('analytics');
+            switchAnalyticsView('orbit');
+        } 
+        else if (hash === 'analytics-carousel' || hash === 'analytics') {
+            switchView('analytics');
+            switchAnalyticsView('carousel');
+        } 
+        // 3. Handle Specific Cards (Deep Linking)
+        else if (hash.startsWith('card-')) {
+            // A. Switch to Card View first so elements exist in the DOM layout
+            switchView('card');
 
-            // If the user just clicked "Analytics" main button, force default (Carousel)
-            if (hash === 'analytics') {
-                switchAnalyticsView('carousel');
+            // B. Find the element
+            const targetElement = document.getElementById(hash);
+
+            if (targetElement) {
+                // C. Expand Accordion if needed (Crucial!)
+                const parentSection = targetElement.closest('.collapsible-section-content');
+                if (parentSection) {
+                    parentSection.classList.add('expanded');
+                    const sectionId = parentSection.id;
+                    // Find the button that controls this section
+                    const triggerBtn = document.querySelector(`.section-trigger[data-target="${sectionId}"]`);
+                    if (triggerBtn) {
+                        triggerBtn.classList.add('expanded');
+                        triggerBtn.setAttribute('aria-expanded', 'true');
+                        // Update tooltip count
+                        const itemCount = parentSection.querySelectorAll('.showcase-item, .book-showcase').length;
+                        triggerBtn.setAttribute('data-tooltip', `Collapse All\n(${itemCount} Items)`);
+                    }
+                }
+
+                // D. Scroll & Highlight (With a tiny delay to ensure expansion renders)
+                setTimeout(() => {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Run the Flash Animation
+                    targetElement.classList.remove('highlight-card');
+                    void targetElement.offsetWidth; // Trigger reflow
+                    targetElement.classList.add('highlight-card');
+
+                    // Clean up class after animation
+                    setTimeout(() => {
+                        targetElement.classList.remove('highlight-card');
+                    }, 6000);
+                }, 350);
             }
+        } 
+        // 4. Default: Card View (No hash or unknown hash)
+        else {
+            switchView('card');
         }
     }
-    // Attach click events to buttons that CHANGE THE HASH
+
+    // Attach click events (Manual overrides still work)
     btnCard.addEventListener('click', () => { window.location.hash = 'card'; });
     btnMatrix.addEventListener('click', () => { window.location.hash = 'matrix'; });
     btnGallery.addEventListener('click', () => { window.location.hash = 'gallery'; });
     btnAnalytics.addEventListener('click', () => { window.location.hash = 'analytics'; });
 
-    // Listen for hash changes (e.g., browser back/forward buttons) to update the view
+    // Listen for hash changes (Back button, Links, etc.)
     window.addEventListener('hashchange', handleUrlHash);
 
-    // Initial load check to show the correct view based on the URL
+    // Run on initial page load
     handleUrlHash();
 
 

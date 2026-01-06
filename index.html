@@ -32,6 +32,10 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- === FORK AWESOME (for Gitea icon) === -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css"
+        integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
+
     <!-- === SOCIAL MEDIA & LINK PREVIEW TAGS (OG & TWITTER) === -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
@@ -444,37 +448,60 @@
 
                     <div id="atlas-content-wrapper" class="collapsible-section-content expanded">
                         <div>
+                            <!-- 1. Align Top to move images up -->
                             <div id="card-ai-atlas" class="book-showcase glass-effect interactive-card fade-in-up"
-                                data-year="2025">
+                                data-year="2025" style="align-items: flex-start;">
+                                
                                 <div class="book-text">
                                     <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0"
                                         target="_blank" rel="noopener noreferrer" class="card-title-link">
-                                        <h2 class="section-title"><i class="fas fa-book-atlas"
-                                                style="margin-right: 10px; color: #fdffca;"></i>THE AI ATLAS</h2>
+                                        <h2 class="section-title" style="margin-bottom: 5px;">
+                                            <i class="fas fa-book-atlas" style="margin-right: 10px; color: #fdffca;"></i>THE AI ATLAS
+                                        </h2>
                                     </a>
-                                    <p class="project-description book-subtitle">1001 Tools, Platforms, and Services
-                                        Shaping Our Digital Future</p>
-                                    <p class="view-on-text">Explore My Book on:</p>
-                                    <div class="project-links">
+
+                                    <h3 class="book-subtitle" style="margin-top: 0; margin-bottom: 15px; font-size: 1.1em; color: var(--text-main);">
+                                        1001 Tools, Platforms, and Services Shaping Our Digital Future
+                                    </h3>
+
+                                    <p class="project-description">
+                                        The AI revolution is here, but it doesn’t come with a map... until now. 
+                                        This book is your definitive guide—a curated directory of 1001 of the most powerful AI tools available today.
+                                    </p>
+
+                                    <p class="view-on-text">Get It On</p>
+                                    
+                                    <!-- 2. ONE LINE: Standard button size, but Gap reduced to 5px to ensure they fit -->
+                                    <div class="project-links" style="gap: 5px;">
                                         <a href="https://www.amazon.com/AI-Atlas-Platforms-Services-Shaping/dp/B0FJ2ZVPQP/ref=tmm_hrd_swatch_0"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="project-link amazon">Amazon</a>
+                                            target="_blank" rel="noopener noreferrer" class="project-link amazon">
+                                            <i class="fab fa-amazon"></i> Amazon
+                                        </a>
                                         <a href="https://play.google.com/store/books/details?id=BTB3EQAAQBAJ"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="project-link google-books">Google Books</a>
+                                            target="_blank" rel="noopener noreferrer" class="project-link google-books">
+                                            <i class="fab fa-google"></i> Google Books
+                                        </a>
                                         <a href="https://books.apple.com/us/book/the-ai-atlas/id6749574581?l=ru&ls=1"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="project-link apple-books">Apple Books</a>
+                                            target="_blank" rel="noopener noreferrer" class="project-link apple-books">
+                                            <i class="fab fa-apple"></i> Apple Books
+                                        </a>
                                         <a href="https://www.kobo.com/ww/en/ebook/the-ai-atlas?sId=e27cba48-5d49-4c33-b145-e73b05da67cd"
-                                            target="_blank" rel="noopener noreferrer" class="project-link kobo">Kobo</a>
+                                            target="_blank" rel="noopener noreferrer" class="project-link kobo">
+                                            <i class="fas fa-book-open"></i> Kobo
+                                        </a>
                                         <a href="https://www.lulu.com/shop/vitalii-starosta/the-ai-atlas/ebook/product-2mrmz62.html?page=1&pageSize=4"
-                                            target="_blank" rel="noopener noreferrer" class="project-link lulu">Lulu</a>
+                                            target="_blank" rel="noopener noreferrer" class="project-link lulu">
+                                            <i class="fas fa-book-open"></i> Lulu
+                                        </a>
                                         <a href="https://vitalosta.gumroad.com/l/the_ai_atlas" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gumroad">Gumroad</a>
+                                            rel="noopener noreferrer" class="project-link gumroad">
+                                            <i class="fas fa-store"></i> Gumroad
+                                        </a>
                                     </div>
                                 </div>
 
-                                <div class="book-media-container">
+                                <!-- 3. IMAGES POSITION: margin-top: 35px pushes them down just enough to look balanced -->
+                                <div class="book-media-container" style="margin-top: 35px;">
                                     <img src="https://i.postimg.cc/Y2sbpvyd/the-ai-atlas-full-cover-with-barcode-front.jpg"
                                         alt="Cover of The AI Atlas book" class="book-media-asset" loading="lazy"
                                         width="100" height="150" onclick="jumpToGallery('the ai atlas')"
@@ -492,6 +519,13 @@
                         </div>
                     </div>
                 </section>
+
+
+
+
+
+
+
 
                 <!-- === OPEN SOURCE PROJECTS SECTION === -->
                 <section class="projects" id="open-source-projects">
@@ -522,19 +556,39 @@
                                     </a>
                                     <p class="project-description">A Python tool designed to convert browser bookmarks
                                         (HTML files) into well-structured and organized Excel spreadsheets.</p>
-                                    <p class="view-on-text">View on:</p>
+
+                                    <p class="view-on-text">Available On</p>
                                     <div class="project-links">
                                         <a href="https://github.com/sztaroszta/BM2Excel" target="_blank"
-                                            rel="noopener noreferrer" class="project-link github">GitHub</a> <a
-                                            href="https://gitlab.com/sztaroszta/BM2Excel" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitlab">GitLab</a> <a
-                                            href="https://bitbucket.org/sztaroszta/bm2excel/src/main/" target="_blank"
-                                            rel="noopener noreferrer" class="project-link bitbucket">Bitbucket</a> <a
-                                            href="https://gitea.com/starosta/BM2Excel" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitea">Gitea</a> <a
-                                            href="https://medium.com/@starosta/bm2excel-python-bookmark-organizer-25ba822ad99c"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="project-link medium">Medium</a>
+                                            rel="noopener noreferrer" class="project-link github"><i
+                                                class="fa-brands fa-github"></i>GitHub</a>
+                                        <a href="https://gitlab.com/sztaroszta/BM2Excel" target="_blank"
+                                            rel="noopener noreferrer" class="project-link gitlab"><i
+                                                class="fa-brands fa-gitlab"></i>GitLab</a>
+                                        <a href="https://bitbucket.org/sztaroszta/bm2excel/src/main/" target="_blank"
+                                            rel="noopener noreferrer" class="project-link bitbucket"><i
+                                                class="fa-brands fa-bitbucket"></i>Bitbucket</a>
+                                        <a href="https://gitea.com/starosta/BM2Excel" target="_blank"
+                                            rel="noopener noreferrer" class="project-link gitea"><i class="fa fa-gitea"
+                                                aria-hidden="true"></i>Gitea</a>
+                                    </div>
+
+                                    <p class="view-on-text">Project Insights</p>
+                                    <div class="project-links">
+                                        <a href="https://medium.com/@starosta/bm2excel-python-bookmark-organizer-25ba822ad99c"
+                                            target="_blank" rel="noopener noreferrer" class="project-link medium">
+                                            <svg class="project-link-svg-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 448 512">
+                                                <path
+                                                    d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z" />
+                                            </svg>
+                                            Medium
+                                        </a>
+                                        <a href="https://www.linkedin.com/posts/vitalii-starosta_python-automation-excel-activity-7393293882358845440-s85w"
+                                            target="_blank" rel="noopener noreferrer" class="project-link linkedin"><i
+                                                class="fa-brands fa-linkedin"></i>LinkedIn</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link x-twitter"><i class="fa-brands fa-x-twitter"></i>Twitter / X</a>
                                     </div>
                                 </div>
                             </article>
@@ -555,20 +609,39 @@
                                         scans of any directory to catalog files and folders, extracting extended
                                         attributes like Finder tags and exporting the data into a clean, filterable
                                         Excel report.</p>
-                                    <p class="view-on-text">View on:</p>
+
+                                    <p class="view-on-text">Available On</p>
                                     <div class="project-links">
                                         <a href="https://github.com/sztaroszta/MacDirScope" target="_blank"
-                                            rel="noopener noreferrer" class="project-link github">GitHub</a> <a
-                                            href="https://gitlab.com/sztaroszta/MacDirScope" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitlab">GitLab</a> <a
-                                            href="https://bitbucket.org/sztaroszta/macdirscope/src/main/"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="project-link bitbucket">Bitbucket</a> <a
-                                            href="https://gitea.com/starosta/MacDirScope" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitea">Gitea</a> <a
-                                            href="https://medium.com/@starosta/organize-mac-files-free-01d2e1b5c8f8"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="project-link medium">Medium</a>
+                                            rel="noopener noreferrer" class="project-link github"><i
+                                                class="fa-brands fa-github"></i>GitHub</a>
+                                        <a href="https://gitlab.com/sztaroszta/MacDirScope" target="_blank"
+                                            rel="noopener noreferrer" class="project-link gitlab"><i
+                                                class="fa-brands fa-gitlab"></i>GitLab</a>
+                                        <a href="https://bitbucket.org/sztaroszta/macdirscope/src/main/" target="_blank"
+                                            rel="noopener noreferrer" class="project-link bitbucket"><i
+                                                class="fa-brands fa-bitbucket"></i>Bitbucket</a>
+                                        <a href="https://gitea.com/starosta/MacDirScope" target="_blank"
+                                            rel="noopener noreferrer" class="project-link gitea"><i class="fa fa-gitea"
+                                                aria-hidden="true"></i>Gitea</a>
+                                    </div>
+
+                                    <p class="view-on-text">Project Insights</p>
+                                    <div class="project-links">
+                                        <a href="https://medium.com/@starosta/organize-mac-files-free-01d2e1b5c8f8"
+                                            target="_blank" rel="noopener noreferrer" class="project-link medium">
+                                            <svg class="project-link-svg-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 448 512">
+                                                <path
+                                                    d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z" />
+                                            </svg>
+                                            Medium
+                                        </a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link linkedin"><i
+                                                class="fa-brands fa-linkedin"></i>LinkedIn</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link x-twitter"><i class="fa-brands fa-x-twitter"></i>Twitter / X</a>
                                     </div>
                                 </div>
                             </article>
@@ -587,19 +660,39 @@
                                     <p class="project-description">A robust utility designed to slice large Excel
                                         spreadsheets into smaller, row-based files. It ensures data integrity by
                                         perfectly cloning headers, cell styles, and formats into each new chunk.</p>
-                                    <p class="view-on-text">View on:</p>
+
+                                    <p class="view-on-text">Available On</p>
                                     <div class="project-links">
                                         <a href="https://github.com/sztaroszta/SplitXL" target="_blank"
-                                            rel="noopener noreferrer" class="project-link github">GitHub</a> <a
-                                            href="https://gitlab.com/sztaroszta/SplitXL" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitlab">GitLab</a> <a
-                                            href="https://bitbucket.org/sztaroszta/splitxl/src/main/" target="_blank"
-                                            rel="noopener noreferrer" class="project-link bitbucket">Bitbucket</a> <a
-                                            href="https://gitea.com/starosta/SplitXL" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitea">Gitea</a> <a
-                                            href="https://medium.com/@starosta/split-large-excel-with-python-e1e6453c91f9"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="project-link medium">Medium</a>
+                                            rel="noopener noreferrer" class="project-link github"><i
+                                                class="fa-brands fa-github"></i>GitHub</a>
+                                        <a href="https://gitlab.com/sztaroszta/SplitXL" target="_blank"
+                                            rel="noopener noreferrer" class="project-link gitlab"><i
+                                                class="fa-brands fa-gitlab"></i>GitLab</a>
+                                        <a href="https://bitbucket.org/sztaroszta/splitxl/src/main/" target="_blank"
+                                            rel="noopener noreferrer" class="project-link bitbucket"><i
+                                                class="fa-brands fa-bitbucket"></i>Bitbucket</a>
+                                        <a href="https://gitea.com/starosta/SplitXL" target="_blank"
+                                            rel="noopener noreferrer" class="project-link gitea"><i class="fa fa-gitea"
+                                                aria-hidden="true"></i>Gitea</a>
+                                    </div>
+
+                                    <p class="view-on-text">Project Insights</p>
+                                    <div class="project-links">
+                                        <a href="https://medium.com/@starosta/split-large-excel-with-python-e1e6453c91f9"
+                                            target="_blank" rel="noopener noreferrer" class="project-link medium">
+                                            <svg class="project-link-svg-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 448 512">
+                                                <path
+                                                    d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z" />
+                                            </svg>
+                                            Medium
+                                        </a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link linkedin"><i
+                                                class="fa-brands fa-linkedin"></i>LinkedIn</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link x-twitter"><i class="fa-brands fa-x-twitter"></i>Twitter / X</a>
                                     </div>
                                 </div>
                             </article>
@@ -619,19 +712,39 @@
                                     <p class="project-description">A Python GUI application for merging multiple Excel
                                         files into a single master workbook, meticulously preserving all original cell
                                         formatting, styles, and merged regions.</p>
-                                    <p class="view-on-text">View on:</p>
+
+                                    <p class="view-on-text">Available On</p>
                                     <div class="project-links">
                                         <a href="https://github.com/sztaroszta/CombineXL" target="_blank"
-                                            rel="noopener noreferrer" class="project-link github">GitHub</a> <a
-                                            href="https://gitlab.com/sztaroszta/CombineXL" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitlab">GitLab</a> <a
-                                            href="https://bitbucket.org/sztaroszta/CombineXL/src/main/" target="_blank"
-                                            rel="noopener noreferrer" class="project-link bitbucket">Bitbucket</a> <a
-                                            href="https://gitea.com/starosta/CombineXL" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitea">Gitea</a> <a
-                                            href="https://medium.com/@starosta/combine-excel-files-with-python-c42005cf34c1"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="project-link medium">Medium</a>
+                                            rel="noopener noreferrer" class="project-link github"><i
+                                                class="fa-brands fa-github"></i>GitHub</a>
+                                        <a href="https://gitlab.com/sztaroszta/CombineXL" target="_blank"
+                                            rel="noopener noreferrer" class="project-link gitlab"><i
+                                                class="fa-brands fa-gitlab"></i>GitLab</a>
+                                        <a href="https://bitbucket.org/sztaroszta/CombineXL/src/main/" target="_blank"
+                                            rel="noopener noreferrer" class="project-link bitbucket"><i
+                                                class="fa-brands fa-bitbucket"></i>Bitbucket</a>
+                                        <a href="https://gitea.com/starosta/CombineXL" target="_blank"
+                                            rel="noopener noreferrer" class="project-link gitea"><i class="fa fa-gitea"
+                                                aria-hidden="true"></i>Gitea</a>
+                                    </div>
+
+                                    <p class="view-on-text">Project Insights</p>
+                                    <div class="project-links">
+                                        <a href="https://medium.com/@starosta/combine-excel-files-with-python-c42005cf34c1"
+                                            target="_blank" rel="noopener noreferrer" class="project-link medium">
+                                            <svg class="project-link-svg-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 448 512">
+                                                <path
+                                                    d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z" />
+                                            </svg>
+                                            Medium
+                                        </a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link linkedin"><i
+                                                class="fa-brands fa-linkedin"></i>LinkedIn</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link x-twitter"><i class="fa-brands fa-x-twitter"></i>Twitter / X</a>
                                     </div>
                                 </div>
                             </article>
@@ -651,19 +764,39 @@
                                     <p class="project-description">A robust Python tool engineered to declutter drives
                                         by identifying and removing folders that appear empty, even when containing
                                         system-generated files.</p>
-                                    <p class="view-on-text">View on:</p>
+
+                                    <p class="view-on-text">Available On</p>
                                     <div class="project-links">
                                         <a href="https://github.com/sztaroszta/VoidFinder" target="_blank"
-                                            rel="noopener noreferrer" class="project-link github">GitHub</a> <a
-                                            href="https://gitlab.com/sztaroszta/VoidFinder" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitlab">GitLab</a> <a
-                                            href="https://bitbucket.org/sztaroszta/VoidFinder" target="_blank"
-                                            rel="noopener noreferrer" class="project-link bitbucket">Bitbucket</a> <a
-                                            href="https://gitea.com/starosta/VoidFinder" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitea">Gitea</a> <a
-                                            href="https://medium.com/@starosta/find-and-remove-empty-folders-7360740695dd"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="project-link medium">Medium</a>
+                                            rel="noopener noreferrer" class="project-link github"><i
+                                                class="fa-brands fa-github"></i>GitHub</a>
+                                        <a href="https://gitlab.com/sztaroszta/VoidFinder" target="_blank"
+                                            rel="noopener noreferrer" class="project-link gitlab"><i
+                                                class="fa-brands fa-gitlab"></i>GitLab</a>
+                                        <a href="https://bitbucket.org/sztaroszta/VoidFinder" target="_blank"
+                                            rel="noopener noreferrer" class="project-link bitbucket"><i
+                                                class="fa-brands fa-bitbucket"></i>Bitbucket</a>
+                                        <a href="https://gitea.com/starosta/VoidFinder" target="_blank"
+                                            rel="noopener noreferrer" class="project-link gitea"><i class="fa fa-gitea"
+                                                aria-hidden="true"></i>Gitea</a>
+                                    </div>
+
+                                    <p class="view-on-text">Project Insights</p>
+                                    <div class="project-links">
+                                        <a href="https://medium.com/@starosta/find-and-remove-empty-folders-7360740695dd"
+                                            target="_blank" rel="noopener noreferrer" class="project-link medium">
+                                            <svg class="project-link-svg-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 448 512">
+                                                <path
+                                                    d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z" />
+                                            </svg>
+                                            Medium
+                                        </a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link linkedin"><i
+                                                class="fa-brands fa-linkedin"></i>LinkedIn</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link x-twitter"><i class="fa-brands fa-x-twitter"></i>Twitter / X</a>
                                     </div>
                                 </div>
                             </article>
@@ -683,17 +816,36 @@
                                         backgrounds using a suite of AI models. It streamlines testing by processing one
                                         image with multiple algorithms (rembg, mediapipe) and saving separate,
                                         transparent outputs for easy side-by-side comparison.</p>
-                                    <p class="view-on-text">View on:</p>
+
+                                    <p class="view-on-text">Available On</p>
                                     <div class="project-links">
                                         <a href="https://github.com/sztaroszta/BGone" target="_blank"
-                                            rel="noopener noreferrer" class="project-link github">GitHub</a>
+                                            rel="noopener noreferrer" class="project-link github"><i
+                                                class="fa-brands fa-github"></i>GitHub</a>
                                         <a href="https://gitlab.com/sztaroszta/BGone" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitlab">GitLab</a>
+                                            rel="noopener noreferrer" class="project-link gitlab"><i
+                                                class="fa-brands fa-gitlab"></i>GitLab</a>
                                         <a href="https://bitbucket.org/sztaroszta/BGone" target="_blank"
-                                            rel="noopener noreferrer" class="project-link bitbucket">Bitbucket</a>
+                                            rel="noopener noreferrer" class="project-link bitbucket"><i
+                                                class="fa-brands fa-bitbucket"></i>Bitbucket</a>
+                                    </div>
+
+                                    <p class="view-on-text">Project Insights</p>
+                                    <div class="project-links">
                                         <a href="https://medium.com/@starosta/ai-background-remover-tool-9c30dded5387"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="project-link medium">Medium</a>
+                                            target="_blank" rel="noopener noreferrer" class="project-link medium">
+                                            <svg class="project-link-svg-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 448 512">
+                                                <path
+                                                    d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z" />
+                                            </svg>
+                                            Medium
+                                        </a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link linkedin"><i
+                                                class="fa-brands fa-linkedin"></i>LinkedIn</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link x-twitter"><i class="fa-brands fa-x-twitter"></i>Twitter / X</a>
                                     </div>
                                 </div>
                             </article>
@@ -715,23 +867,50 @@
                                         automatically detects nested folder hierarchies from spreadsheet columns and
                                         generates a universal file compatible for import into Chrome, Firefox, Safari,
                                         and Edge.</p>
-                                    <p class="view-on-text">View on:</p>
+
+                                    <p class="view-on-text">Available On</p>
                                     <div class="project-links">
                                         <a href="https://github.com/sztaroszta/NetscapeGen" target="_blank"
-                                            rel="noopener noreferrer" class="project-link github">GitHub</a>
+                                            rel="noopener noreferrer" class="project-link github"><i
+                                                class="fa-brands fa-github"></i>GitHub</a>
                                         <a href="https://gitlab.com/sztaroszta/NetscapeGen" target="_blank"
-                                            rel="noopener noreferrer" class="project-link gitlab">GitLab</a>
+                                            rel="noopener noreferrer" class="project-link gitlab"><i
+                                                class="fa-brands fa-gitlab"></i>GitLab</a>
                                         <a href="https://bitbucket.org/sztaroszta/NetscapeGen" target="_blank"
-                                            rel="noopener noreferrer" class="project-link bitbucket">Bitbucket</a>
+                                            rel="noopener noreferrer" class="project-link bitbucket"><i
+                                                class="fa-brands fa-bitbucket"></i>Bitbucket</a>
+                                    </div>
+
+                                    <p class="view-on-text">Project Insights</p>
+                                    <div class="project-links">
                                         <a href="https://medium.com/@starosta/excel-to-browser-bookmarks-5a60da8864d8"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="project-link medium">Medium</a>
+                                            target="_blank" rel="noopener noreferrer" class="project-link medium">
+                                            <svg class="project-link-svg-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 448 512">
+                                                <path
+                                                    d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z" />
+                                            </svg>
+                                            Medium
+                                        </a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link linkedin"><i
+                                                class="fa-brands fa-linkedin"></i>LinkedIn</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link x-twitter"><i class="fa-brands fa-x-twitter"></i>Twitter / X</a>
                                     </div>
                                 </div>
                             </article>
                         </div>
                     </div>
                 </section>
+
+
+
+
+
+
+
+
 
                 <!-- === ARTICLES SECTION === -->
                 <section class="articles" id="articles-insights">
@@ -764,12 +943,37 @@
                                         lifecycle. This research explores how "survival of the fittest" principles can
                                         evolve complex test cases, significantly reducing manual effort and uncovering
                                         edge cases that traditional methods miss.</p>
-                                    <div class="project-links"><a
-                                            href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156"
-                                            target="_blank" rel="noopener noreferrer" class="project-link medium">Read
-                                            on Medium</a></div>
+
+                                    <!-- Label: Matches Open Source Section -->
+                                    <p class="view-on-text">Project Insights</p>
+
+                                    <div class="project-links">
+                                        <!-- Fixed: Medium Button with SVG Icon & Short Text -->
+                                        <a href="https://medium.com/@starosta/ai-genetic-algorithms-test-optimization-e966c6007156"
+                                            target="_blank" rel="noopener noreferrer" class="project-link medium">
+                                            <svg class="project-link-svg-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 448 512">
+                                                <path
+                                                    d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z" />
+                                            </svg>
+                                            Medium
+                                        </a>
+
+                                        <!-- LinkedIn -->
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link linkedin">
+                                            <i class="fab fa-linkedin"></i> LinkedIn
+                                        </a>
+
+                                        <!-- Twitter / X -->
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link x-twitter">
+                                            <i class="fab fa-x-twitter"></i> Twitter / X
+                                        </a>
+                                    </div>
                                 </div>
                             </article>
+
                             <!-- Article: Euler -->
                             <article id="card-euler" class="showcase-item glass-effect interactive-card fade-in-up"
                                 data-year="2025">
@@ -785,16 +989,47 @@
                                             Equation</h3>
                                     </a>
                                     <p class="project-description">How Euler's Identity, e^(iπ) + 1 = 0, Unlocks the
-                                        Secret to Building Great Products</p>
-                                    <div class="project-links"><a
-                                            href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc"
-                                            target="_blank" rel="noopener noreferrer" class="project-link medium">Read
-                                            on Medium</a></div>
+                                        Secret to Building Great Products.</p>
+
+                                    <!-- Label: Matches Open Source Section -->
+                                    <p class="view-on-text">Project Insights</p>
+
+                                    <div class="project-links">
+                                        <!-- Fixed: Medium Button with SVG Icon & Short Text -->
+                                        <a href="https://medium.com/@starosta/euler-for-product-management-dcd640e311bc"
+                                            target="_blank" rel="noopener noreferrer" class="project-link medium">
+                                            <svg class="project-link-svg-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 448 512">
+                                                <path
+                                                    d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z" />
+                                            </svg>
+                                            Medium
+                                        </a>
+
+                                        <!-- LinkedIn -->
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link linkedin">
+                                            <i class="fab fa-linkedin"></i> LinkedIn
+                                        </a>
+
+                                        <!-- Twitter / X -->
+                                        <a href="#" target="_blank" rel="noopener noreferrer"
+                                            class="project-link x-twitter">
+                                            <i class="fab fa-x-twitter"></i> Twitter / X
+                                        </a>
+                                    </div>
                                 </div>
                             </article>
                         </div>
                     </div>
                 </section>
+
+
+
+
+
+
+
 
                 <!-- === BOOKSHELF SECTION === -->
                 <section class="digital-bookshelf" id="digital-bookshelf">
@@ -828,12 +1063,41 @@
                                     <p class="project-description">The AI revolution isn’t about being replaced by
                                         machines. It’s about being outpaced by people who know how to use them. This
                                         article explores the new "digital divide" of tool discovery.</p>
+                                    
+                                    <p class="view-on-text">Explore the Story</p>
+
                                     <div class="project-links">
+                                        <!-- Medium -->
                                         <a href="https://medium.com/@starosta/the-ai-atlas-guide-2e93d90daaa6"
-                                            target="_blank" rel="noopener noreferrer" class="project-link medium">Read
-                                            on Medium</a> <a href="https://youtube.com/shorts/UOdt1oXepeM"
-                                            target="_blank" rel="noopener noreferrer" class="project-link youtube">Watch
-                                            on YouTube</a>
+                                            target="_blank" rel="noopener noreferrer" class="project-link medium">
+                                            <svg class="project-link-svg-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 448 512">
+                                                <path
+                                                    d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z" />
+                                            </svg>
+                                            Medium
+                                        </a> 
+                                        
+                                        <!-- LinkedIn Post I -->
+                                        <a href="https://www.linkedin.com/posts/vitalii-starosta_ai-artificialintelligence-aitools-activity-7353828286013026304-tOs-" target="_blank" rel="noopener noreferrer" class="project-link linkedin">
+                                            <i class="fab fa-linkedin"></i> LinkedIn Post I
+                                        </a>
+
+                                        <!-- LinkedIn Post II -->
+                                        <a href="https://www.linkedin.com/posts/vitalii-starosta_theaiatlas-ai-futuretech-activity-7378497972378099713-4ZXZ" target="_blank" rel="noopener noreferrer" class="project-link linkedin">
+                                            <i class="fab fa-linkedin"></i> LinkedIn Post II
+                                        </a>
+
+                                        <!-- Twitter -->
+                                        <a href="#" target="_blank" rel="noopener noreferrer" class="project-link x-twitter">
+                                            <i class="fab fa-x-twitter"></i> Twitter / X
+                                        </a>
+
+                                        <!-- YouTube -->
+                                        <a href="https://youtube.com/shorts/UOdt1oXepeM"
+                                            target="_blank" rel="noopener noreferrer" class="project-link youtube">
+                                            <i class="fab fa-youtube"></i> YouTube
+                                        </a>
                                     </div>
                                 </div>
                             </article>
@@ -855,17 +1119,53 @@
                                         This article introduces "The AI Atlas" – a curated map of 1001 tools designed to
                                         help you separate the signal from the noise and find exactly what you need to
                                         thrive.</p>
+                                    
+                                    <p class="view-on-text">Explore the Story</p>
+
                                     <div class="project-links">
+                                        <!-- Medium -->
                                         <a href="https://medium.com/@starosta/the-ai-atlas-7ecf0edb810e" target="_blank"
-                                            rel="noopener noreferrer" class="project-link medium">Read on Medium</a> <a
-                                            href="https://youtube.com/shorts/UOdt1oXepeM" target="_blank"
-                                            rel="noopener noreferrer" class="project-link youtube">Watch on YouTube</a>
+                                            rel="noopener noreferrer" class="project-link medium">
+                                            <svg class="project-link-svg-icon" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 448 512">
+                                                <path
+                                                    d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z" />
+                                            </svg>
+                                            Medium
+                                        </a> 
+                                        
+                                        <!-- LinkedIn Post I -->
+                                        <a href="https://www.linkedin.com/posts/vitalii-starosta_ai-artificialintelligence-aitools-activity-7353828286013026304-tOs-" target="_blank" rel="noopener noreferrer" class="project-link linkedin">
+                                            <i class="fab fa-linkedin"></i> LinkedIn Post I
+                                        </a>
+
+                                        <!-- LinkedIn Post II -->
+                                        <a href="https://www.linkedin.com/posts/vitalii-starosta_theaiatlas-ai-futuretech-activity-7378497972378099713-4ZXZ" target="_blank" rel="noopener noreferrer" class="project-link linkedin">
+                                            <i class="fab fa-linkedin"></i> LinkedIn Post II
+                                        </a>
+
+                                        <!-- Twitter -->
+                                        <a href="#" target="_blank" rel="noopener noreferrer" class="project-link x-twitter">
+                                            <i class="fab fa-x-twitter"></i> Twitter / X
+                                        </a>
+
+                                        <!-- YouTube -->
+                                        <a href="https://youtube.com/shorts/UOdt1oXepeM"
+                                            target="_blank" rel="noopener noreferrer" class="project-link youtube">
+                                            <i class="fab fa-youtube"></i> YouTube
+                                        </a>
                                     </div>
                                 </div>
                             </article>
                         </div>
                     </div>
                 </section>
+
+
+
+
+
+
 
 
                 <!-- === UPDATES SECTION === -->
@@ -892,33 +1192,40 @@
                                     style="cursor: pointer;" title="View in Gallery">
 
                                 <div class="item-text">
-                                    <h3 class="section-title article-title">2026: Shoot for the Moon. Even if you miss,
-                                        you’ll land among the stars 🚀
-                                    </h3>
-                                    <p class="project-description" style="white-space: pre-line;">
+                                    <!-- WRAPPED TITLE IN LINK -->
+                                    <a href="https://www.linkedin.com/posts/vitalii-starosta_newyear2026-shootforthemoon-activity-7412130430394720256-W4MY" 
+                                       target="_blank" rel="noopener noreferrer" class="card-title-link">
+                                        <h3 class="section-title article-title">2026: Shoot for the Moon. <br>Even if you miss,
+                                            you’ll land among the stars 🚀
+                                        </h3>
+                                    </a>
+
+                                    <p class="project-description">
                                         As we wrap up the year, I’m taking a moment to reflect on the journey. It’s been
                                         a year of challenges, growth, and turning vision into reality.
-
+                                        <br><br>
                                         Looking ahead to 2026, my wish for everyone is simple:
-                                        <strong>Think bigger.</strong> Don't be afraid to set "cosmic" goals and explore
+                                        <strong>Think bigger.</strong>
+                                        <br>Don't be afraid to set "cosmic" goals and explore
                                         new frontiers.
-
+                                        <br><br>
                                         I’m raising this glass to new heights, bold decisions, and successful missions
                                         in the coming year.
-
+                                        <br><br>
                                         Happy New Year, everyone! Let’s make it legendary 🥂
                                     </p>
 
+                                    <p class="view-on-text">Join the discussion</p>
+
                                     <div class="project-links">
                                         <a href="https://www.linkedin.com/posts/vitalii-starosta_newyear2026-shootforthemoon-activity-7412130430394720256-W4MY"
-                                            target="_blank" rel="noopener noreferrer" class="project-link"
-                                            style="background-color: #0077b5; border-color: #0077b5;">
+                                            target="_blank" rel="noopener noreferrer" class="project-link linkedin">
                                             <i class="fab fa-linkedin"></i> LinkedIn
                                         </a>
+
                                         <a href="https://x.com/desspacion/status/2006387371118399930" target="_blank"
-                                            rel="noopener noreferrer" class="project-link"
-                                            style="background-color: #000000; border-color: #333;">
-                                            <i class="fab fa-x-twitter"></i> Post
+                                            rel="noopener noreferrer" class="project-link x-twitter">
+                                            <i class="fab fa-x-twitter"></i> Twitter / X
                                         </a>
                                     </div>
                                 </div>
@@ -931,27 +1238,32 @@
                                     style="cursor: pointer;" title="View in Gallery">
 
                                 <div class="item-text">
-                                    <h3 class="section-title article-title">The AI Atlas: Community Discussions</h3>
+                                    <!-- WRAPPED TITLE IN LINK (Linked to Post I) -->
+                                    <a href="https://www.linkedin.com/posts/vitalii-starosta_ai-artificialintelligence-aitools-activity-7353828286013026304-tOs-" 
+                                       target="_blank" rel="noopener noreferrer" class="card-title-link">
+                                        <h3 class="section-title article-title">The AI Atlas: Community Discussions</h3>
+                                    </a>
+
                                     <p class="project-description">
                                         Exploring the impact of Artificial Intelligence on our digital future. Join the
-                                        conversation on how 1001 tools are reshaping the landscape of development and
+                                        discussion on how 1001 tools are reshaping the landscape of development and
                                         product strategy.
                                     </p>
 
+                                    <p class="view-on-text">Join the discussion</p>
+
                                     <div class="project-links">
                                         <a href="https://www.linkedin.com/posts/vitalii-starosta_ai-artificialintelligence-aitools-activity-7353828286013026304-tOs-"
-                                            target="_blank" rel="noopener noreferrer" class="project-link"
-                                            style="background-color: #0077b5; border-color: #0077b5;">
-                                            <i class="fab fa-linkedin"></i> Discussion 1
+                                            target="_blank" rel="noopener noreferrer" class="project-link linkedin">
+                                            <i class="fab fa-linkedin"></i> LinkedIn Post I
                                         </a>
                                         <a href="https://www.linkedin.com/posts/vitalii-starosta_theaiatlas-ai-futuretech-activity-7378497972378099713-4ZXZ"
-                                            target="_blank" rel="noopener noreferrer" class="project-link"
-                                            style="background-color: #0077b5; border-color: #0077b5;">
-                                            <i class="fab fa-linkedin"></i> Discussion 2
+                                            target="_blank" rel="noopener noreferrer" class="project-link linkedin">
+                                            <i class="fab fa-linkedin"></i> LinkedIn Post II
                                         </a>
                                         <a href="https://www.youtube.com/shorts/UOdt1oXepeM" target="_blank"
                                             rel="noopener noreferrer" class="project-link youtube">
-                                            <i class="fab fa-youtube"></i> Watch on YouTube
+                                            <i class="fab fa-youtube"></i> YouTube
                                         </a>
                                     </div>
                                 </div>
