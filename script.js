@@ -64,18 +64,18 @@ function openLightbox(element) {
         // (This regex handles shorts, watch, embed, etc.)
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
         const match = videoUrl.match(regExp);
-        
-if (match && match[2].length === 11) {
-    const videoId = match[2];
-    
-    const origin = window.location.origin; 
 
-    // === KEY FIXES FOR MOBILE ===
-    // mute=1        -> Required for autoplay on mobile
-    // playsinline=1 -> Prevents iOS from hijacking the video to native player
-    // origin=...    -> Tells YouTube this request is legitimate
-    modalVideo.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&rel=0&loop=1&playlist=${videoId}&origin=${origin}`;
-} else {
+        if (match && match[2].length === 11) {
+            const videoId = match[2];
+
+            const origin = window.location.origin;
+
+            // === KEY FIXES FOR MOBILE ===
+            // mute=1        -> Required for autoplay on mobile
+            // playsinline=1 -> Prevents iOS from hijacking the video to native player
+            // origin=...    -> Tells YouTube this request is legitimate
+            modalVideo.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&rel=0&loop=1&playlist=${videoId}&origin=${origin}`;
+        } else {
             console.error("Could not extract YouTube ID");
         }
 
@@ -364,7 +364,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const sections = [
         { triggerSelector: '[data-target="open-source-content-wrapper"]', contentSelector: '#open-source-content-wrapper' },
         { triggerSelector: '[data-target="articles-content-wrapper"]', contentSelector: '#articles-content-wrapper' },
-        { triggerSelector: '[data-target="bookshelf-content-wrapper"]', contentSelector: '#bookshelf-content-wrapper' }
+        { triggerSelector: '[data-target="bookshelf-content-wrapper"]', contentSelector: '#bookshelf-content-wrapper' },
+        // === ADDED THIS LINE ===
+        { triggerSelector: '[data-target="updates-content-wrapper"]', contentSelector: '#updates-content-wrapper' }
     ];
 
     sections.forEach(section => {
@@ -857,13 +859,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// === JUMP TO CARD ===
+    // === JUMP TO CARD ===
     window.jumpToCard = function (targetId) {
         if (window.event) {
             window.event.preventDefault();
             window.event.stopPropagation();
         }
-        window.location.hash = targetId; 
+        window.location.hash = targetId;
     };
 
 
@@ -1693,19 +1695,19 @@ document.addEventListener('DOMContentLoaded', function () {
         // 1. Handle Main View Keywords
         if (hash === 'matrix') {
             switchView('matrix');
-        } 
+        }
         else if (hash === 'gallery') {
             switchView('gallery');
-        } 
+        }
         // 2. Handle Analytics Sub-views
         else if (hash === 'analytics-orbit') {
             switchView('analytics');
             switchAnalyticsView('orbit');
-        } 
+        }
         else if (hash === 'analytics-carousel' || hash === 'analytics') {
             switchView('analytics');
             switchAnalyticsView('carousel');
-        } 
+        }
         // 3. Handle Specific Cards (Deep Linking)
         else if (hash.startsWith('card-')) {
             // A. Switch to Card View first so elements exist in the DOM layout
@@ -1746,7 +1748,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }, 6000);
                 }, 350);
             }
-        } 
+        }
         // 4. Default: Card View (No hash or unknown hash)
         else {
             switchView('card');
