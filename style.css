@@ -24,6 +24,11 @@
         scroll-behavior: smooth;
     }
 
+    /* This ensures nav links stop BELOW the sticky header */
+    section {
+        scroll-margin-top: 80px;
+    }
+
     html,
     body {
         width: 100%;
@@ -501,6 +506,15 @@
         transform: scale(1.1);
     }
 
+    #spotlight .item-image {
+        width: auto;
+        height: auto;
+        max-width: 250px;
+        max-height: 160px;
+        object-fit: contain;
+        border-radius: 6px;
+    }
+
     .card-title-link {
         text-decoration: none;
         color: inherit;
@@ -519,9 +533,9 @@
     }
 
     .card-title-link:hover .section-title {
-    color: #9ff0e7e2 !important;
-    text-shadow: 0 0 8px rgba(159, 240, 231, 0.3); 
-}
+        color: #9ff0e7e2 !important;
+        text-shadow: 0 0 8px rgba(159, 240, 231, 0.3);
+    }
 
     .article-title {
         font-size: 1.2em;
@@ -592,7 +606,7 @@
         margin-bottom: 20px;
     }
 
-.item-text .project-links:last-of-type,
+    .item-text .project-links:last-of-type,
     .book-text .project-links:last-of-type {
         margin-bottom: 0;
     }
@@ -615,7 +629,7 @@
     .project-link:focus {
         transform: translateY(-3px);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        color: #ffffff; 
+        color: #ffffff;
     }
 
     .project-link-svg-icon {
@@ -683,7 +697,7 @@
 
     .amazon {
         background-color: rgba(255, 153, 0, 0.65);
-  
+
         font-weight: 600;
     }
 
@@ -1581,32 +1595,32 @@
 
 
 
-    /* Flash Highlight Animation */
-    @keyframes highlightPulse {
-        0% {
-            border-color: var(--highlight-color);
-            box-shadow: 0 0 0 0 rgba(133, 193, 233, 0.7);
-        }
-
-        20% {
-            /* THICKER BORDER EFFECT */
-            border-color: var(--highlight-color);
-            box-shadow: 0 0 0 3px rgba(133, 193, 233, 0.6), 0 0 20px rgba(133, 193, 233, 0.4);
-            transform: scale(1.01);
-            /* Slight pop effect */
-        }
-
-        100% {
-            border-color: rgba(255, 255, 255, 0.12);
-            /* Fade back to original grey */
-            box-shadow: 0 0 0 0 rgba(133, 193, 233, 0);
-            transform: scale(1);
-        }
+    /* === DYNAMIC FLASH ANIMATION === */
+@keyframes highlightPulse {
+    0% {
+        border-color: rgb(var(--flash-rgb));
+        box-shadow: 0 0 0 0 rgba(var(--flash-rgb), 0.7);
     }
 
-    .highlight-card {
-        animation: highlightPulse 6s ease-out forwards;
+    20% {
+        /* THICKER BORDER EFFECT */
+        border-color: rgb(var(--flash-rgb));
+        box-shadow: 0 0 0 3px rgba(var(--flash-rgb), 0.6), 0 0 20px rgba(var(--flash-rgb), 0.4);
+        transform: scale(1.01);
     }
+
+    100% {
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 0 0 0 rgba(var(--flash-rgb), 0);
+        transform: scale(1);
+    }
+}
+
+.highlight-card {
+    /* Default to Blue if JS doesn't set it */
+    --flash-rgb: 133, 193, 233; 
+    animation: highlightPulse 6s ease-out forwards;
+}
 
     /* NEON RED Highlight Animation */
     @keyframes highlightPulseRed {
@@ -1822,6 +1836,10 @@
         font-size: 1em;
     }
 
+    .projects-placeholder i {
+        color: currentColor !important;
+    }
+
     #view-matrix {
         padding-bottom: 35px !important;
         display: block;
@@ -2029,6 +2047,8 @@
         margin-left: 8px;
         font-size: 0.9em;
     }
+
+    
 
     .analytics-glass-container {
         padding: 40px 40px 20px 40px;
@@ -2673,6 +2693,19 @@
         background: rgba(255, 255, 255, 0.08);
     }
 
+
+    /* Add this to style.css around line 1350 (Global/Desktop section) */
+
+/* === UPDATES TOGGLE BUTTON (Global) === */
+.toggle-item.special-bg-purple {
+    /* Brighter pink to match the brightness of the Teal Stats button */
+    --active-color: #ff6090; 
+    
+    /* Subtle gradient matching Stats button opacity */
+    background: linear-gradient(135deg, rgba(255, 96, 144, 0.08), rgba(255, 96, 144, 0.01));
+    border-color: rgba(255, 96, 144, 0.15);
+}
+
     .toggle-track {
         position: relative;
         width: 44px;
@@ -2825,11 +2858,47 @@
         border-color: rgba(255, 255, 255, 0.4);
     }
 
+
     .gallery-img-wrapper {
         width: 100%;
         aspect-ratio: 1 / 1;
         position: relative;
         overflow: hidden;
+    }
+
+
+    /* Updates section */
+
+    .gallery-item[data-type="update"] {
+        align-self: start !important;
+        height: fit-content !important;
+        justify-content: start;
+        background: rgba(44, 62, 80, 0.9) !important;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .gallery-item[data-type="update"] .gallery-img-wrapper {
+        aspect-ratio: auto !important;
+        height: auto !important;
+        min-height: 0 !important;
+        border-radius: 8px !important;
+    }
+
+    .gallery-item[data-type="update"] .gallery-img {
+        height: auto !important;
+        width: 100% !important;
+        object-fit: contain !important;
+        display: block !important;
+        box-shadow: none !important;
+        border-radius: 8px !important;
+    }
+
+    .gallery-grid.show-titles .gallery-item[data-type="update"] .gallery-img-wrapper,
+    .gallery-grid.show-links .gallery-item[data-type="update"] .gallery-img-wrapper,
+    .gallery-grid.show-titles .gallery-item[data-type="update"] .gallery-img,
+    .gallery-grid.show-links .gallery-item[data-type="update"] .gallery-img {
+        border-radius: 8px 8px 0 0 !important;
     }
 
     .gallery-img {
@@ -2916,6 +2985,10 @@
         color: #ffffff;
     }
 
+    .type-icon-badge.update {
+        background-color: #e91e62c8;
+        color: #ffffff;
+    }
 
 
 
@@ -3099,7 +3172,27 @@
             0 0 0 1px rgba(255, 255, 255, 0.1);
     }
 
+    /* UPDATES MODE */
+    .gallery-item.update-card {
+        display: none;
+    }
 
+    .gallery-grid.updates-mode .gallery-item {
+        display: none !important;
+    }
+
+    .gallery-grid.updates-mode .gallery-item.stats-card {
+        display: none !important;
+    }
+
+    .gallery-grid.updates-mode .gallery-item.update-card {
+        display: flex !important;
+    }
+
+
+    .gallery-grid.stats-mode .gallery-item.update-card {
+        display: none !important;
+    }
 
 
 
@@ -3477,6 +3570,9 @@
 
     @media (max-width: 768px) {
 
+        section {
+            scroll-margin-top: 70px; 
+        }
 
         /* MOBILE ADJUSTMENT FOR STICKY HEADER */
         .sticky-name {
@@ -3711,6 +3807,14 @@
             margin: 0 auto 0px;
         }
 
+        #spotlight .item-image {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 300px;
+            margin-bottom: 15px;
+        }
+
         .book-media-asset {
             width: 100px;
             height: 150px;
@@ -3925,6 +4029,39 @@
         .toggle-item.special-bg.active-state .toggle-label {
             color: #9ff0e6 !important;
         }
+
+/* === UPDATES TOGGLE BUTTON (Mobile Overrides) === */
+
+/* 1. Inactive State */
+.toggle-item.special-bg-purple {
+    /* Solid Dark Pink Background (Matches Stats Dark Teal weight) */
+    background: rgba(55, 4, 25, 0.5) !important; 
+    
+    /* Dim Pink Border */
+    border-color: rgba(255, 96, 144, 0.2) !important;
+}
+
+/* 2. Active State */
+.toggle-item.special-bg-purple.active-state {
+    /* Glowy Pink Background */
+    background: rgba(255, 96, 144, 0.25) !important;
+    
+    /* Neon Pink Border */
+    border-color: #ff6090 !important;
+}
+
+/* 3. Text Color */
+.toggle-item.special-bg-purple.active-state .toggle-label {
+    /* Neon Pink Text */
+    color: #ff6090 !important;
+}
+
+
+
+
+
+
+
 
         /* --- 3. ANALYTICS KPI CARDS & SWITCHER BUTTONS --- */
         .kpi-card,
@@ -4380,10 +4517,19 @@
             width: 100%;
         }
 
-        #btn-stats {
+        /*#btn-stats {
             grid-column: 1 / -1;
             width: calc(50% - 5px);
             margin: 0 auto;
+        }*/
+
+        #btn-stats {
+            grid-column: auto;
+            width: 100%;
+        }
+
+        #btn-updates {
+            width: 100%;
         }
 
         .gallery-filter-bar {

@@ -32,11 +32,15 @@ function toggleBio() {
 
 // === LIGHTBOX FUNCTIONALITY (Image + Video) ===
 
+
 function openLightbox(element) {
     const modal = document.getElementById("lightbox-modal");
     const modalImg = document.getElementById("lightbox-img");
     const modalVideo = document.getElementById("lightbox-video");
     const captionText = document.getElementById("lightbox-caption");
+
+    // Safety Check: Stop if modal HTML is missing
+    if (!modal) return;
 
     // Get Data Attributes
     const fullSizeUrl = element.getAttribute('data-full-src') || element.src; // Logic: Use 'data-full-src' if it exists (HD image), otherwise use 'src'
@@ -47,44 +51,51 @@ function openLightbox(element) {
     // === LOGIC: IS IT A VIDEO OR IMAGE? ===
     if (videoUrl) {
         // --- IT IS A VIDEO ---
-        modalImg.style.display = "none";   // Hide Image
-        modalVideo.style.display = "block"; // Show Video
+        if (modalImg) modalImg.style.display = "none";   // Hide Image
+        
+        if (modalVideo) {
+            modalVideo.style.display = "block"; // Show Video
 
-        // 1. Detect if it is a Short (Vertical)
-        const isShort = videoUrl.includes("shorts/");
+            // 1. Detect if it is a Short (Vertical)
+            const isShort = videoUrl.includes("shorts/");
 
-        // 2. Apply or Remove the 'vertical' CSS class based on detection
-        if (isShort) {
-            modalVideo.classList.add("vertical");
-        } else {
-            modalVideo.classList.remove("vertical");
-        }
+            // 2. Apply or Remove the 'vertical' CSS class based on detection
+            if (isShort) {
+                modalVideo.classList.add("vertical");
+            } else {
+                modalVideo.classList.remove("vertical");
+            }
 
-        // 3. Extract ID and Play
-        // (This regex handles shorts, watch, embed, etc.)
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
-        const match = videoUrl.match(regExp);
+            // 3. Extract ID and Play
+            // (This regex handles shorts, watch, embed, etc.)
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
+            const match = videoUrl.match(regExp);
 
-        if (match && match[2].length === 11) {
-            const videoId = match[2];
+            if (match && match[2].length === 11) {
+                const videoId = match[2];
+                const origin = window.location.origin;
 
-            const origin = window.location.origin;
-
-            // === KEY FIXES FOR MOBILE ===
-            // mute=1        -> Required for autoplay on mobile
-            // playsinline=1 -> Prevents iOS from hijacking the video to native player
-            // origin=...    -> Tells YouTube this request is legitimate
-            modalVideo.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&rel=0&loop=1&playlist=${videoId}&origin=${origin}`;
-        } else {
-            console.error("Could not extract YouTube ID");
+                // === KEY FIXES FOR MOBILE ===
+                // mute=1        -> Required for autoplay on mobile
+                // playsinline=1 -> Prevents iOS from hijacking the video to native player
+                // origin=...    -> Tells YouTube this request is legitimate
+                modalVideo.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&rel=0&loop=1&playlist=${videoId}&origin=${origin}`;
+            } else {
+                console.error("Could not extract YouTube ID");
+            }
         }
 
     } else {
         // --- IT IS AN IMAGE ---
-        modalVideo.style.display = "none"; // Hide Video
-        modalVideo.src = "";               // Stop video audio
-        modalImg.style.display = "block";  // Show Image
-        modalImg.src = fullSizeUrl;
+        if (modalVideo) {
+            modalVideo.style.display = "none"; // Hide Video
+            modalVideo.src = "";               // Stop video audio
+        }
+        
+        if (modalImg) {
+            modalImg.style.display = "block";  // Show Image
+            modalImg.src = fullSizeUrl;
+        }
     }
 
     // Use alt text as caption
@@ -95,19 +106,15 @@ function openLightbox(element) {
 
 function closeLightbox() {
     const modal = document.getElementById("lightbox-modal");
-    modal.style.display = "none";
+    if (modal) modal.style.display = "none";
+
+    const modalImg = document.getElementById("lightbox-img");
+    const modalVideo = document.getElementById("lightbox-video");
 
     // CLEANUP: Clear both sources to stop memory leaks and STOP AUDIO
-    document.getElementById("lightbox-img").src = "";
-    document.getElementById("lightbox-video").src = "";
+    if (modalImg) modalImg.src = "";
+    if (modalVideo) modalVideo.src = "";
 }
-
-// Close on 'Escape' key
-document.addEventListener('keydown', function (event) {
-    if (event.key === "Escape") {
-        closeLightbox();
-    }
-});
 
 
 
@@ -123,9 +130,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Analytics Animation State ---
 
+
     let currentAngle = 0;
     let isPlaying = true;
     let animationId;
+    window.isManualHighlight = false; 
+    let carouselResumeTimer;
+    
     const rotationSpeed = 0.2;
 
 
@@ -607,40 +618,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    window.animateCarousel = function () {
+window.animateCarousel = function () {
         const carouselView = document.getElementById('view-carousel');
         const analyticsView = document.getElementById('view-analytics');
 
-        // Check if Analytics View is active (not hidden) AND Carousel is displayed
-        // Note: We check if analyticsView exists to prevent errors on initial load
         const isVisible = analyticsView && !analyticsView.classList.contains('hidden-view') &&
             carouselView && carouselView.style.display !== 'none';
 
         if (isPlaying && isVisible) {
             currentAngle += rotationSpeed;
-            applyTransform();
-            removeHighlights();
+            
+            // This function rotates the div AND calls updateHighlights()
+            applyTransform(); 
+
             animationId = requestAnimationFrame(window.animateCarousel);
         } else {
-            // Ensure we stop the loop if hidden
             if (animationId) cancelAnimationFrame(animationId);
         }
     };
 
-    function applyTransform() {
-        if (carouselSpinner) {
-            carouselSpinner.style.transform = `rotateY(${currentAngle}deg)`;
-            if (!isPlaying) updateHighlights();
-        }
+
+
+
+
+
+
+function applyTransform() {
+    if (carouselSpinner) {
+        carouselSpinner.style.transform = `rotateY(${currentAngle}deg)`;
+        // updateHighlights(); // <--- Commenting this out stops the auto-highlighting
     }
-
-
-
+}
 
 
     // === HIGHLIGHT FUNCTION ===
 
     function updateHighlights() {
+        if (window.isManualHighlight) return;
         // 1. Get all cards that are currently visible after any filtering
         const visibleCards = Array.from(cards).filter(
             card => card.style.opacity !== '0' && card.style.display !== 'none'
@@ -692,19 +706,32 @@ document.addEventListener('DOMContentLoaded', function () {
         cards.forEach(card => card.classList.remove('highlight'));
     }
 
-    window.togglePlay = function () {
+
+
+
+
+
+
+
+
+    
+
+window.togglePlay = function () {
         isPlaying = !isPlaying;
         const icon = playPauseBtn.querySelector('i');
+        
         if (isPlaying) {
+            // RESUMING:
             icon.classList.remove('fa-play');
             icon.classList.add('fa-pause');
-            window.animateCarousel();
+            window.animateCarousel(); // This will trigger updateHighlights -> removeHighlights
         } else {
+            // PAUSING:
             icon.classList.remove('fa-pause');
             icon.classList.add('fa-play');
             cancelAnimationFrame(animationId);
-            animationId = null; // reset ID
-            updateHighlights();
+            animationId = null;
+            updateHighlights(); // Manually trigger this to light up the closest card immediately
         }
     };
 
@@ -879,20 +906,52 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterType = document.getElementById('gallery-filter-type');
 
     function setupToggleButton(id, callback) {
-        const btn = document.getElementById(id);
-        if (!btn) return;
-        const track = btn.querySelector('.toggle-track');
-        const label = btn.querySelector('.toggle-label');
-        const textOff = btn.getAttribute('data-off');
-        const textOn = btn.getAttribute('data-on');
+    const btn = document.getElementById(id);
+    if (!btn) return;
 
-        btn.addEventListener('click', () => {
-            const isActive = track.classList.toggle('active');
-            btn.classList.toggle('active-state', isActive);
+    // Check if this is an old-style toggle (has track) or new glass button
+    const track = btn.querySelector('.toggle-track');
+    
+    // Select the label text element
+    const label = btn.querySelector('.toggle-label') || btn.querySelector('.glass-label');
+    
+    // Get text attributes
+    const textOff = btn.getAttribute('data-off');
+    const textOn = btn.getAttribute('data-on');
+
+    btn.addEventListener('click', () => {
+        let isActive;
+
+        if (track) {
+            // Old Style Logic
+            isActive = track.classList.toggle('active');
+            btn.classList.toggle('active-state', isActive); 
+        } else {
+            // New Glass Button Logic
+            isActive = btn.classList.toggle('active-state');
+        }
+
+        // Update Text
+        if (label) {
             label.textContent = isActive ? textOn : textOff;
-            callback(isActive);
-        });
-    }
+            
+            // --- ICON SWAPPING LOGIC ---
+            const icon = btn.querySelector('i');
+            if (icon && !track) {
+                if (isActive) {
+                    // When active, show the "Layer/Projects" icon
+                    icon.className = "fa-solid fa-layer-group";
+                } else {
+                    // When inactive, revert to ORIGINAL icons
+                    if (id === 'btn-stats') icon.className = "fa-solid fa-chart-column"; // <-- Original
+                    if (id === 'btn-updates') icon.className = "fa-solid fa-bullhorn";   // <-- Original
+                }
+            }
+        }
+
+        callback(isActive);
+    });
+}
 
     setupToggleButton('btn-titles', (isActive) => {
         if (isActive) grid.classList.add('show-titles');
@@ -904,28 +963,56 @@ document.addEventListener('DOMContentLoaded', function () {
         else grid.classList.remove('show-links');
     });
 
-    setupToggleButton('btn-stats', (isActive) => {
-        // Target the actual ID of your custom dropdown wrapper
-        const galleryMultiSelect = document.getElementById('gallery-multiselect');
+    // === STATS BUTTON LOGIC ===
+setupToggleButton('btn-stats', (isActive) => {
+    const galleryMultiSelect = document.getElementById('gallery-multiselect');
 
-        if (isActive) {
-            grid.classList.add('stats-mode');
-
-            // Apply the CSS class to visually and functionally disable it
-            if (galleryMultiSelect) {
-                galleryMultiSelect.classList.add('disabled');
-                galleryMultiSelect.classList.remove('open'); // Force close if open
-            }
-        } else {
-            grid.classList.remove('stats-mode');
-
-            // Remove the CSS class to re-enable it
-            if (galleryMultiSelect) {
-                galleryMultiSelect.classList.remove('disabled');
-            }
+    // 1. If we are turning Stats ON, ensure Updates is OFF
+    if (isActive) {
+        const updatesBtn = document.getElementById('btn-updates');
+        // CORRECTED CHECK:
+        if (updatesBtn && updatesBtn.classList.contains('active-state')) {
+            updatesBtn.click();
         }
-        window.filterGallery();
-    });
+
+        grid.classList.add('stats-mode');
+        if (galleryMultiSelect) {
+            galleryMultiSelect.classList.add('disabled');
+            galleryMultiSelect.classList.remove('open');
+        }
+    } else {
+        grid.classList.remove('stats-mode');
+        if (galleryMultiSelect) galleryMultiSelect.classList.remove('disabled');
+    }
+    window.filterGallery();
+});
+
+// === UPDATES BUTTON LOGIC ===
+setupToggleButton('btn-updates', (isActive) => {
+    const galleryMultiSelect = document.getElementById('gallery-multiselect');
+
+    // 1. If we are turning Updates ON, ensure Stats is OFF
+    if (isActive) {
+        const statsBtn = document.getElementById('btn-stats');
+        // CORRECTED CHECK:
+        if (statsBtn && statsBtn.classList.contains('active-state')) {
+            statsBtn.click();
+        }
+
+        grid.classList.add('updates-mode');
+        if (galleryMultiSelect) {
+            galleryMultiSelect.classList.add('disabled');
+            galleryMultiSelect.classList.remove('open');
+        }
+    } else {
+        grid.classList.remove('updates-mode');
+        if (galleryMultiSelect) galleryMultiSelect.classList.remove('disabled');
+    }
+    window.filterGallery();
+});
+
+
+
 
 
 
@@ -1015,8 +1102,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // --- 2. FILTERING LOGIC ---
-        const statsBtn = document.querySelector('#btn-stats .toggle-track');
-        const isStatsMode = statsBtn && statsBtn.classList.contains('active');
+const statsBtn = document.getElementById('btn-stats');
+const isStatsMode = statsBtn && statsBtn.classList.contains('active-state');
         const items = document.querySelectorAll('#gallery-grid .gallery-item');
         const grid = document.getElementById('gallery-grid');
 
@@ -1227,43 +1314,53 @@ document.addEventListener('DOMContentLoaded', function () {
             window.event.stopPropagation();
         }
 
-        // 2. UPDATE URL TO #GALLERY
+        // 2. CHECK IF TARGET IS AN UPDATE OR REGULAR PROJECT
+        const targetItem = document.querySelector(`.gallery-item[data-title="${dataTitle}"]`);
+        const isUpdate = targetItem && targetItem.getAttribute('data-type') === 'update';
+
+        // 3. UPDATE URL TO #GALLERY
         if (history.pushState) {
             history.pushState(null, null, '#gallery');
         } else {
             window.location.hash = 'gallery';
         }
 
-        // 3. SWITCH VIEW
+        // 4. SWITCH VIEW
         switchView('gallery');
 
-        // 4. === NEW: FORCE "SEE PROJECTS" MODE ===
-        // If "See Stats" is active, turn it off so we can see the project cards
+        // 5. HANDLE VIEW MODES (Updates vs Projects vs Stats)
         const btnStats = document.getElementById('btn-stats');
-        if (btnStats) {
-            const track = btnStats.querySelector('.toggle-track');
-            const label = btnStats.querySelector('.toggle-label');
-            const grid = document.getElementById('gallery-grid');
-            const galleryMultiSelect = document.getElementById('gallery-multiselect');
+        const btnUpdates = document.getElementById('btn-updates');
 
-            // Check if it's currently active
-            if (track && track.classList.contains('active')) {
-                // A. Reset Toggle Visuals
-                track.classList.remove('active');
-                btnStats.classList.remove('active-state');
+        // A. Handle Updates Toggle
+        if (btnUpdates) {
+            const track = btnUpdates.querySelector('.toggle-track');
+            const isActive = track && track.classList.contains('active');
 
-                // B. Reset Label Text (to "SEE STATS")
-                if (label) label.textContent = btnStats.getAttribute('data-off');
-
-                // C. Remove Stats Mode Class (Reveals Projects)
-                if (grid) grid.classList.remove('stats-mode');
-
-                // D. Re-enable Dropdown
-                if (galleryMultiSelect) galleryMultiSelect.classList.remove('disabled');
+            if (isUpdate && !isActive) {
+                // If it's an update but we are in Project mode -> Switch to Updates
+                btnUpdates.click();
+            } else if (!isUpdate && isActive) {
+                // If it's a project but we are in Updates mode -> Switch back to Projects
+                btnUpdates.click();
             }
         }
 
-        // 5. RESET FILTERS (Search & Dropdown)
+        // B. Ensure Stats is OFF (if it was on)
+        if (btnStats) {
+            const track = btnStats.querySelector('.toggle-track');
+            if (track && track.classList.contains('active')) {
+                // Determine which off-state to trigger. 
+                // If we just clicked Updates above, stats is already off. 
+                // If we didn't, we might need to turn stats off manually.
+                const grid = document.getElementById('gallery-grid');
+                if (grid.classList.contains('stats-mode')) {
+                    btnStats.click();
+                }
+            }
+        }
+
+        // 6. RESET FILTERS (Search & Dropdown)
         const searchInput = document.getElementById('gallery-search');
         if (searchInput) searchInput.value = "";
 
@@ -1273,15 +1370,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const triggerText = document.getElementById('gallery-trigger-text');
         if (triggerText) triggerText.innerText = "All Types";
 
-        // 6. APPLY FILTER (Refreshes the view)
+        // 7. APPLY FILTER (Refreshes the view)
         if (typeof window.filterGallery === 'function') {
             window.filterGallery();
         }
 
-        // 7. FIND & HIGHLIGHT TARGET
-        const targetItem = document.querySelector(`.gallery-item[data-title="${dataTitle}"]`);
-
+        // 8. FIND & HIGHLIGHT TARGET
         if (targetItem) {
+            // Slight delay to allow CSS transitions (like hiding/showing the grid) to start
             setTimeout(() => {
                 targetItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
@@ -1295,11 +1391,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Add RED Neon Class
                 targetItem.classList.add('highlight-gallery');
 
-                // Wait 6 Seconds
+                // Wait 4 Seconds then remove
                 setTimeout(() => {
                     targetItem.classList.remove('highlight-gallery');
                 }, 4000);
-            }, 300);
+            }, 350);
         } else {
             console.warn(`Gallery item with data-title '${dataTitle}' not found.`);
         }
@@ -1733,7 +1829,24 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
 
-                // D. Scroll & Highlight (With a tiny delay to ensure expansion renders)
+                // === D. DETERMINE FLASH COLOR BASED ON SECTION ===
+                let flashRgb = '133, 193, 233'; // Default Blue (Open Source)
+
+                // Check which section the card is inside
+                if (targetElement.closest('#articles-content-wrapper')) {
+                    flashRgb = '210, 180, 222'; // Purple (Matches KPI/Badge)
+                } 
+                else if (targetElement.closest('#bookshelf-content-wrapper') || targetElement.closest('#atlas-content-wrapper')) {
+                    flashRgb = '247, 220, 111'; // Yellow (Matches KPI/Badge)
+                } 
+                else if (targetElement.closest('#updates-content-wrapper')) {
+                    flashRgb = '233, 30, 99'; // Pink (Matches Update Icon)
+                }
+
+                // Apply the calculated color to THIS specific card
+                targetElement.style.setProperty('--flash-rgb', flashRgb);
+
+                // E. Scroll & Highlight (With a tiny delay to ensure expansion renders)
                 setTimeout(() => {
                     targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
@@ -1745,6 +1858,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Clean up class after animation
                     setTimeout(() => {
                         targetElement.classList.remove('highlight-card');
+                        // Optional: Clean up the inline style property to keep DOM clean
+                        targetElement.style.removeProperty('--flash-rgb');
                     }, 6000);
                 }, 350);
             }
@@ -1755,6 +1870,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+
+
+
+
+
+
     // Attach click events (Manual overrides still work)
     btnCard.addEventListener('click', () => { window.location.hash = 'card'; });
     btnMatrix.addEventListener('click', () => { window.location.hash = 'matrix'; });
@@ -1763,6 +1884,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Listen for hash changes (Back button, Links, etc.)
     window.addEventListener('hashchange', handleUrlHash);
+
+    // ===============================================
+    // === NEW LOGIC: CAROUSEL & ORBIT INTERACTIONS ===
+    // ===============================================
+
+    // --- 1. ORBIT: DOUBLE CLICK TO JUMP ---
+    document.querySelectorAll('.planet').forEach(planet => {
+        planet.addEventListener('dblclick', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            if (targetId) window.jumpToCard(targetId);
+        });
+    });
+
+    // --- 2. CAROUSEL: CLICK & DOUBLE CLICK ---
+    document.querySelectorAll('.carousel-card').forEach(card => {
+        
+        // A. DOUBLE CLICK -> JUMP
+        card.addEventListener('dblclick', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            if (targetId) window.jumpToCard(targetId);
+        });
+
+// B. SINGLE CLICK -> FLASH HIGHLIGHT (WHILE MOVING)
+    card.addEventListener('click', function(e) {
+        // 1. Clear any existing timer so they don't overlap if you click fast
+        if (carouselResumeTimer) clearTimeout(carouselResumeTimer);
+
+        // 2. Manually apply highlight to THIS card (and clear others)
+        document.querySelectorAll('.carousel-card').forEach(c => c.classList.remove('highlight'));
+        this.classList.add('highlight');
+
+        // 3. Set a timer to REMOVE the highlight after 1 second
+        carouselResumeTimer = setTimeout(() => {
+            this.classList.remove('highlight'); // <--- This line removes the highlight!
+        }, 1000); // <--- Set to 1000ms (1 second)
+    });
+    });
 
     // Run on initial page load
     handleUrlHash();
