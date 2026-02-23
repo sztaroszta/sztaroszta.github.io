@@ -2162,12 +2162,10 @@ footer .copyright {
     margin: 0;
 }
 
-#view-analytics:not(.hidden-view)~.card-projects-placeholder {
-    display: none !important;
-}
-
-.main-views-wrapper:has(#about:not(.hidden-view))~.card-projects-placeholder,
-.main-views-wrapper:has(#view-matrix:not(.hidden-view))~.card-projects-placeholder {
+#about:not(.hidden-view) ~ .card-projects-placeholder,
+#view-matrix:not(.hidden-view) ~ .card-projects-placeholder,
+#view-gallery:not(.hidden-view) ~ .card-projects-placeholder,
+#view-analytics:not(.hidden-view) ~ .card-projects-placeholder {
     display: none !important;
 }
 
@@ -7546,7 +7544,7 @@ body.gallery-lightbox-active {
         min-height: 100dvh !important;
         height: 100% !important;
         min-height: 100% !important;
-        padding-top: 10svh !important;
+        padding-top: 9svh !important;
     }
 
     #matrix-modal-content .matrix-table-container {
@@ -15593,9 +15591,14 @@ body:has(#about:not(.hidden-view)) .view-switcher-container {
     #stream-overlay-track {
         gap: 20px !important;
         padding-top: 30svh !important;
-        padding-bottom: 15svh !important;
+        padding-bottom: 20svh !important;
         height: 100% !important;
     }
+
+body.in-app-browser #stream-overlay-track {
+        padding-top: 35vh !important;
+        padding-bottom: 10vh !important;}
+
 
     #stream-overlay-track .stream-clone,
     #stream-overlay-track .card-showcase-item,

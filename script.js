@@ -6382,7 +6382,24 @@ window.updateStreamFocus = function () {
                 card.classList.remove("card-stream-focused");
             }
         });
+
+
+if (!isStreamProgrammaticScroll) {
+            const sectionId = closestCard.getAttribute("data-stream-section-id");
+            if (sectionId) {
+                const nav = document.getElementById("stream-cloned-nav");
+                if (nav && window.moveStreamCyberLine) {
+                    const targetPill = nav.querySelector(`.card-nav-pill[href="#${sectionId}"]`);
+                    const cyberLine = nav.querySelector(".card-cyber-line");
+                    const pills = nav.querySelectorAll(".card-nav-pill");
+                    if (targetPill && cyberLine) {
+                        window.moveStreamCyberLine(targetPill, cyberLine, pills, false);
+                    }
+                }
+            }
+        }
     }
+
 };
 
 window.closeStreamOverlay = function (skipHistory = false) {
@@ -6499,11 +6516,14 @@ function initializeStreamNav() {
 
         cyberLine.classList.add("initialized");
     }
+    window.moveStreamCyberLine = moveStreamCyberLine;
+
 
     if (streamScrollObserver) streamScrollObserver.disconnect();
     streamScrollObserver = new IntersectionObserver(
         (entries) => {
             if (isStreamProgrammaticScroll) return;
+            if (window.innerWidth > 768) return;
 
             const intersectingEntry = entries.reduce((prev, current) =>
                 prev.intersectionRatio > current.intersectionRatio ? prev : current,
@@ -6522,7 +6542,7 @@ function initializeStreamNav() {
                 }
             }
         },
-        { root: track, threshold: 0.5 },
+        { root: track, threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9] },
     );
 
     track
@@ -8339,6 +8359,11 @@ if (slider) {
 
 document.addEventListener("DOMContentLoaded", function () {
     if (typeof calculateInitialTotals === "function") calculateInitialTotals();
+const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isInApp = /FBAN|FBAV|Instagram|LinkedInApp|Twitter|MicroMessenger|TikTok|Snapchat|Reddit|Pinterest|Line|Viber|WhatsApp|GSA|Threads|Telegram/i.test(ua);
+    if (isInApp) {
+        document.body.classList.add("in-app-browser");
+    }
     if (typeof buildSearchIndex === "function") buildSearchIndex();
 
     if (typeof initMainLogic === "function") initMainLogic();
@@ -8391,6 +8416,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }, 700);
 });
+
+
+
 
 window.toggleMobileMenu = function (btn = null) {
     const menu = document.getElementById("mobile-menu-overlay");
