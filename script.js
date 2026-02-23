@@ -420,13 +420,14 @@ function openLightbox(element) {
         finalCaptionHTML = `<div class="caption-text-content">${captionHTML}</div>`;
     }
 
-    captionText.innerHTML = finalCaptionHTML;
+captionText.innerHTML = finalCaptionHTML;
     const captionAlign = element.getAttribute("data-caption-align");
     if (captionAlign === "left") {
         captionText.classList.add("caption-align-left");
     } else {
         captionText.classList.remove("caption-align-left");
     }
+    captionText.classList.remove("mobile-expanded");
     history.pushState(null, null, "#media-lightbox");
 }
 
@@ -7652,6 +7653,15 @@ window.toggleCardHeader = function () {
 };
 
 const lightboxImage = document.getElementById("gallery-image");
+const captionModal = document.getElementById("gallery-lightbox-caption");
+if (captionModal) {
+    captionModal.addEventListener("click", function (e) {
+        if (window.innerWidth <= 768) {
+            e.stopPropagation();
+            this.classList.toggle("mobile-expanded");
+        }
+    });
+}
 
 if (lightboxImage) {
     let isDragging = false;
