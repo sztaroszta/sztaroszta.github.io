@@ -46,6 +46,7 @@ This repository acts as the central hub for my open-source projects and publicat
 
 ## 📫 Let's Connect
 
+- **Website:** [starosta.app](https://starosta.app)
 - **LinkedIn:** [linkedin.com/in/vitalii-starosta](https://www.linkedin.com/in/vitalii-starosta)
 - **Medium:** [medium.com/@starosta](https://medium.com/@starosta)
 - **Email:** [hello@starosta.app](mailto:hello@starosta.app)
