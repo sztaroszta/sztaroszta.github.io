@@ -420,7 +420,7 @@ function openLightbox(element) {
         finalCaptionHTML = `<div class="caption-text-content">${captionHTML}</div>`;
     }
 
-captionText.innerHTML = finalCaptionHTML;
+    captionText.innerHTML = finalCaptionHTML;
     const captionAlign = element.getAttribute("data-caption-align");
     if (captionAlign === "left") {
         captionText.classList.add("caption-align-left");
@@ -1811,17 +1811,15 @@ function initMainLogic() {
     });
 
     window.jumpToCard = function (targetId) {
-        if (typeof window.closeTableLightbox === "function") {
+        if (typeof window.closeTableLightbox === 'function') {
             window.closeTableLightbox();
         }
-
-        if (typeof window.closeLightbox === "function") {
+        if (typeof window.closeLightbox === 'function') {
             window.closeLightbox();
         }
-
-        if (typeof window.closeStreamOverlay === "function") {
-            const streamModal = document.getElementById("stream-overlay-modal");
-            if (streamModal && streamModal.classList.contains("active")) {
+        if (typeof window.closeStreamOverlay === 'function') {
+            const streamModal = document.getElementById('stream-overlay-modal');
+            if (streamModal && streamModal.classList.contains('active')) {
                 window.closeStreamOverlay(true);
             }
         }
@@ -1831,7 +1829,67 @@ function initMainLogic() {
             window.event.stopPropagation();
         }
 
-        window.location.hash = targetId;
+
+        if (typeof switchView === 'function') {
+            switchView('card');
+        }
+
+
+        if (history.pushState) {
+            history.pushState(null, null, '#' + targetId);
+        } else {
+            window.location.hash = targetId;
+        }
+
+
+        const targetElement = document.getElementById(targetId);
+        if (!targetElement) return;
+
+        const contentWrapper = targetElement.classList.contains('intro-collapsible-section-content')
+            ? targetElement
+            : targetElement.closest('.intro-collapsible-section-content') || targetElement.querySelector('.intro-collapsible-section-content');
+
+        if (contentWrapper) {
+            contentWrapper.classList.add('card-expanded');
+            const triggerBtn = document.querySelector(`.card-section-trigger[data-target="${contentWrapper.id}"], #card-the-ai-atlas-trigger-btn`);
+            if (triggerBtn) {
+                triggerBtn.classList.add('card-expanded');
+                triggerBtn.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+
+        let flashRgb = '133, 193, 233';
+        if (targetElement.closest('#card-articles-content-wrapper') || targetId === 'articles-insights') {
+            flashRgb = '210, 180, 222';
+        } else if (targetElement.closest('#card-open-source-content-wrapper') || targetId === 'open-source-projects') {
+            flashRgb = '133, 193, 233';
+        } else if (targetElement.closest('#card-bookshelf-content-wrapper') || targetElement.closest('#card-the-ai-atlas-content-wrapper') || targetId === 'digital-bookshelf' || targetId === 'the-ai-atlas-section' || targetId === 'book-the-ai-atlas') {
+            flashRgb = '247, 220, 111';
+        } else if (targetElement.closest('#card-updates-content-wrapper') || targetId === 'updates') {
+            flashRgb = '255, 96, 144';
+        }
+
+
+        setTimeout(() => {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            const highlightTarget = ['SECTION'].includes(targetElement.tagName)
+                ? targetElement.querySelector('.card-showcase-item, .card-book-showcase, .card-modern-glass')
+                : targetElement;
+
+            if (highlightTarget) {
+                highlightTarget.style.setProperty('--flash-rgb', flashRgb);
+                highlightTarget.classList.remove('highlight-card');
+                void highlightTarget.offsetWidth;
+                highlightTarget.classList.add('highlight-card');
+
+                setTimeout(() => {
+                    highlightTarget.classList.remove('highlight-card');
+                    highlightTarget.style.removeProperty('--flash-rgb');
+                }, 6000);
+            }
+        }, 300);
     };
 
     const grid = document.getElementById("gallery-grid");
@@ -6385,7 +6443,7 @@ window.updateStreamFocus = function () {
         });
 
 
-if (!isStreamProgrammaticScroll) {
+        if (!isStreamProgrammaticScroll) {
             const sectionId = closestCard.getAttribute("data-stream-section-id");
             if (sectionId) {
                 const nav = document.getElementById("stream-cloned-nav");
@@ -8369,7 +8427,7 @@ if (slider) {
 
 document.addEventListener("DOMContentLoaded", function () {
     if (typeof calculateInitialTotals === "function") calculateInitialTotals();
-const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
     const isInApp = /FBAN|FBAV|Instagram|LinkedInApp|Twitter|MicroMessenger|TikTok|Snapchat|Reddit|Pinterest|Line|Viber|WhatsApp|GSA|Threads|Telegram/i.test(ua);
     if (isInApp) {
         document.body.classList.add("in-app-browser");

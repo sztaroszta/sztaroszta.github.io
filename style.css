@@ -1837,30 +1837,39 @@ footer .copyright {
 
 @keyframes highlightPulse {
     0% {
-        border-color: rgb(var(--flash-rgb));
-        box-shadow: 0 0 0 0 rgba(var(--flash-rgb), 0.7);
+        box-shadow: 0 0 0 0 rgba(var(--flash-rgb), 0);
+        transform: scale(1);
     }
 
-    20% {
-        border-color: rgb(var(--flash-rgb));
-        box-shadow:
-            0 0 0 3px rgba(var(--flash-rgb), 0.6),
-            0 0 20px rgba(var(--flash-rgb), 0.4);
-        transform: scale(1.01);
+    15% {
+        box-shadow: 0 0 0 2px rgba(var(--flash-rgb), 0.9), 0 0 35px rgba(var(--flash-rgb), 0.7), 0 10px 40px rgba(0, 0, 0, 0.4);
+        transform: scale(1.02);
+    }
+
+    70% {
+        box-shadow: 0 0 0 2px rgba(var(--flash-rgb), 0.9), 0 0 35px rgba(var(--flash-rgb), 0.7), 0 10px 40px rgba(0, 0, 0, 0.4);
+        transform: scale(1.02);
     }
 
     100% {
-        border-color: rgba(255, 255, 255, 0.12);
-
-        box-shadow: 0 0 0 0 rgba(var(--flash-rgb), 0);
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
         transform: scale(1);
     }
 }
 
-.highlight-card {
+.highlight-card,
+.card-modern-glass.highlight-card {
     --flash-rgb: 133, 193, 233;
-    animation: highlightPulse 6s ease-out forwards;
-    z-index: 100;
+    animation: highlightPulse 6s ease-out forwards !important;
+    z-index: 100 !important;
+}
+
+.card-modern-glass.highlight-card::after,
+.card-modern-glass.highlight-card:has(.card-category-icon)::after,
+#book-the-ai-atlas.card-modern-glass.highlight-card::after {
+    background: rgb(var(--flash-rgb)) !important;
+    box-shadow: 0 0 25px rgba(var(--flash-rgb), 0.8) !important;
+    transition: background 0.3s ease;
 }
 
 @keyframes highlightPulseNav {
@@ -2162,10 +2171,10 @@ footer .copyright {
     margin: 0;
 }
 
-#about:not(.hidden-view) ~ .card-projects-placeholder,
-#view-matrix:not(.hidden-view) ~ .card-projects-placeholder,
-#view-gallery:not(.hidden-view) ~ .card-projects-placeholder,
-#view-analytics:not(.hidden-view) ~ .card-projects-placeholder {
+#about:not(.hidden-view)~.card-projects-placeholder,
+#view-matrix:not(.hidden-view)~.card-projects-placeholder,
+#view-gallery:not(.hidden-view)~.card-projects-placeholder,
+#view-analytics:not(.hidden-view)~.card-projects-placeholder {
     display: none !important;
 }
 
@@ -4992,7 +5001,7 @@ input[type="range"]::-webkit-slider-thumb {
             margin 0.4s ease;
     }
 
-.gallery-zoom-badge {
+    .gallery-zoom-badge {
         opacity: 1 !important;
         background-color: rgba(0, 0, 0, 0.25) !important;
         border-color: rgba(255, 255, 255, 0.2) !important;
@@ -5485,6 +5494,11 @@ input[type="range"]::-webkit-slider-thumb {
 .card-neu-icon-link[title*="YouTube"]:hover {
     color: #ff0000;
     text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+}
+
+.card-neu-icon-link[title*="IMDb"]:hover {
+    color: #f5c518;
+    text-shadow: 0 0 15px rgba(245, 197, 24, 0.8);
 }
 
 .card-btn-share {
@@ -8988,7 +9002,7 @@ a.analytics-action-btn {
         max-width: 100vw !important;
     }
 
-#gallery-lightbox-caption {
+    #gallery-lightbox-caption {
         position: absolute !important;
         bottom: 30px !important;
         left: 50% !important;
@@ -15660,9 +15674,10 @@ body:has(#about:not(.hidden-view)) .view-switcher-container {
         height: 100% !important;
     }
 
-body.in-app-browser #stream-overlay-track {
+    body.in-app-browser #stream-overlay-track {
         padding-top: 35vh !important;
-        padding-bottom: 10vh !important;}
+        padding-bottom: 10vh !important;
+    }
 
 
     #stream-overlay-track .stream-clone,
